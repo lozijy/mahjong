@@ -1,6 +1,6 @@
 <template>
   <div id="right">
-    <right-tile></right-tile>
+    <right-tile ></right-tile>
   </div>
 </template>
 

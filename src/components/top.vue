@@ -1,6 +1,6 @@
 <template>
   <div id="top">
-    <top-tile></top-tile>
+    <top-tile ></top-tile>
   </div>
 </template>
 

@@ -1,11 +1,10 @@
 <template>
   <img src="../../public/img/1/1s.gif" class="bottom-tile">
-
 </template>
 
 <script>
 export default {
-  name: "bottom-tile"
+name: "bottom-tile"
 }
 </script>
 
@@ -18,4 +17,5 @@ export default {
   float: left;
   cursor: pointer;
 }
+
 </style>
