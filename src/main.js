@@ -1,23 +1,31 @@
 import Vue from 'vue'
 import App from './App.vue'
-import io from 'socket.io-client'
 import store from './store'
 
 Vue.config.productionTip = false
-const socket = io('http://localhost:8080');
 
 new Vue({
   render: h => h(App),
   store,
+  data(){
+    return {
+      messages:[],
+    }
+  },
   created(){
-    this.$socket=socket;
-    this.$socket.on("connect",()=>{
-      console.log("connected!");
-    })
-    this.$socket.on("message",(data)=>{
-      console.log(data);
+    this.$socket=new WebSocket('ws://localhost:8000');
+    this.$socket.addEventListener('open', () => {
+      console.log('Connected to server');
+      this.$socket.send('Hello, server!');
     });
-    this.$socket.emit('message', 'Hello, server!');
-
+    this.$socket.addEventListener('message', (event) => {
+      console.log('Received message:', event.data);
+      this.messages.push(event.data);
+      console.log(this.messages);
+    });
+    this.$socket.addEventListener('close', () => {
+      console.log('Disconnected from server');
+    });
   }
 }).$mount('#app')
+  
