@@ -1,6 +1,6 @@
 <template>
   <div id="left">
-    <left-tile ></left-tile>
+    <left-tile v-for="i in this.$store.state.left.number" :key="i"></left-tile>
   </div>
 </template>
 
@@ -24,7 +24,9 @@ export default {
   left:28%;
   top:20%;
   border: 1px solid gray;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   padding: 4% 0;
 }
 </style>

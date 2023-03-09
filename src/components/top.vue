@@ -1,6 +1,6 @@
 <template>
   <div id="top">
-    <top-tile ></top-tile>
+    <top-tile v-for="i in this.$store.state.front.number" :key="i"></top-tile>
   </div>
 </template>
 

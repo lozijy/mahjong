@@ -1,6 +1,6 @@
 <template>
   <div id="bottom">
-    <bottom-tile></bottom-tile>
+    <bottom-tile v-for="tile in this.$store.state.me.p_tiles" :tile="tile" :key="tile" :history="history" :flag="flag" @updateFlag="flag = $event"></bottom-tile>
   </div>
 </template>
 
@@ -10,7 +10,38 @@ import bottomTile from "@/components/bottom-tile.vue";
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name: "bottom",
-    components: { bottomTile }
+    components: { bottomTile },
+    data() {
+    return {
+      flag: false
+    }
+  },
+    methods:{
+      go(tile){
+        console.log(tile);
+        console.log("go");
+        //向后端发送数据
+
+        //在me中删除这个牌
+        var p_tiles=this.$store.state.me.p_tiles
+        var index=p_tiles.indexOf(tile);
+        p_tiles.splice(index,1);
+      }
+    },
+    mounted(){
+      this.history={
+        count:0,
+        last:"",
+      }
+    },
+    watch: {
+      flag: function(newValue, oldValue) {
+        console.log(newValue+oldValue);
+        // do something with the new value
+        this.go(this.history.last);
+      }
+    }
+
 }
 </script>
 
@@ -24,5 +55,7 @@ export default {
   border: 1px solid gray;
   display: inline;
 }
+
+
 
 </style>

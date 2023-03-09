@@ -1,6 +1,6 @@
 <template>
   <div id="right">
-    <right-tile ></right-tile>
+    <right-tile v-for="i in this.$store.state.right.number" :key="i"></right-tile>
   </div>
 </template>
 
@@ -23,7 +23,9 @@ export default {
   right:27%;
   top:20%;
   border: 1px solid gray;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   padding: 4% 0;
 
 }
