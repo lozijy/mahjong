@@ -1,171 +1,225 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="gbk">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Âé½«µÇÂ½½çÃæ</title>
     <style>
-        body{
-            margin: 0;
-	        padding: 0;
-	        background: #333;
-	        font-family: sans-serif;
-        }
-        #left{
-            position: absolute;
-            left:0;
+        /* ÉèÖÃÑùÊ½ */
+        body {
             margin: 0;
             padding: 0;
-            width: 20%;
-            height:100%;
-            border: 0.5px solid green;
-            display: inline;
-        }
-        a{
-            text-decoration: none;
-            font-size: 40px;
-        }
-        ul{
-            width: 100%;
-            position:absolute;
-            margin: 0 0;
-            padding: 0 0;
-            list-style-type: none;
-        }
-        li{
-            padding: 20px;
-            border: 1px solid gray;
+            overflow: hidden;
+            /* Òþ²Ø¹ö¶¯Ìõ */
         }
 
-        #right{
-            position:absolute;
+        div.bg {
+            background-image: url("../img/background.jpg");
+            background-position: center center;
+            background-size: cover;
+            /* Í¼Æ¬×ÔÊÊÓ¦ */
+            background-repeat: no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
             right: 0;
-            margin: 0%;
-            height:100%;
-            width: 80%;
-
-            border: 2px solid green;
-            display: inline;
-        }
-        #content{
-            position: absolute;
-            left:0;
-            width: 100%;
-            height: 100%;
-            margin: auto auto;
-            padding: auto;
-            display: inline;
-
+            bottom: 0;
+            z-index: -1;
+            /* ½«±³¾°Í¼Æ¬²ã¼¶ÉèÎª×îµÍ */
         }
 
+        .logo {
+            margin-left: 290px;
+            margin-top: 8%;
+            opacity: 90%;
+            z-index: 0;
+            /* background-size: ; */
+        }
 
-    .login-box {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 350px;
-	background: #191919;
-	padding: 40px;
-	box-sizing: border-box;
-	box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
-	border-radius: 10px;
-}
+        #login_box {
+            /* left:900px; */
+            width: 200px;
+            /* bottom: 100%; */
+            height: 300px;
+            /* background-position: center center; */
+            background-color: #00000060;
+            margin: auto;
+            margin-left: 500px;
+            margin-top: -300px;
+            /* margin-bottom: 10%; */
+            text-align: center;
+            border-radius: 10px;
+            padding: 50px 50px;
+            z-index: 1;
+        }
 
-.login-box h2 {
-	margin: 0 0 30px;
-	padding: 0;
-	color: #fff;
-	text-align: center;
-}
+        #register_box {
+            width: 200px;
+            height: 300px;
+            background-color: #00000060;
+            margin: auto;
+            margin-left: 500px;
+            margin-top: -300px;
+            text-align: center;
+            border-radius: 10px;
+            padding: 50px 50px;
+            z-index: 1;
+        }
 
-.login-box .user-box {
-	position: relative;
-}
+        h2 {
+            color: #ffffff90;
+            margin-top: 5%;
+        }
 
-.login-box .user-box input {
-	width: 100%;
-	padding: 10px 0;
-	font-size: 16px;
-	color: #fff;
-	margin-bottom: 30px;
-	border: none;
-	border-bottom: 1px solid #fff;
-	outline: none;
-	background: transparent;
-}
+        #input_box {
+            margin-top: 5%;
+        }
 
-.login-box .user-box label {
-	position: absolute;
-	top: 0;
-	left: 0;
-	padding: 10px 0;
-	font-size: 16px;
-	color: #fff;
-	pointer-events: none;
-	transition: 0.5s;
-}
+        #input_box input:focus {
+            transition: border-color 0.5s ease;
+            border-color: #71bae1;
+        }
 
-.login-box .user-box input:focus ~ label,
-.login-box .user-box input:valid ~ label {
-	top: -20px;
-	left: 0;
-	color: #03a9f4;
-	font-size: 12px;
-}
+        .input_box input:focus {
+            transition: border-color 0.5s ease;
+            border-color: #71bae1;
+        }
 
-.login-box a {
-	display: inline-block;
-	background: #03a9f4;
-	color: #fff;
-	text-transform: uppercase;
-	padding: 10px 20px;
-	margin-top: 40px;
-	border-radius: 5px;
-	text-decoration: none;
-	font-size: 16px;
-	transition: 0.5s;
-}
+        span {
+            color: #fff;
+        }
 
-.login-box a:hover {
-	background: #0099e6;
-}
-        
+        input {
+            border: 0;
+            width: 60%;
+            font-size: 15px;
+            color: #fff;
+            background: transparent;
+            border-bottom: 2px solid #fff;
+            padding: 5px 10px;
+            outline: none;
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 50px;
+            width: 60%;
+            height: 30px;
+            border-radius: 10px;
+            border: 0;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            font-size: 15px;
+            background-image: linear-gradient(to right, #30cfd0, #330867);
+            margin-right: 10px;
+            transition: transform 0.2s ease-in-out;
+            cursor: pointer;
+        }
+
+        #login_button {
+            margin-top: 10px;
+            width: 60%;
+            height: 30px;
+            border-radius: 10px;
+            border: 0;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            font-size: 15px;
+            background-image: linear-gradient(to right, #30cfd0, #330867);
+            margin-left: 10px;
+        }
+
+
+        .botton_container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .botton_container button:hover {
+            transform: scale(1.1);
+        }
+
+        #sign_up_button {
+            margin-top: 50px;
+            width: 60%;
+            height: 30px;
+            border-radius: 10px;
+            border: 0;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            font-size: 15px;
+            background-image: linear-gradient(to right, #30cfd0, #330867);
+            margin-left: 10px;
+        }
+
+
+
+        #sign_up {
+            margin-top: 45%;
+            margin-left: 60%;
+        }
+
+        a {
+            color: #b94648;
+        }
     </style>
 </head>
+
 <body>
-    <div id="left">
-        <ul>
-            <li><a href="www.baidu.com" id="a1">ç™¾åº¦</a></li>
-            <li><a href="www.baidu.com" id="a1">ç™¾åº¦</a></li>
-            <li><a href="www.baidu.com" id="a1">ç™¾åº¦</a></li>
-        </ul>
-    </div>
-    <div id="right">
-        <div id="content">
-            <div class="login-box">
-                <h2>Login</h2>
-                <form>
-                    <div class="user-box">
-                        <input type="text" name="" required="">
-                        <label>Username</label>
-                    </div>
-                    <div class="user-box">
-                        <input type="password" name="" required="">
-                        <label>Password</label>
-                    </div>
-                    <a href="#">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Submit
-                    </a>
-                </form>
-            </div>
+    <div class="bg"></div>
+    <img src="../img/logo1.png" class="logo">
+    <form action="http://192.168.145.2:8080/crm/login">
+    <div id="login_box">
+        <h2>LOGIN</h2>
+        <div id="input_box">
+            <input type="text" placeholder="ÇëÊäÈëêÇ³Æ" name="name">
+        </div>
+        <div class="input_box">
+            <input type="password" placeholder="ÇëÊäÈëÃÜÂë" name="password">
+        </div>
+        <!-- <button id="sign_up_button">×¢²á</button> -->
+        <div class="botton_container">
+            <button type="submit">µÇÂ¼</button><br>
+            <button type="button" id="sign_up_button">×¢²á</button>
         </div>
     </div>
+    </form>
+    <form action="http://192.168.145.2:8080/crm/login">
+    <div id="register_box" style="display:none">
+        <h2>REGISTER</h2>
+        <div id="input_box">
+            <input type="text" placeholder="ÇëÊäÈëêÇ³Æ" name="name">
+            <input type="text" placeholder="ÇëÊäÈëid" name="user_id">
+            <input type="text" placeholder="ÇëÊäÈëÓÊÏäµØÖ·" name="email">
+        </div>
+        <div class="input_box">
+            <input type="password" placeholder="ÇëÊäÈëÃÜÂë" name="password">
+        </div>
+        <div class="botton_container" >
+            <button  type="submit" id="login_button">Íê³É×¢²á</button>
+        </div>
+    </div>
+    </form>
+    <script>
+        const loginBox = document.getElementById("login_box");
+        const registerBox = document.getElementById("register_box");
+        const loginButton = document.getElementById("login_button");
 
+        document.getElementById("sign_up_button").addEventListener("click", function () {
+            loginBox.style.display = "none";
+            registerBox.style.display = "block";
+        });
+
+        loginButton.addEventListener("click", function () {
+            loginBox.style.display = "block";
+            registerBox.style.display = "none";
+        });
+    </script>
 </body>
+
 </html>
