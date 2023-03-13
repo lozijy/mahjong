@@ -25,7 +25,7 @@ wss.on('connection', function connection(ws) {
   });
   const drawmessage={
     "type":"draw_self",
-    "data":{"tile":"1s"}
+    "tile":"1s"
   };
   const draw_other={
     "type":"draw_other",

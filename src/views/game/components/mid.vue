@@ -1,6 +1,6 @@
 <template>
   <div id="mid">
-    <img src="../../public/img/3/left.png">
+    <img src="../../../../public/img/3/left.png">
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
   top:38%;
   left:45%;
   border: 1px solid gray;
-  background-image: url("../../public/img/bg.png");
+  background-image: url("../../../../public/img/bg.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;

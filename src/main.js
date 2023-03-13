@@ -1,12 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
+import router from "./router"
 
 Vue.config.productionTip = false
 
 var vm=new Vue({
   render: h => h(App),
   store,
+  router,
+
   data(){
     return {
       messages:[],
@@ -18,6 +21,7 @@ var vm=new Vue({
         this.$store.commit("get_me_id",data.player_id);
       }
       if(data.type=="draw_self"){
+        console.log(data.tile);
         this.$store.commit("draw_self",data.tile);
       }
       else if(data.type=="draw_other"){

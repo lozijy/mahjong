@@ -1,5 +1,5 @@
 <template>
-  <img src="../../public/img/2/behind.gif" class="top-tile">
+  <img src="../../../../public/img/2/behind.gif" class="top-tile">
 </template>
 
 <script>

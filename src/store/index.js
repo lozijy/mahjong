@@ -9,6 +9,7 @@ const mutations={
         state.me.id=player_id;
     },
     draw_self(state,tile){
+        console.log();
         state.me.number++;
         state.me.p_tiles.unshift(tile);
     },

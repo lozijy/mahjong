@@ -21,7 +21,7 @@ props:{
 },
 data(){
   return{
-  url: require(`../../public/img/1/${this.tile}.gif`)
+  url: require(`../../../../public/img/1/${this.tile}.gif`)
   }
 },
 methods:{

@@ -1,32 +1,32 @@
 <template>
-  <div id="right">
-    <right-tile v-for="i in this.$store.state.right.number" :key="i"></right-tile>
+  <div id="left">
+    <left-tile v-for="i in this.$store.state.left.number" :key="i"></left-tile>
   </div>
 </template>
 
 <script>
-import rightTile from "@/components/right-tile.vue";
+import leftTile from "@/views/game/components/left-tile.vue";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "right",
+  name: "left",
   components:{
-    rightTile
+    leftTile
   }
 }
 </script>
 
 <style scoped>
-#right{
+/* 左右 */
+#left{
   position: absolute;
   width: 3%;
   height:30%;
-  right:27%;
+  left:28%;
   top:20%;
   border: 1px solid gray;
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 4% 0;
-
 }
 </style>

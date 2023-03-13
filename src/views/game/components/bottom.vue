@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import bottomTile from "@/components/bottom-tile.vue";
+import bottomTile from "@/views/game/components/bottom-tile.vue";
 
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
