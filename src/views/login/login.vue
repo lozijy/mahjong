@@ -69,8 +69,11 @@ export default {
         }
       }).then(
           (response)=>{
-            if(response.flag=="success"){
-              document.cookie=response.player_id
+            var res=JSON.parse(response);
+            if(res.flag==="success"){
+              document.cookie=res.flag;
+              document.cookie=res.user_id;
+              document.cookie=res.cookie;
               this.$router.push("/game");
             }else{
               document.getElementsByTagName("h3")[0].display="block";

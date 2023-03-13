@@ -11,6 +11,17 @@ const routes=[
     {path:"*",component:hello }
 ]
 // eslint-disable-next-line no-undef
-export default new VueRouter({
-    routes
+var rou=new VueRouter({
+    routes,
 })
+rou.beforeEach((to,from,next)=>{
+    console.log(typeof (to));
+    console.log(from);
+    next();
+    if((to.path!=="/login"||to.path!=="/")&&document.cookie.flag!==true){
+        next("/login");
+    }else{
+        next();
+    }
+})
+export default rou;
