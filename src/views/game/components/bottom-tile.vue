@@ -36,7 +36,6 @@ methods:{
         history.count=0;
         history.last=this.tile;
         this.$emit('updateFlag', true);
-        console.log("flag=true")
       }else{
         this.refs.history.last.classList.toggle("move");
         this.$refs.tile.classList.toggle("move");

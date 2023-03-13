@@ -27,13 +27,12 @@ wss.on('connection', function connection(ws) {
     "type":"draw_self",
     "tile":"1s"
   };
-  const draw_other={
-    "type":"draw_other",
-    "player_id":2
-  }
+  const drawmessage2={
+    "type":"draw_self",
+    "tile":"2s"
+  };
   ws.send(JSON.stringify(drawmessage));
-  ws.send(JSON.stringify(draw_other));
-  ws.send(JSON.stringify(drawmessage));
+  ws.send(JSON.stringify(drawmessage2));
   ws.on('close', function close() {
     console.log('Client disconnected');
   });

@@ -5,17 +5,14 @@ Vue.use(Vuex);
 /* eslint-disable*/
 const mutations={
     get_me_id(state,player_id){
-        console.log("get_me_id");
         state.me.id=player_id;
     },
     draw_self(state,tile){
-        console.log();
         state.me.number++;
         state.me.p_tiles.unshift(tile);
     },
 
     draw_other(state,player_id){
-        console.log("draw_other");
         const position = {
             "-1" : "left",
             "1" : "right",

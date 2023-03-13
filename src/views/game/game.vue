@@ -70,7 +70,6 @@ export default {
         this.$store.commit("get_me_id",data.player_id);
       }
       if(data.type=="draw_self"){
-        console.log(data.tile);
         this.$store.commit("draw_self",data.tile);
       }
       else if(data.type=="draw_other"){
@@ -85,16 +84,16 @@ export default {
     }
   },
   mounted() {
-      this.$socket=new WebSocket('ws://localhost:8000');
-      this.$socket.addEventListener('open', () => {
+      this.$root.$socket=new WebSocket('ws://localhost:8000');
+      this.$root.$socket.addEventListener('open', () => {
         console.log('Connected to server');
-        this.$socket.send('ready to connect');
+        this.$root.$socket.send('ready to connect');
       });
-      this.$socket.addEventListener('message', (event) => {
+      this.$root.$socket.addEventListener('message', (event) => {
         console.log('Received message:', event.data);
         this.checkdata(JSON.parse(event.data));
       });
-      this.$socket.addEventListener('close', () => {
+      this.$root.$socket.addEventListener('close', () => {
         console.log('Disconnected from server');
       });
     }

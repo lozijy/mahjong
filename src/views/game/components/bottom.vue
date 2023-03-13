@@ -21,6 +21,12 @@ export default {
         console.log(tile);
         console.log("go");
         //向后端发送数据
+        const information={
+          type:"discard_a_card",
+          player_id:this.$store.state.me.player_id,
+          card:tile
+        };
+        this.$root.$socket.send(JSON.stringify(information))
 
         //在me中删除这个牌
         var p_tiles=this.$store.state.me.p_tiles
@@ -37,8 +43,12 @@ export default {
     watch: {
       flag: function(newValue, oldValue) {
         console.log(newValue+oldValue);
-        // do something with the new value
-        this.go(this.history.last);
+        console.log("haha");
+        if(newValue==true) {
+          // do something with the new value
+          this.go(this.history.last);
+          this.flag = false;
+        }
       }
     }
 
