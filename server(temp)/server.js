@@ -31,15 +31,20 @@ wss.on('connection', function connection(ws) {
     "type":"draw_self",
     "tile":"2s"
   };
+  const drawmessage3={
+    "type":"draw_self",
+    "tile":"3s"
+  };
   //当前可选择的选择按钮,action包括了"tiaoguo""chi""hu""gang""zimo"
-  const select={
-    "type":"action_choose",
-    "action":"tiaoguo"
-  }
+  // const select={
+  //   "type":"action_choose",
+  //   "action":"tiaoguo"
+  // }
 
   ws.send(JSON.stringify(drawmessage));
   ws.send(JSON.stringify(drawmessage2));
-  ws.send(JSON.stringify(select));
+  ws.send(JSON.stringify(drawmessage3));
+  // ws.send(JSON.stringify(select));
   ws.on('close', function close() {
     console.log('Client disconnected');
   });

@@ -1,13 +1,19 @@
 <template>
   <div id="mid">
     <img src="../../../../public/img/3/left.png">
+    <img :src="url">
   </div>
 </template>
 
 <script>
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "mid"
+  name: "mid",
+  data(){
+    return{
+      url:"../../../../public/"
+    }
+  }
 }
 </script>
 

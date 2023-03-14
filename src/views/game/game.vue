@@ -6,13 +6,13 @@
       <left></left>
       <right></right>
       <bottom></bottom>
-
       <left-container></left-container>
       <right-container></right-container>
       <top-container></top-container>
       <bottom-container></bottom-container>
 
       <button-container></button-container>
+      <time-container></time-container>
     </div>
 
   </div>
@@ -35,9 +35,12 @@ import topContainer from "@/views/game/components/topContainer.vue";
 import bottomContainer from "@/views/game/components/bottomContainer.vue";
 
 import buttonContainer from "@/views/game/components/buttonContainer.vue";
+import TimeContainer from "@/views/game/components/timeContainer.vue";
+
 export default {
   name: 'App',
   components: {
+    TimeContainer,
     // eslint-disable-next-line vue/no-unused-components
     mid,
     // eslint-disable-next-line vue/no-unused-components
@@ -61,7 +64,8 @@ export default {
     topContainer,
     bottomContainer,
 
-    buttonContainer
+    buttonContainer,
+
 
   },
   methods:{
