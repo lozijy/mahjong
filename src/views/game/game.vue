@@ -71,12 +71,14 @@ export default {
       }
       if(data.type=="draw_self"){
         this.$store.commit("draw_self",data.tile);
+        this.$store.commit("my_sort");
       }
       else if(data.type=="draw_other"){
         this.$store.commit("draw_other",data.player_id);
       }
       else if(data.type=="action_choose"){
         this.$store.commit("action_choose",data.action);
+        this.$store.commit("my_sort");
       }
       else if(data.type=="countdown"){
         this.$store.commit("countdown",data.time);

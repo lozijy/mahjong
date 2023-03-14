@@ -10,6 +10,7 @@ const mutations={
     draw_self(state,tile){
         state.me.number++;
         state.me.p_tiles.unshift(tile);
+
     },
 
     draw_other(state,player_id){
@@ -32,6 +33,15 @@ const mutations={
     countdown(state,time){
         state.time=time;
     },
+    my_sort(state) {
+        state.me.p_tiles.sort(function (a, b) {
+            if (a[1] == b[1]) {
+                return Number(a[0]) - Number(b[0]);
+            } else {
+                return (a.codePointAt(1) - b.codePointAt(1));
+            }
+        })
+    }
 }
 
 const actions={
