@@ -1,6 +1,18 @@
 <template>
   <div id="app">
     <div id="background">
+      <div id="bottom">
+        <img v-for="card in $store.state.me.discarded_card" :key="card" :src="require(`../../../public/img/1/${card}.gif`)">
+      </div>
+      <div id="left">
+        <img v-for="card in $store.state.left.discarded_card" :key="card" :src="require(`../../../public/img/1/${card}.gif`)">
+      </div>
+      <div id="right">
+        <img v-for="card in $store.state.right.discarded_card" :key="card" :src="require(`../../../public/img/1/${card}.gif`)">
+      </div>
+      <div id="top">
+        <img v-for="card in $store.state.front.discarded_card" :key="card" :src="require(`../../../public/img/1/${card}.gif`)">
+      </div>
       <mid></mid>
       <top></top>
       <left></left>
@@ -129,4 +141,38 @@ export default {
   transform-style: preserve-3d;
   /* transform: rotateX(30deg) rotateY(0deg) translateZ(0px);   */
 }
+#bottom{
+position: absolute;
+  bottom: 22%;
+  right: 44%;
+  width: 12%;
+  height: 16%;
+  border: 1px solid gray;
+}
+#top{
+  position: absolute;
+  top: 22%;
+  right: 44%;
+  width: 12%;
+  height: 16%;
+  border: 1px solid gray;
+}
+#left{
+  position: absolute;
+  width: 6%;
+  height: 20%;
+  top:40%;
+  left:37%;
+  border: 1px solid gray;
+}
+#right{
+  position: absolute;
+  width: 6%;
+  height: 20%;
+  top:40%;
+  right:37%;
+  border: 1px solid gray;
+
+}
+
 </style>

@@ -52,16 +52,23 @@ const state={
     me : {
         number:0,
         p_tiles: [],
-        player_id:-1
+        player_id:-1,
+        discarded_card:["1s"]
         },
     front : {
         number:13,
+        player_id:-1,
+        discarded_card:["2s"]
     },
     left : {
         number:13,
+        player_id:-1,
+        discarded_card:["3s"]
     },
     right : {
         number:13,
+        player_id:-1,
+        discarded_card:["4s"]
         },
     time:3,
     points:[1,2]
