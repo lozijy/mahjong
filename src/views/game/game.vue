@@ -172,7 +172,17 @@ position: absolute;
   top:40%;
   right:37%;
   border: 1px solid gray;
-
 }
-
+#bottom img{
+  float: left;
+}
+#top img{
+  float: right;
+}
+#left img{
+  float: top;
+}
+#right img{
+  vertical-align: bottom;
+}
 </style>
