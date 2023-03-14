@@ -63,7 +63,8 @@ const state={
     right : {
         number:13,
         },
-    time:3
+    time:3,
+    points:[1,2]
 }
 export default new Vuex.Store({
     actions,mutations,state

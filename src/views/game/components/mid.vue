@@ -1,7 +1,9 @@
 <template>
   <div id="mid">
-    <img src="../../../../public/img/3/left.png">
-    <img :src="url">
+    <img id="yu" src="../../../../public/img/3/left.png">
+    <div class="pointContainer">
+      <img  class="point" v-for="point in $store.state.points" :key="point"  :src="require(`../../../../public/img/3/${point}.png`)">
+    </div>
   </div>
 </template>
 
@@ -10,9 +12,6 @@ export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "mid",
   data(){
-    return{
-      url:"../../../../public/"
-    }
   }
 }
 </script>
@@ -30,13 +29,26 @@ export default {
   background-position: center center;
   background-size: contain;
 }
-#mid img{
+#yu{
   position: absolute;
-  width: 11%;
-  height:6%;
   left:36%;
   top:55%;
+  width: 11%;
+  height:6%;
 }
-
+.pointContainer{
+  position: absolute;
+  left:50%;
+  top:55%;
+  width: 16%;
+  height:7%;
+  border: 1px solid gray;
+}
+.point{
+  height: 100%;
+  width: 50%;
+  float: left;
+  margin: -8%;
+}
 
 </style>
