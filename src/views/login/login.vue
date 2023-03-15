@@ -55,31 +55,44 @@ export default {
   },
   methods:{
     login(){
-      console.log("login");
-      axios({
-        method:"post",
-        url: "http://127.0.0.1:4523/m2/2389381-0-default/68423249",
-        data:{
-          name:this.name,
-          password:this.password
-        }
-      }).then(
-          (response)=>{
-            console.log("接受数据");
-            console.log(response);
-            if(response.data.flag=="success"){
-              console.log("成功");
-              localStorage.setItem("flag","true");
-              this.$router.push("/game");
-            }else{
-              this.name="";
-              this.password="";
-              console.log("错误");
-            }
-          }).catch(
-          ()=>{
-            console.log("服务器出问题了");
-          });
+      //当地存储没有flag的时候要去拿存储或者登录用户与已登录用户不匹配时去拿数据
+      if(window.localStorage.getItem("flag")!=="true"||window.localStorage.getItem("name")!==this.name) {
+        console.log(window.localStorage.getItem("flag")!=="true");
+        console.log(window.localStorage.getItem("name")!==this.name)
+        axios({
+          method: "post",
+          url: "http://127.0.0.1:4523/m2/2389381-0-default/68423249",
+          data: {
+            name: this.name,
+            password: this.password
+          }
+        }).then(
+            //拿到返回数据后进行验证
+            (response) => {
+              console.log("接受数据");
+              console.log(response);
+              //验证成功，进入游戏
+              if (response.data.flag === "success") {
+                console.log("成功");
+                window.localStorage.setItem("flag", "true");
+                window.localStorage.setItem("user_id", response.data.user_id);
+                window.localStorage.setItem("cookie", response.data.cookie);
+                window.localStorage.setItem("name",this.name);
+                this.$router.push("/game");
+              }
+              //否则，删除
+              else {
+                this.name = "";
+                this.password = "";
+                console.log("错误");
+              }
+            }).catch(
+            () => {
+              alert("服务器出问题了");
+            });
+      }else{
+        this.$router.push("/game");
+      }
 
 
     },
