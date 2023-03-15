@@ -73,16 +73,15 @@ export default {
               document.cookie=`user_id=${response.data.user_id};path=/`;
               this.$router.push("/game");
             }else{
+              this.name="";
+              this.password="";
               console.log("错误");
             }
           }).catch(
           ()=>{
             this.$router.push("/");
             console.log("服务器出问题了");
-          }).finally(()=>{
-        this.name="";
-        this.password="";
-      });
+          });
 
 
     },

@@ -9,8 +9,7 @@ app.use(bodyParser.json());
 // 处理 POST 请求
 app.post("/login", (req, res) => {
   // 在这里获取 POST 请求发送的数据
-  const name = req.body.name;
-  const password = req.body.password;
+
     console.log(req);
   // 返回一个 JSON 数据
   res.json({
