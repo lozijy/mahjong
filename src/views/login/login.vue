@@ -62,28 +62,31 @@ export default {
       console.log("login");
       axios({
         method:"post",
-        url: "localhost:8000",
+        url: "localhost:3000",
         data:{
           name:this.name,
           password:this.password
         }
       }).then(
           (response)=>{
-            var res=JSON.parse(response);
-            if(res.flag==="success"){
-              document.cookie=res.flag;
-              document.cookie=res.user_id;
-              document.cookie=res.cookie;
+            console.log("接受数据");
+            console.log(response);
+            if(response.data.flag=="success"){
+              console.log("成功");    
+              document.cookie=response.data.flag;
+              document.cookie=response.data.user_id;
+              document.cookie=response.data.cookie;
               this.$router.push("/game");
             }else{
-              document.getElementsByTagName("h3")[0].display="block";
-              this.$router.push("/");
+              console.log("错误");
             }
       }).catch(
           ()=>{
             this.$router.push("/");
             console.log("服务器出问题了");
           }).finally(()=>{
+            this.name="";
+            this.password="";
             console.log("post 成功!");
       });
     },
