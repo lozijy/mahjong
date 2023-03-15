@@ -12,6 +12,9 @@ export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "mid",
   data(){
+    return {
+
+    }
   }
 }
 </script>
