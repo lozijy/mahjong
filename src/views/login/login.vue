@@ -69,8 +69,7 @@ export default {
             console.log(response);
             if(response.data.flag=="success"){
               console.log("成功");
-              document.cookie=`flag=${response.data.flag};path=/`;
-              document.cookie=`user_id=${response.data.user_id};path=/`;
+              localStorage.setItem("flag","true");
               this.$router.push("/game");
             }else{
               this.name="";
@@ -79,7 +78,6 @@ export default {
             }
           }).catch(
           ()=>{
-            this.$router.push("/");
             console.log("服务器出问题了");
           });
 

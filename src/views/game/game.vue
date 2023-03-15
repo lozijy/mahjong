@@ -51,6 +51,10 @@ import TimeContainer from "@/views/game/components/timeContainer.vue";
 
 export default {
   name: 'App',
+  //解决浏览器前进后退不会重新渲染的问题
+  // beforeRouteUpdata(to,from,next){
+  //
+  // },
   components: {
     TimeContainer,
     // eslint-disable-next-line vue/no-unused-components
@@ -101,20 +105,20 @@ export default {
       }
     }
   },
-  mounted() {
-      this.$root.$socket=new WebSocket('ws://localhost:8000');
-      this.$root.$socket.addEventListener('open', () => {
-        console.log('Connected to server');
-        this.$root.$socket.send('ready to connect');
-      });
-      this.$root.$socket.addEventListener('message', (event) => {
-        console.log('Received message:', event.data);
-        this.checkdata(JSON.parse(event.data));
-      });
-      this.$root.$socket.addEventListener('close', () => {
-        console.log('Disconnected from server');
-      });
-    }
+  // mounted() {
+  //     this.$root.$socket=new WebSocket('ws://localhost:8000');
+  //     this.$root.$socket.addEventListener('open', () => {
+  //       console.log('Connected to server');
+  //       this.$root.$socket.send('ready to connect');
+  //     });
+  //     this.$root.$socket.addEventListener('message', (event) => {
+  //       console.log('Received message:', event.data);
+  //       this.checkdata(JSON.parse(event.data));
+  //     });
+  //     this.$root.$socket.addEventListener('close', () => {
+  //       console.log('Disconnected from server');
+  //     });
+  //   }
 }
 </script>
 
