@@ -2,15 +2,14 @@
   <div>
   <div class="bg"></div>
   <img src="../../../public/img/logo1.png" class="logo">
-  <form>
     <div id="login_box">
       <h2>LOGIN</h2>
       <h3>账号密码错误！</h3>
       <div id="input_box">
-        <input type="text" placeholder="请输入昵称" name="name" v-model=name>
+        <input type="text" placeholder="请输入昵称"  v-model=name>
       </div>
       <div class="input_box">
-        <input type="password" placeholder="请输入密码" name="password" v-model=password>
+        <input type="password" placeholder="请输入密码" v-model=password>
       </div>
       <!-- <button id="sign_up_button">注册</button> -->
       <div class="botton_container">
@@ -18,8 +17,6 @@
         <button type="button" id="sign_up_button" @click="sign_up_button">注册</button>
       </div>
     </div>
-  </form>
-  <form>
     <div id="register_box" style="display:none">
       <h2>REGISTER</h2>
       <div id="input_box">
@@ -34,7 +31,6 @@
         <button  type="submit" id="login_button" @click="click">完成注册</button>
       </div>
     </div>
-  </form>
   </div>
 </template>
 
@@ -62,7 +58,7 @@ export default {
       console.log("login");
       axios({
         method:"post",
-        url: "localhost:3000",
+        url: "http://127.0.0.1:4523/m2/2389381-0-default/68423249",
         data:{
           name:this.name,
           password:this.password
@@ -72,7 +68,7 @@ export default {
             console.log("接受数据");
             console.log(response);
             if(response.data.flag=="success"){
-              console.log("成功");    
+              console.log("成功");
               document.cookie=response.data.flag;
               document.cookie=response.data.user_id;
               document.cookie=response.data.cookie;
@@ -80,15 +76,17 @@ export default {
             }else{
               console.log("错误");
             }
-      }).catch(
+          }).catch(
           ()=>{
             this.$router.push("/");
             console.log("服务器出问题了");
           }).finally(()=>{
-            this.name="";
-            this.password="";
-            console.log("post 成功!");
+        this.name="";
+        this.password="";
+        console.log("post 成功!");
       });
+
+
     },
     sign_up_button(){
       console.log(this.loginBox);
