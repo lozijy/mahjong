@@ -69,9 +69,8 @@ export default {
             console.log(response);
             if(response.data.flag=="success"){
               console.log("成功");
-              document.cookie=response.data.flag;
-              document.cookie=response.data.user_id;
-              document.cookie=response.data.cookie;
+              document.cookie=`flag=${response.data.flag};path=/`;
+              document.cookie=`user_id=${response.data.user_id};path=/`;
               this.$router.push("/game");
             }else{
               console.log("错误");
@@ -83,7 +82,6 @@ export default {
           }).finally(()=>{
         this.name="";
         this.password="";
-        console.log("post 成功!");
       });
 
 
