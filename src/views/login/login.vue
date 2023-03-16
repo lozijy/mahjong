@@ -35,8 +35,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   //eslint-disable-next-line vue/multi-word-component-names
   name: "login",
@@ -45,7 +43,7 @@ export default {
     this.registerBox= document.getElementById("register_box");
     this.loginButton= document.getElementById("login_button");
     // eslint-disable-next-line no-import-assign
-    axios=require(axios);
+
   },
   data(){
     return{
@@ -57,18 +55,11 @@ export default {
     login(){
       //当地存储没有flag的时候要去拿存储或者登录用户与已登录用户不匹配时去拿数据
       if(window.localStorage.getItem("flag")!=="true"||window.localStorage.getItem("name")!==this.name) {
-        console.log(window.localStorage.getItem("flag")!=="true");
-        console.log(window.localStorage.getItem("name")!==this.name)
-        axios({
-          method: "post",
-          url: "http://127.0.0.1:4523/m2/2389381-0-default/68423249",
-          data: {
-            name: this.name,
-            password: this.password
-          }
-        }).then(
-            //拿到返回数据后进行验证
-            (response) => {
+
+        this.$http.post('http://198.211.12.166:23333/login', {
+          user_id: this.name,
+          password: this.password
+        }).then(function (response) {
               console.log("接受数据");
               console.log(response);
               //验证成功，进入游戏
@@ -87,8 +78,9 @@ export default {
                 console.log("错误");
               }
             }).catch(
-            () => {
+            function (error) {
               alert("服务器出问题了");
+              console.log(error);
             });
       }else{
         this.$router.push("/game");
