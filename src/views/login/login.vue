@@ -4,9 +4,9 @@
   <img src="../../../public/img/logo1.png" class="logo">
     <div id="login_box">
       <h2>LOGIN</h2>
-      <h3>账号密码错误！</h3>
+      <h3 id="l_error">账号密码错误！</h3>
       <div id="input_box">
-        <input type="text" placeholder="请输入昵称"  v-model=name>
+        <input type="text" placeholder="请输入用户id"  v-model=user_id>
       </div>
       <div class="input_box">
         <input type="password" placeholder="请输入密码" v-model=password>
@@ -19,13 +19,14 @@
     </div>
     <div id="register_box" style="display:none">
       <h2>REGISTER</h2>
+      <h3 id="r_error" :v-model="r_error">注册格式错误</h3>
       <div id="input_box">
-        <input type="text" placeholder="请输入昵称" name="name">
-        <input type="text" placeholder="请输入id" name="user_id">
-        <input type="text" placeholder="请输入邮箱地址" name="email">
+        <input type="text" placeholder="请输入昵称" v-model="r_name">
+        <input type="text" placeholder="请输入id" v-model="r_user_id">
+        <input type="text" placeholder="请输入邮箱地址" v-model="r_email">
       </div>
       <div class="input_box">
-        <input type="password" placeholder="请输入密码" name="password">
+        <input type="password" placeholder="请输入密码" v-model="r_password">
       </div>
       <div class="botton_container" >
         <button  type="submit" id="login_button" @click="click">完成注册</button>
@@ -43,20 +44,25 @@ export default {
     this.registerBox= document.getElementById("register_box");
     this.loginButton= document.getElementById("login_button");
     // eslint-disable-next-line no-import-assign
-
+    this.axios=require("axios");
   },
   data(){
     return{
-      name:"",
+      user_id:"",
       password:"",
+      r_name:"",
+      r_user_id:"",
+      r_email:"",
+      r_password:"",
+      r_error:""
     }
   },
   methods:{
     login(){
       //当地存储没有flag的时候要去拿存储或者登录用户与已登录用户不匹配时去拿数据
       if(window.localStorage.getItem("flag")!=="true"||window.localStorage.getItem("name")!==this.name) {
-
-        this.$http.post('http://198.211.12.166:23333/login', {
+        this.axios.post('http://198.211.12.166:23333/login',
+            {
           user_id: this.name,
           password: this.password
         }).then(function (response) {
@@ -75,12 +81,13 @@ export default {
               else {
                 this.name = "";
                 this.password = "";
-                console.log("错误");
+                this.getElementById("r_error").display="block";
               }
             }).catch(
             function (error) {
               alert("服务器出问题了");
               console.log(error);
+              console.log(error.response.data)
             });
       }else{
         this.$router.push("/game");
@@ -94,8 +101,37 @@ export default {
       this.registerBox.style.display = "block";
     },
     click(){
-      this.loginBox.style.display = "block";
-      this.registerBox.style.display = "none";
+      //发送post请求
+      this.$http.post('http://198.211.12.166:23333/register', {
+        name: this.r_name,
+        user_id: this.r_user_id,
+        email: this.r_email,
+        password: this.r_password
+      }).then(function (response) {
+        console.log("接受数据");
+        console.log(response);
+        //验证成功，隐藏窗口
+        if (response.status ===200 ) {
+          this.loginBox.style.display = "block";
+          this.registerBox.style.display = "none";
+        }
+        //否则说明验证失败
+        else if(response.status===422){
+          this.r_error=response.data.detail.msg
+          this.getElementById("r_error").display="block";
+        }
+      }).catch(
+          function (error) {
+            console.log(error);
+            let i;
+            i=0;
+            while(error.response.data.detail[i].msg){
+              alert(error.response.data.detail["0"].msg);
+              i++;
+            }
+
+          });
+
     }
   }
 }
@@ -266,6 +302,12 @@ button {
 
 a {
   color: #b94648;
+}
+#l_error{
+
+}
+#r_error{
+
 }
 
 

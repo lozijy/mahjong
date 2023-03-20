@@ -15,7 +15,7 @@ module.exports = defineConfig({
           '^/api/': ''
         }
       }
-    },
+    }
   }
 })
 // module.exports = {
