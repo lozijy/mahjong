@@ -2,18 +2,18 @@ const { defineConfig } = require('@vue/cli-service');
 
 module.exports = defineConfig({
   transpileDependencies: true,
+
   // 解决跨域配置
-  dev: {
-    proxyTable: {
-      '/api/': {
-        target:'http://127.0.0.1:8888/api/private/v1/', // 你请求的第三方接口
-        changeOrigin:true, /* 在本地会创建一个虚拟服务端，然后发送请求的数据，
-        并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题 */
-        pathRewrite:{  // 路径重写，
-          /* 替换target中的请求地址，也就是说以后你在请求
-          http://127.0.0.1:8888/api/private/v1/这个地址的时候直接写成/api/即可。 */
-          '^/api/': ''
+  devServer: {                //记住，别写错了devServer//设置本地默认端口  选填
+    port: 8080,
+    proxy: {                 //设置代理，必须填
+      '/api': {              //设置拦截器  拦截器格式   斜杠+拦截器名字，名字可以自己定
+        target: 'http://localhost:9090',     //代理的目标地址(后端设置的端口号)
+        changeOrigin: true,              //是否设置同源，输入是的
+        pathRewrite: {                   //路径重写
+          '/api': ''                     //选择忽略拦截器里面的单词
         }
+        /*也就是在前端使用/api可以直接替换为(http://localhost:9090)*/
       }
     }
   }

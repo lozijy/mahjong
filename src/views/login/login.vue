@@ -36,6 +36,7 @@
 </template>
 
 <script>
+
 export default {
   //eslint-disable-next-line vue/multi-word-component-names
   name: "login",
@@ -63,32 +64,41 @@ export default {
       if(window.localStorage.getItem("flag")!=="true"||window.localStorage.getItem("name")!==this.name) {
         this.axios.post('http://198.211.12.166:23333/login',
             {
-          user_id: this.name,
+          user_id: this.user_id,
           password: this.password
-        }).then(function (response) {
-              console.log("接受数据");
-              console.log(response);
-              //验证成功，进入游戏
-              if (response.data.flag === "success") {
-                console.log("成功");
-                window.localStorage.setItem("flag", "true");
-                window.localStorage.setItem("user_id", response.data.user_id);
-                window.localStorage.setItem("cookie", response.data.cookie);
-                window.localStorage.setItem("name",this.name);
+        },
+            {
+              headers:{
+                "Access-Control-Allow-Origin":"*"
+              }
+            }).then(()=> {
+              // eslint-disable-next-line no-undef
                 this.$router.push("/game");
+                alert(1);
               }
-              //否则，删除
-              else {
-                this.name = "";
-                this.password = "";
-                this.getElementById("r_error").display="block";
-              }
-            }).catch(
+            ).catch(
             function (error) {
-              alert("服务器出问题了");
-              console.log(error);
-              console.log(error.response.data)
-            });
+              // const pipei={
+              //   "field required":"需要输入"
+              // }
+              alert(error);
+            //   if(error!==null){
+            //   var i=0;
+            //   while (error.response.data.detail[i]) {
+            //     if (pipei[error.response.data.detail[i].msg]) {
+            //       alert(pipei[error.response.data.detail[i].msg]);
+            //     } else {
+            //       alert(error.response.data.detail[i].loc[1]);
+            //       alert(error.response.data.detail[i].msg)
+            //     }
+            //     i++;
+            //   }
+            // }else{
+            //     console.log("成功");
+            //     this.$router.push("/game");
+            //   }
+            }
+        );
       }else{
         this.$router.push("/game");
       }
@@ -107,30 +117,40 @@ export default {
         user_id: this.r_user_id,
         email: this.r_email,
         password: this.r_password
-      }).then(function (response) {
+      }).then(()=> {
         console.log("接受数据");
-        console.log(response);
-        //验证成功，隐藏窗口
-        if (response.status ===200 ) {
-          this.loginBox.style.display = "block";
-          this.registerBox.style.display = "none";
-        }
-        //否则说明验证失败
-        else if(response.status===422){
-          this.r_error=response.data.detail.msg
-          this.getElementById("r_error").display="block";
-        }
+        this.loginBox.style.display = "block";
+        this.registerBox.style.display = "none";
+        alert("注册成功");
       }).catch(
           function (error) {
-            console.log(error);
-            let i;
-            i=0;
-            while(error.response.data.detail[i].msg){
-              alert(error.response.data.detail["0"].msg);
-              i++;
+            const pipei={
+                "ensure this value has at most 7 characters":"昵称最多7位",
+              "string does not match regex \"^[a-zA-Z\\u4e00-\\u9fa5]+$\"":"请输入昵称",
+              "ensure this value has at least 5 characters":"ID至少包含5个字符",
+              "value is not a valid email address":"不是正确的邮箱地址",
+              "ensure this value has at least 8 characters":"密码至少八位",
+              "该邮箱已存在":"该邮箱已存在"
             }
+            var i=0;
 
+              if(typeof error.response.data.detail=="string"){
+                alert(error.response.data.detail);
+              }else {
+                while (error.response.data.detail[i]) {
+                  if (pipei[error.response.data.detail[i].msg]) {
+                    alert(pipei[error.response.data.detail[i].msg]);
+                  } else {
+                    alert(error.response.data.detail[i].loc[1]);
+                    alert(error.response.data.detail[i].msg)
+                  }
+                  i++;
+                }
+                this.getElementById("r_error").display = "block";
+              }
           });
+
+
 
     }
   }
