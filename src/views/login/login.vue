@@ -6,7 +6,7 @@
       <h2>LOGIN</h2>
       <h3 id="l_error">账号密码错误！</h3>
       <div id="input_box">
-        <input type="text" placeholder="请输入用户id"  v-model=user_id>
+        <input type="text" placeholder="请输入用户id"  v-model=user_id >
       </div>
       <div class="input_box">
         <input type="password" placeholder="请输入密码" v-model=password>
@@ -21,12 +21,13 @@
       <h2>REGISTER</h2>
       <h3 id="r_error" :v-model="r_error">注册格式错误</h3>
       <div id="input_box">
-        <input type="text" placeholder="请输入昵称" v-model="r_name">
-        <input type="text" placeholder="请输入id" v-model="r_user_id">
+        <input type="text" placeholder="请输入至多7位昵称" v-model="r_name">
+        <input type="text" placeholder="请输入至少5位id" v-model="r_user_id">
         <input type="text" placeholder="请输入邮箱地址" v-model="r_email">
       </div>
       <div class="input_box">
-        <input type="password" placeholder="请输入密码" v-model="r_password">
+        <input type="password" placeholder="请输入至少8位密码" v-model="r_password">
+        <input type="password" placeholder="请确认密码" v-model="r_password1">
       </div>
       <div class="botton_container" >
         <button  type="submit" id="login_button" @click="click">完成注册</button>
@@ -166,6 +167,11 @@ body {
   /* 隐藏滚动条 */
 }
 
+::placeholder{
+  font-size: 12px;
+  color: #f7070f;
+}
+
 div.bg {
   background-image: url("../../../public/img/background.jpg");
   background-position: center center;
@@ -182,14 +188,17 @@ div.bg {
 }
 
 .logo {
-  margin-left: 290px;
-  margin-top: 8%;
+  position: relative;
+  /* margin-left: 290px; */
+  /* margin-top: 8%; */
+  left: -250px;
   opacity: 90%;
   z-index: 0;
   /* background-size: ; */
 }
 
 #login_box {
+  position: absolute;
   /* left:900px; */
   width: 200px;
   /* bottom: 100%; */
