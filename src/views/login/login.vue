@@ -62,7 +62,7 @@ export default {
   methods:{
     login(){
       //当地存储没有flag的时候要去拿存储或者登录用户与已登录用户不匹配时去拿数据
-      if(window.localStorage.getItem("flag")!=="true"||window.localStorage.getItem("name")!==this.name) {
+      if(window.localStorage.getItem("flag")!=="true") {
         this.axios.post('http://198.211.12.166:23333/login',
             {
           user_id: this.user_id,
@@ -74,11 +74,16 @@ export default {
               }
             }).then(()=> {
               // eslint-disable-next-line no-undef
+              window.localStorage.setItem('hall',true)
                 this.$router.push("/game");
                 alert(1);
               }
             ).catch(
             function (error) {
+              window.localStorage.setItem('hall',true)
+              
+            window.sessionStorage.getItem(key);
+
               // const pipei={
               //   "field required":"需要输入"
               // }
@@ -101,6 +106,7 @@ export default {
             }
         );
       }else{
+        window.localStorage.setItem('hall',true);
         this.$router.push("/game");
       }
 
@@ -148,6 +154,9 @@ export default {
                   i++;
                 }
                 this.getElementById("r_error").display = "block";
+                
+                window.sessionStorage.getItem(key);
+
               }
           });
 

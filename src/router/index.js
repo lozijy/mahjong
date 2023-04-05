@@ -8,7 +8,8 @@ const routes=[
     {path:"/",redirect:"/login"},
     {path:"/login",component: login,meta:{isAuth:false}},
     {path:"/game",component:game,meta:{isAuth:true}},
-    {path:"*",component:hello }
+    {path:"*",component:hello },
+    {path:"/hall",component:hall,meta:{isAuth:true}}
 ]
 // eslint-disable-next-line no-undef
 var rou=new VueRouter({
@@ -20,7 +21,8 @@ rou.beforeEach((to,from,next)=>{
 
     //需要授权时
     if(to.meta.isAuth){
-        if(window.localStorage.getItem("flag")==="true"){
+        // eslint-disable-next-line no-undef
+        if(window.localStorage.getItem("flag")==="true"||window.localStorage.getItem("hall")==="true"){
             next();
         }else{
             next("/login");

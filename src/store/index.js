@@ -51,7 +51,7 @@ const actions={
 const state={
     me : {
         number:0,
-        p_tiles: [],
+        p_tiles: ["1s"],
         player_id:-1,
         discarded_card:["1s"]
         },

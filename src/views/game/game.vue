@@ -25,6 +25,7 @@
 
       <button-container></button-container>
       <time-container></time-container>
+      <hall></hall>
     </div>
 
   </div>
@@ -48,7 +49,7 @@ import bottomContainer from "@/views/game/components/bottomContainer.vue";
 
 import buttonContainer from "@/views/game/components/buttonContainer.vue";
 import TimeContainer from "@/views/game/components/timeContainer.vue";
-
+import hall from "../hall/hall.vue";
 export default {
   name: 'App',
   //解决浏览器前进后退不会重新渲染的问题
@@ -82,6 +83,8 @@ export default {
 
     buttonContainer,
 
+    hall
+
 
   },
   methods:{
@@ -99,26 +102,48 @@ export default {
       else if(data.type=="action_choose"){
         this.$store.commit("action_choose",data.action);
         this.$store.commit("my_sort");
+      }      
+      else if(data.type=="get_point"){
+        this.$store.commit("get_point",data.point);
       }
       else if(data.type=="countdown"){
         this.$store.commit("countdown",data.time);
       }
+      else if(data.type="exit"){
+        this.$root.$socket.send('exit');
+      }
+      else if(data.type=="exit"){
+        this.$root.$socket.send('join');
+      }
+      else if(data.type=="create"){
+        this.$root.$socket.send("create");
+      }
+      else if(data.type=="hall"){
+        this.$root.$socket.send("hall");
+      }
+      else if(data.type=="logout"){
+        this.$root.$socket.send("logout");
+      }
+      else if(data.type=="exit"){
+        this.$root.$socket.send("exit");
+      }
+
     }
   },
-  // mounted() {
-  //     this.$root.$socket=new WebSocket('ws://localhost:8000');
-  //     this.$root.$socket.addEventListener('open', () => {
-  //       console.log('Connected to server');
-  //       this.$root.$socket.send('ready to connect');
-  //     });
-  //     this.$root.$socket.addEventListener('message', (event) => {
-  //       console.log('Received message:', event.data);
-  //       this.checkdata(JSON.parse(event.data));
-  //     });
-  //     this.$root.$socket.addEventListener('close', () => {
-  //       console.log('Disconnected from server');
-  //     });
-  //   }
+  mounted() {
+      this.$root.$socket=new WebSocket('ws://localhost:8000');
+      this.$root.$socket.addEventListener('open', () => {k
+        console.log('Connected to server');
+        this.$root.$socket.send('ready to connect');
+      });
+      this.$root.$socket.addEventListener('message', (event) => {
+        console.log('Received message:', event.data);
+        this.checkdata(JSON.parse(event.data));
+      });
+      this.$root.$socket.addEventListener('close', () => {
+        console.log('Disconnected from server');
+      });
+    }
 }
 </script>
 
