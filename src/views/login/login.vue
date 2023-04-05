@@ -82,7 +82,7 @@ export default {
             function (error) {
               window.localStorage.setItem('hall',true)
               
-            window.sessionStorage.getItem(key);
+
 
               // const pipei={
               //   "field required":"需要输入"
@@ -154,8 +154,6 @@ export default {
                   i++;
                 }
                 this.getElementById("r_error").display = "block";
-                
-                window.sessionStorage.getItem(key);
 
               }
           });

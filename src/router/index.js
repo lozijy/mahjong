@@ -3,6 +3,7 @@ import login from "@/views/login/login.vue";
 import Vue from "vue";
 import VueRouter from "vue-router";
 import hello from "@/components/hello.vue";
+import hall from "@/views/hall/hall.vue";
 Vue.use(VueRouter);
 const routes=[
     {path:"/",redirect:"/login"},

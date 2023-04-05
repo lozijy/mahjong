@@ -132,7 +132,7 @@ export default {
   },
   mounted() {
       this.$root.$socket=new WebSocket('ws://localhost:8000');
-      this.$root.$socket.addEventListener('open', () => {k
+      this.$root.$socket.addEventListener('open', () => {
         console.log('Connected to server');
         this.$root.$socket.send('ready to connect');
       });
