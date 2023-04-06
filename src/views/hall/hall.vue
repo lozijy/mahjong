@@ -4,130 +4,23 @@
   <div class="hall">
   <div class="bg"></div>
   <img src="../../../public/img/hall/black.png">
-  <div class="centered"><img src="../../../public/hall/border.png" class="centered"></div>
+  <div class="centered"><img src="../../../public/img/hall/border.png" class="centered"></div>
   <div class="title-window"><button>刷新</button></div>
   <div class="content-window">
-    <div class="house-window">
-      <img src="../../../public/img/hall/lablefather.png">
-      <p id="house-window-number">House Number</p>
-      <div class="house-window-room">
-        <div class="User">
-          <p id="Username">Username</p>
-          <p id="ID">id</p>
-        </div>
-      </div>
-      <div class="house-window-room">
-        <div class="User">
-          <p id="Username">Username</p>
-          <p id="ID">id</p>
-        </div>
-      </div>
-      <div class="house-window-room">
-        <div class="User">
-          <p id="Username">Username</p>
-          <p id="ID">id</p>
-        </div>
-      </div>
-      <div class="house-window-room">
-        <div class="User">
-          <p id="Username">Username</p>
-          <p id="ID">id</p>
-        </div>
-      </div>
-    </div>
-    <div class="house-window">
-      <img src="../../../public/img/hall/lablefather.png">
-      <p id="house-window-number">House Number</p>
-      <div class="house-window-room">
-        <div class="User">
-          <p id="Username">Username</p>
-          <p id="ID">id</p>
-        </div>
-      </div>
-      <div class="house-window-room">
-        <div class="User">
-          <p id="Username">Username</p>
-          <p id="ID">id</p>
-        </div>
-      </div>
-      <div class="house-window-room">
-        <div class="User">
-          <p id="Username">Username</p>
-          <p id="ID">id</p>
-        </div>
-      </div>
-      <div class="house-window-room">
-        <div class="User">
-          <p id="Username">Username</p>
-          <p id="ID">id</p>
-        </div>
-      </div>
-    </div>
-    <div class="house-window">
-      <img src="../../../public/img/hall/lablefather.png">
-      <p id="house-window-number">House Number</p>
-      <div class="house-window-room">
-        <div class="User">
-          <p id="Username">Username</p>
-          <p id="ID">id</p>
-        </div>
-      </div>
-      <div class="house-window-room">
-        <div class="User">
-          <p id="Username">Username</p>
-          <p id="ID">id</p>
-        </div>
-      </div>
-      <div class="house-window-room">
-        <div class="User">
-          <p id="Username">Username</p>
-          <p id="ID">id</p>
-        </div>
-      </div>
-      <div class="house-window-room">
-        <div class="User">
-          <p id="Username">Username</p>
-          <p id="ID">id</p>
-        </div>
-      </div>
-    </div>
-    <div class="house-window">
-      <img src="../../../public/hall/black.png">
-      <p id="house-window-number">House Number</p>
-      <div class="house-window-room">
-        <div class="User">
-          <p id="Username">Username</p>
-          <p id="ID">id</p>
-        </div>
-      </div>
-      <div class="house-window-room">
-        <div class="User">
-          <p id="Username">Username</p>
-          <p id="ID">id</p>
-        </div>
-      </div>
-      <div class="house-window-room">
-        <div class="User">
-          <p id="Username">Username</p>
-          <p id="ID">id</p>
-        </div>
-      </div>
-      <div class="house-window-room">
-        <div class="User">
-          <p id="Username">Username</p>
-          <p id="ID">id</p>
-        </div>
-      </div>
-    </div>
+    <house v-for="house in $store.state.house" :house="house" :key="house.number"></house>
   </div>
 
   </div>
 </template>
 
 <script>
+import house from "@/views/hall/components/house.vue";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "hall"
+  name: "hall",
+  components:{
+    house
+  }
 }
 </script>
 
@@ -232,58 +125,7 @@ div.bg {
   scrollbar-width: thin;
   scrollbar-color: rgb(199, 160, 89) #666;
 }
-.house-window {
-  vertical-align: top;
-  top: 0%;
-  height: 34%;
-  width: 99%;
-  display: flex;
-  justify-content: space-between;
-}
-.house-window img {
-  position: absolute;
-  width: 100%;
-  left: 0%;
-  z-index: 0;
-  /* border: 1px solid gray; */
-}
-#house-window-number {
-  position: absolute;
-  width: 200px;
-  left: 310px;
-  margin: 0;
-  text-align: center;
-  vertical-align:middle;
-  line-height: 20px;
-  z-index: 0;
-  color: rgb(199, 160, 89);
-}
-.house-window-room {
-  position: relative;
-  left: 5px;
-  float: left;
-  top: 22px;
-  width: 25%;
-  height: 50px;
-  /* z-index: 4; */
-  margin-left: 0;
-  /* border: 1px solid gray; */
-}
-.User {
-  position: relative;
-  width: 100%;
-  height: 50px;
-}
-#Username {
-  text-align: center;
-  line-height: 5px;
-  color: rgb(199, 160, 89);
-}
-#ID {
-  text-align: center;
-  line-height: 0px;
-  color: rgb(199, 160, 89);
-  font-size: smaller;
-  /* margin: 0; */
-}
+
+
+
 </style>

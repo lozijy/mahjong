@@ -25,7 +25,6 @@
 
       <button-container></button-container>
       <time-container></time-container>
-      <hall></hall>
     </div>
 
   </div>
@@ -49,7 +48,6 @@ import bottomContainer from "@/views/game/components/bottomContainer.vue";
 
 import buttonContainer from "@/views/game/components/buttonContainer.vue";
 import TimeContainer from "@/views/game/components/timeContainer.vue";
-import hall from "../hall/hall.vue";
 export default {
   name: 'App',
   //解决浏览器前进后退不会重新渲染的问题
@@ -83,48 +81,49 @@ export default {
 
     buttonContainer,
 
-    hall
+
 
 
   },
   methods:{
     checkdata(data){
-      if(data.type=="get_me_id"){
+      if(data.type==="get_me_id"){
         this.$store.commit("get_me_id",data.player_id);
       }
-      if(data.type=="draw_self"){
+      if(data.type==="draw_self"){
         this.$store.commit("draw_self",data.tile);
         this.$store.commit("my_sort");
       }
-      else if(data.type=="draw_other"){
+      else if(data.type==="draw_other"){
         this.$store.commit("draw_other",data.player_id);
       }
-      else if(data.type=="action_choose"){
+      else if(data.type==="action_choose"){
         this.$store.commit("action_choose",data.action);
         this.$store.commit("my_sort");
       }      
-      else if(data.type=="get_point"){
+      else if(data.type==="get_point"){
         this.$store.commit("get_point",data.point);
       }
-      else if(data.type=="countdown"){
+      else if(data.type==="countdown"){
         this.$store.commit("countdown",data.time);
       }
-      else if(data.type="exit"){
+      else if(data.type === "exit"){
         this.$root.$socket.send('exit');
       }
-      else if(data.type=="exit"){
+      else if(data.type==="join"){
         this.$root.$socket.send('join');
       }
-      else if(data.type=="create"){
+      else if(data.type==="create"){
         this.$root.$socket.send("create");
       }
-      else if(data.type=="hall"){
+      else if(data.type==="hall"){
         this.$root.$socket.send("hall");
       }
-      else if(data.type=="logout"){
+      else if(data.type==="logout"){
         this.$root.$socket.send("logout");
       }
-      else if(data.type=="exit"){
+      // eslint-disable-next-line no-dupe-else-if
+      else if(data.type==="exit"){
         this.$root.$socket.send("exit");
       }
 

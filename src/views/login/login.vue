@@ -75,7 +75,7 @@ export default {
             }).then(()=> {
               // eslint-disable-next-line no-undef
               window.localStorage.setItem('hall',true)
-                this.$router.push("/game");
+                this.$router.push("/hall");
                 alert(1);
               }
             ).catch(
@@ -107,7 +107,7 @@ export default {
         );
       }else{
         window.localStorage.setItem('hall',true);
-        this.$router.push("/game");
+        this.$router.push("/hall");
       }
 
 

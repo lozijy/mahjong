@@ -23,7 +23,7 @@ rou.beforeEach((to,from,next)=>{
     //需要授权时
     if(to.meta.isAuth){
         // eslint-disable-next-line no-undef
-        if(window.localStorage.getItem("flag")==="true"||window.localStorage.getItem("hall")==="true"){
+        if(window.localStorage.getItem("flag")==="true"){
             next();
         }else{
             next("/login");

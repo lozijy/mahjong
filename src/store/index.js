@@ -71,7 +71,28 @@ const state={
         discarded_card:["4s"]
         },
     time:3,
-    points:[1,2]
+    points:[1,2],
+    //房间
+    house:[
+        {
+            number:1,
+            user:[
+        {id: "1", userName: "lozi"},
+        {id: "2", userName: "sk"},
+        {id: "3", userName: "saks"},
+        {id: "4", userName: "sask"},
+        ]
+        },
+        {
+            number:2,
+            user:[
+                {id: "1", userName: "lozi"},
+                {id: "2", userName: "sk"},
+                {id: "3", userName: "saks"},
+                {id: "4", userName: "sask"},
+            ]
+        }
+    ]
 }
 export default new Vuex.Store({
     actions,mutations,state
