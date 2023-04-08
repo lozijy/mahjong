@@ -51,48 +51,31 @@ const actions={
 const state={
     me : {
         number:0,
-        p_tiles: ["1s"],
+        p_tiles: [],
         player_id:-1,
-        discarded_card:["1s"]
+        discarded_card:[]
         },
     front : {
-        number:13,
+        number:0,
         player_id:-1,
-        discarded_card:["2s"]
+        discarded_card:[]
     },
     left : {
-        number:13,
+        number:0,
         player_id:-1,
-        discarded_card:["3s"]
+        discarded_card:[]
     },
     right : {
-        number:13,
+        number:0,
         player_id:-1,
-        discarded_card:["4s"]
+        discarded_card:[]
         },
-    time:3,
-    points:[1,2],
+    time: 0,
+    points:[],
+    options:[],
     //房间
-    house:[
-        {
-            number:1,
-            user:[
-        {id: "1", userName: "lozi"},
-        {id: "2", userName: "sk"},
-        {id: "3", userName: "saks"},
-        {id: "4", userName: "sask"},
-        ]
-        },
-        {
-            number:2,
-            user:[
-                {id: "1", userName: "lozi"},
-                {id: "2", userName: "sk"},
-                {id: "3", userName: "saks"},
-                {id: "4", userName: "sask"},
-            ]
-        }
-    ]
+    house:[],
+    table_code:0
 }
 export default new Vuex.Store({
     actions,mutations,state

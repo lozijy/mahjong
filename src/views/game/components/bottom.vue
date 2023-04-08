@@ -43,7 +43,6 @@ export default {
     watch: {
       flag: function(newValue, oldValue) {
         console.log(newValue+oldValue);
-        console.log("haha");
         if(newValue==true) {
           // do something with the new value
           this.go(this.history.last);

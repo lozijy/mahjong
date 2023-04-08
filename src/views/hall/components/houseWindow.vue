@@ -1,8 +1,8 @@
 <template>
   <div class="house-window-room">
     <div class="User">
-      <p id="Username">{{item.userName}}</p>
-      <p id="ID">{{ item.id }}</p>
+      <p id="Username">{{item}}</p>
+      <p id="ID">12345</p>
     </div>
   </div>
 </template>
@@ -15,6 +15,10 @@ export default {
       type: Object, // props 的数据类型
       required: true // 是否必须传递
     },
+    house:{
+      type: Object, // props 的数据类型
+      required: true // 是否必须传递
+    }
 
 
   }

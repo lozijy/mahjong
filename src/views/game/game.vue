@@ -1,30 +1,37 @@
 <template>
   <div id="app">
     <div id="background">
-      <div id="bottom">
+<!--      打出去的牌-->
+      <div id="BO">
         <img v-for="card in $store.state.me.discarded_card" :key="card" :src="require(`../../../public/img/1/${card}.gif`)">
       </div>
-      <div id="left">
+      <div id="LE">
         <img v-for="card in $store.state.left.discarded_card" :key="card" :src="require(`../../../public/img/1/${card}.gif`)">
       </div>
-      <div id="right">
+      <div id="RI">
         <img v-for="card in $store.state.right.discarded_card" :key="card" :src="require(`../../../public/img/1/${card}.gif`)">
       </div>
-      <div id="top">
+      <div id="TO">
         <img v-for="card in $store.state.front.discarded_card" :key="card" :src="require(`../../../public/img/1/${card}.gif`)">
       </div>
+<!--      桌子-->
       <mid></mid>
+<!--      上下左右-->
       <top></top>
       <left></left>
       <right></right>
       <bottom></bottom>
+<!--      放搁置的牌-->
       <left-container></left-container>
       <right-container></right-container>
       <top-container></top-container>
       <bottom-container></bottom-container>
-
+<!--放置按钮-->
       <button-container></button-container>
+<!--倒计时-->
       <time-container></time-container>
+
+      <not-started></not-started>
     </div>
 
   </div>
@@ -48,6 +55,8 @@ import bottomContainer from "@/views/game/components/bottomContainer.vue";
 
 import buttonContainer from "@/views/game/components/buttonContainer.vue";
 import TimeContainer from "@/views/game/components/timeContainer.vue";
+
+import notStarted from "@/views/game/components/notStarted.vue";
 export default {
   name: 'App',
   //解决浏览器前进后退不会重新渲染的问题
@@ -55,6 +64,9 @@ export default {
   //
   // },
   components: {
+    // eslint-disable-next-line vue/no-unused-components
+    notStarted,
+
     TimeContainer,
     // eslint-disable-next-line vue/no-unused-components
     mid,
@@ -87,6 +99,11 @@ export default {
   },
   methods:{
     checkdata(data){
+
+      //websocket各种请求,和store.js耦合，get_me_id获取我的词句游戏的id,自己和别人摸牌,自己选择一个选择，获取分数，倒计时，退出
+      //加入牌局，创建牌局
+      //加入大厅
+      //退出登录
       if(data.type==="get_me_id"){
         this.$store.commit("get_me_id",data.player_id);
       }
@@ -122,25 +139,23 @@ export default {
       else if(data.type==="logout"){
         this.$root.$socket.send("logout");
       }
-      // eslint-disable-next-line no-dupe-else-if
-      else if(data.type==="exit"){
-        this.$root.$socket.send("exit");
-      }
+
 
     }
   },
   mounted() {
-      this.$root.$socket=new WebSocket('ws://localhost:8000');
+    //自动发送websocket请求
+      this.$root.$socket=new WebSocket(`ws://198.211.12.166:23333/ws/${window.localStorage.getItem("userId")}/${window.localStorage.getItem("token")}`);
       this.$root.$socket.addEventListener('open', () => {
         console.log('Connected to server');
-        this.$root.$socket.send('ready to connect');
       });
       this.$root.$socket.addEventListener('message', (event) => {
         console.log('Received message:', event.data);
         this.checkdata(JSON.parse(event.data));
       });
-      this.$root.$socket.addEventListener('close', () => {
+      this.$root.$socket.addEventListener('close', (a) => {
         console.log('Disconnected from server');
+        console.log(a);
       });
     }
 }
@@ -169,7 +184,7 @@ export default {
   transform-style: preserve-3d;
   /* transform: rotateX(30deg) rotateY(0deg) translateZ(0px);   */
 }
-#bottom{
+#BO{
 position: absolute;
   bottom: 22%;
   right: 44%;
@@ -177,7 +192,7 @@ position: absolute;
   height: 16%;
   border: 1px solid gray;
 }
-#top{
+#TO{
   position: absolute;
   top: 22%;
   right: 44%;
@@ -185,7 +200,7 @@ position: absolute;
   height: 16%;
   border: 1px solid gray;
 }
-#left{
+#LE{
   position: absolute;
   width: 6%;
   height: 20%;
@@ -193,7 +208,7 @@ position: absolute;
   left:37%;
   border: 1px solid gray;
 }
-#right{
+#RI{
   position: absolute;
   width: 6%;
   height: 20%;
@@ -201,16 +216,25 @@ position: absolute;
   right:37%;
   border: 1px solid gray;
 }
-#bottom img{
+#BO img{
   float: left;
+  height: 40%;
+  weight: 40%;
 }
-#top img{
+#TO img{
   float: right;
+  height: 40%;
+  weight: 40%;
 }
-#left img{
+#LE img{
   float: top;
+  height: 40%;
+  weight: 40%;
 }
-#right img{
+#RI img{
   vertical-align: bottom;
+  height: 40%;
+  weight: 40%;
+
 }
 </style>

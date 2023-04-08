@@ -5,7 +5,8 @@
   <div class="bg"></div>
   <img src="../../../public/img/hall/black.png">
   <div class="centered"><img src="../../../public/img/hall/border.png" class="centered"></div>
-  <div class="title-window"><button>刷新</button></div>
+
+    <div class="title-window"><div class="logout" @click="logout()">�˳�</div><div class="create" @click="create()">����</div><div class="flushed" @click="flushed()">ˢ��</div></div>
   <div class="content-window">
     <house v-for="house in $store.state.house" :house="house" :key="house.number"></house>
   </div>
@@ -20,6 +21,70 @@ export default {
   name: "hall",
   components:{
     house
+  },
+  methods:{
+    flushed(){
+      this.$http.post('http://198.211.12.166:23333/hall', {
+        user_id: window.localStorage.getItem("userId"),
+        token:window.localStorage.getItem("token")
+      }
+      ).then((response)=> {
+        this.$store.state.house=response.data.data;
+      }).catch(
+          function (error) {
+            alert(error);
+          })
+    },
+    create(){
+      this.$http.post('http://198.211.12.166:23333/create', {
+            user_id: window.localStorage.getItem("userId")
+            ,
+            token:window.localStorage.getItem("token")
+          }
+      ).then((response)=> {
+        //�޸�id
+        this.$store.state.me.id=response.data.user_id;
+        //�޸�table_code
+        this.$store.state.table_code=response.data.table_code;
+
+      }).catch(
+          function (error) {
+            alert(error);
+          });
+
+      //��ת��game���
+      this.$router.push("/game");
+
+    },
+    logout(){
+      this.$http.post('http://198.211.12.166:23333/logout', {
+            user_id: window.localStorage.getItem("userId")
+            ,
+            token:window.localStorage.getItem("token")
+          }
+      ).then((response)=> {
+        //����ɾ��UserId��token
+        console.log(response)
+        localStorage.clear();
+
+      }).catch(
+          function (error) {
+            alert(error);
+          });
+    }
+  },
+  mounted() {
+    //ˢ��
+    this.$http.post('http://198.211.12.166:23333/hall', {
+          user_id: window.localStorage.getItem("userId"),
+          token:window.localStorage.getItem("token")
+        }
+    ).then((response)=> {
+      this.$store.state.house=response.data.data;
+    }).catch(
+        function (error) {
+          alert(error);
+        })
   }
 }
 </script>
@@ -30,13 +95,13 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  /* 隐藏滚动条 */
+  /* 隐藏滚动�? */
 }
 div.bg {
   background-image:url("../../../public/img/hall/indoor.jpg");
   background-position: center center;
   background-size: cover;
-  /* 图片自适应 */
+  /* 图片自�?�应 */
   background-repeat: no-repeat;
   position: fixed;
   top: 0;
@@ -44,7 +109,7 @@ div.bg {
   right: 0;
   bottom: 0;
   z-index: -1;
-  /* 将背景图片层级设为最低 */
+  /* 将背景图片层级设为最�? */
 }
 .centered {
   position: absolute;
@@ -54,7 +119,7 @@ div.bg {
   /* 转换位置以将元素置于页面中央 */
   width: 85%;
   height: 95%;
-  /* 调整元素宽度以进行放大 */
+  /* 调整元素宽度以进行放�? */
   image-rendering: pixelated;
 }
 .title-window {
@@ -72,21 +137,61 @@ div.bg {
   background-position: center;
   /* background-color: aliceblue; */
 }
-.title-window button {
-  position: relative;
-  text-indent: -9999px;
-  background-image: url("../../../public/img/hall/refresh.png");
-  background-position: center center;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  border: none;
-  background-color: transparent;
-  top: 10%;
-  left: 80%;
-  width: 10%;
-  height: 80%;
-}
-.title-window button:hover {
+
+  .title-window .logout {
+    display: inline-block;
+    position: relative;
+    text-indent: -9999px;
+    background-image: url("../../../public/img/hall/refresh.png");
+    background-position: center center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: transparent;
+    top: 10%;
+    left: 10%;
+    width: 10%;
+    height: 80%;
+  }
+  .title-window .create {
+    display: inline-block;
+    position: relative;
+    text-indent: -9999px;
+    background-image: url("../../../public/img/hall/refresh.png");
+    background-position: center center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: transparent;
+    top: 10%;
+    left: 20%;
+    width: 10%;
+    height: 80%;
+  }
+  .title-window .flushed {
+    display: inline-block;
+    position: relative;
+    text-indent: -9999px;
+    background-image: url("../../../public/img/hall/refresh.png");
+    background-position: center center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: transparent;
+    top: 10%;
+    left: 30%;
+    width: 10%;
+    height: 80%;
+  }
+  .title-window .create:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+  .title-window .logout:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+.title-window .flushed:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
@@ -105,23 +210,23 @@ div.bg {
   /* padding-right: 5px; */
   /* background-color: aqua; */
 }
-/* 支持Webkit浏览器 */
+/* 支持Webkit浏览�? */
 .content-window::-webkit-scrollbar {
   width: 8px;
-  /* 设置滚动条宽度 */
+  /* 设置滚动条宽�? */
   position: right;
 }
 .content-window::-webkit-scrollbar-track {
   background: #666;
-  /* 设置滚动条背景颜色 */
+  /* 设置滚动条背景颜�? */
 }
 .content-window::-webkit-scrollbar-thumb {
   background-color: rgb(199, 160, 89);
   /* 设置滚动条拖动块颜色 */
 }
-/* 支持Edge,FireFox浏览器 */
+/* 支持Edge,FireFox浏览�? */
 .content-window {
-  /* 设置滚动条样式 */
+  /* 设置滚动条样�? */
   scrollbar-width: thin;
   scrollbar-color: rgb(199, 160, 89) #666;
 }

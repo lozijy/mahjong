@@ -1,8 +1,9 @@
 <template>
   <div id="mid">
-    <img id="yu" src="../../../../public/img/3/left.png">
+    <img id="yu" :src=src>
     <div class="pointContainer">
       <img  class="point" v-for="point in $store.state.points" :key="point"  :src="require(`../../../../public/img/3/${point}.png`)">
+
     </div>
   </div>
 </template>
@@ -13,7 +14,7 @@ export default {
   name: "mid",
   data(){
     return {
-
+      src:"../../../../public/img/3/left.png"
     }
   }
 }

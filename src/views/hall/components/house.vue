@@ -1,8 +1,8 @@
 <template>
-  <div class="house-window" @click="click()">
+  <div class="house-window" @click="click(house.table_code)">
     <img src="../../../../public/img/hall/lablefather.png">
-    <p id="house-window-number">{{house.number}}</p>
-    <house-window  v-for="item in house.user" :item="item" :key="item.id"></house-window>
+    <p id="house-window-number">{{house.table_code}}</p>
+    <house-window  v-for="item in house.players" :item="item"  :key="item.id"></house-window>
 
   </div>
 </template>
@@ -24,19 +24,20 @@ export default {
     },
   },
   methods:{
-    click(){
+    click(table_code){
       console.log("click");
-      console.log(this.house.number)
+      console.log(table_code);
       this.$http.post('http://198.211.12.166:23333/join', {
-        type:"join",
-        player_id:this.$store.state.me.player_id,
-        number:this.house.number,
-      }).then(()=> {
+        table_code: table_code,
+        user_id: window.localStorage.getItem("userId"),
+        token:window.localStorage.getItem("token")
+      }).then((response)=> {
         console.log("接受数据");
-        this.loginBox.style.display = "block";
-        this.registerBox.style.display = "none";
+        console.log(response);
         alert("加入成功");
-      })
+      });
+      this.$store.state.table_code=table_code;
+      this.$router.push("/game");
     }
   }
 }

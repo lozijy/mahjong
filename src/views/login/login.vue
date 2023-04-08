@@ -61,59 +61,26 @@ export default {
   },
   methods:{
     login(){
-      //当地存储没有flag的时候要去拿存储或者登录用户与已登录用户不匹配时去拿数据
-      if(window.localStorage.getItem("flag")!=="true") {
-        this.axios.post('http://198.211.12.166:23333/login',
-            {
-          user_id: this.user_id,
-          password: this.password
-        },
-            {
-              headers:{
-                "Access-Control-Allow-Origin":"*"
-              }
-            }).then(()=> {
-              // eslint-disable-next-line no-undef
-              window.localStorage.setItem('hall',true)
-                this.$router.push("/hall");
-                alert(1);
-              }
-            ).catch(
-            function (error) {
-              window.localStorage.setItem('hall',true)
-              
-
-
-              // const pipei={
-              //   "field required":"需要输入"
-              // }
-              alert(error);
-            //   if(error!==null){
-            //   var i=0;
-            //   while (error.response.data.detail[i]) {
-            //     if (pipei[error.response.data.detail[i].msg]) {
-            //       alert(pipei[error.response.data.detail[i].msg]);
-            //     } else {
-            //       alert(error.response.data.detail[i].loc[1]);
-            //       alert(error.response.data.detail[i].msg)
-            //     }
-            //     i++;
-            //   }
-            // }else{
-            //     console.log("成功");
-            //     this.$router.push("/game");
-            //   }
+      this.axios.post('http://198.211.12.166:23333/login',
+          {
+            user_id: this.user_id,
+            password: this.password
+          },
+          {
+            headers:{
+              "Access-Control-Allow-Origin":"*"
             }
-        );
-      }else{
-        window.localStorage.setItem('hall',true);
-        this.$router.push("/hall");
-      }
-
+          }).then((response)=> {
+            // eslint-disable-next-line no-undef
+            alert(response.data.user_id);
+            window.localStorage.setItem('userId',response.data.user_id);
+            window.localStorage.setItem('token',response.data.token);
+            this.$router.push("/hall");
+          }
+      )
 
     },
     sign_up_button(){
-      console.log(this.loginBox);
       this.loginBox.style.display = "none";
       this.registerBox.style.display = "block";
     },
@@ -124,16 +91,15 @@ export default {
         user_id: this.r_user_id,
         email: this.r_email,
         password: this.r_password
-      }).then(()=> {
-        console.log("接受数据");
+      }).then((response)=> {
         this.loginBox.style.display = "block";
         this.registerBox.style.display = "none";
-        alert("注册成功");
+        alert(response.data.text);
       }).catch(
           function (error) {
             const pipei={
                 "ensure this value has at most 7 characters":"昵称最多7位",
-              "string does not match regex \"^[a-zA-Z\\u4e00-\\u9fa5]+$\"":"请输入昵称",
+              "string does not match regex \"^[a-zA-Z\\u4e00-\\u9fa5]+$\"":"昵称格式不对",
               "ensure this value has at least 5 characters":"ID至少包含5个字符",
               "value is not a valid email address":"不是正确的邮箱地址",
               "ensure this value has at least 8 characters":"密码至少八位",
@@ -158,7 +124,8 @@ export default {
               }
           });
 
-
+      this.loginBox.style.display = "block";
+      this.registerBox.style.display = "none";
 
     }
   }
