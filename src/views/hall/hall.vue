@@ -149,7 +149,7 @@ div.bg {
     border: none;
     background-color: transparent;
     top: 10%;
-    left: 50%;
+    left: 0%;
     width: 10%;
     height: 80%;
   }
@@ -164,7 +164,7 @@ div.bg {
     border: none;
     background-color: transparent;
     top: 10%;
-    left: -40%;
+    left: 20%;
     width: 10%;
     height: 80%;
   }
@@ -179,7 +179,7 @@ div.bg {
     border: none;
     background-color: transparent;
     top: 10%;
-    left: -38%;
+    left: 30%;
     width: 10%;
     height: 80%;
   }
