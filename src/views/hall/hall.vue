@@ -142,14 +142,14 @@ div.bg {
     display: inline-block;
     position: relative;
     text-indent: -9999px;
-    background-image: url("../../../public/img/hall/refresh.png");
+    background-image: url("../../../public/img/hall/logout.png");
     background-position: center center;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     border: none;
     background-color: transparent;
     top: 10%;
-    left: 10%;
+    left: 0%;
     width: 10%;
     height: 80%;
   }
@@ -157,7 +157,7 @@ div.bg {
     display: inline-block;
     position: relative;
     text-indent: -9999px;
-    background-image: url("../../../public/img/hall/refresh.png");
+    background-image: url("../../../public/img/hall/create.png");
     background-position: center center;
     background-size: 100% 100%;
     background-repeat: no-repeat;

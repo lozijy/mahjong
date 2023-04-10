@@ -4,9 +4,6 @@ Vue.use(Vuex);
 
 /* eslint-disable*/
 const mutations={
-    get_me_id(state,player_id){
-        state.me.id=player_id;
-    },
     draw_self(state,tile){
         state.me.number++;
         state.me.p_tiles.unshift(tile);
@@ -31,7 +28,48 @@ const mutations={
     },
 
     countdown(state,time){
-        state.time=time;
+        //游戏没开始时，修改准备倒计时
+        if(state.started===0){
+            state.countdown=time;
+        }
+        //否则修改游戏内倒计时
+        else {
+            state.time = time;
+        }
+    },
+    //游戏开始，修改state
+    start(state){
+        state.started=1;
+    },
+    init(state,info){
+        //初始化
+        state.me.name=info.self.name;
+        state.me.user_id=info.self.user_id;
+        state.me.p_tiles=info.self.close;
+        state.me.open=info.self.open;
+        state.me.discarded_card=info.self.discard;
+        state.me.score=info.self.score;
+        const position = {
+            "-1" : "left",
+            "1" : "right",
+            "2" : "front",
+            "-2" : "front"
+        };
+        for (let i = 0; i < 4; i++) {
+            if(state.me.user_id===info.table[i].user_id){
+                state.me.player_id=i;
+                break;
+            }
+        }
+        for (let i = 0; i < 4; i++) {
+            if(i!==state.me.player_id){
+                var str = i-state.me.player_id.toString();
+                state[position[str]].player_id=i;
+                state[position[str]].name=info.table[i].name;
+                state[position[str]].user_id=info.table[i].user_id;
+                state[position[str]].total_score=info.table[i].total_score;
+            }
+        }
     },
     my_sort(state) {
         state.me.p_tiles.sort(function (a, b) {
@@ -51,31 +89,55 @@ const actions={
 const state={
     me : {
         number:0,
-        p_tiles: [],
+        //位置
         player_id:-1,
-        discarded_card:[]
+        name:"",
+        user_id:"",
+        p_tiles:[],
+        open:[],
+        discarded_card:[],
+        score:0,
         },
     front : {
+        //牌数
         number:0,
+        //位置
         player_id:-1,
-        discarded_card:[]
+        discarded_card:[],
+        name:"",
+        user_id:"",
+        total_score:0
     },
     left : {
+        //牌数
         number:0,
+        //位置
         player_id:-1,
-        discarded_card:[]
+        discarded_card:[],
+        name:"",
+        user_id:"",
+        total_score:0
     },
     right : {
+        //牌数
         number:0,
+        //位置
         player_id:-1,
-        discarded_card:[]
+        discarded_card:[],
+        name:"",
+        user_id:"",
+        total_score:0
         },
+    //游戏内倒计时
     time: 0,
+    //准备倒计时
+    countdown:0,
     points:[],
     options:[],
     //房间
     house:[],
-    table_code:0
+    table_code:0,
+    started:0//游戏是否开始
 }
 export default new Vuex.Store({
     actions,mutations,state

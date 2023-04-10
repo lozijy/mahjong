@@ -11,11 +11,19 @@
 <script>
 export default {
   name: "notStarted",
+  props:{
+    ready_flag:{
+      type:Boolean,
+      required: true // 是否必须传递
+    }
+  },
   methods:{
     start(){
       this.msg="✓";
       this.exi.style.display = "none";
-      this.$root.$socket.send('ready to start');
+      this.$root.$socket.send(JSON.stringify({
+        type:"ready"
+      }));
     },
     exit(){
       this.$root.$socket.close();
@@ -40,10 +48,22 @@ export default {
       msg: "准备开始"
     }
   },
+
   mounted() {
     this.exi=document.getElementById("exit");
     this.sta=document.getElementById("start");
   },
+  watch:{
+    ready_flag: function(newValue, oldValue) {
+      console.log(newValue+oldValue);
+      if(newValue==true) {
+        // do something with the new value
+        this.sta.style.display = "block";
+        this.flag = false;
+      }
+    }
+  },
+
 }
 </script>
 
@@ -58,6 +78,7 @@ export default {
   border: 70px;
 }
 #start{
+  display: none;
   border: 1px solid gray;
   cursor: pointer;
 }

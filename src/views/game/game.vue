@@ -31,7 +31,8 @@
 <!--倒计时-->
       <time-container></time-container>
 
-      <not-started></not-started>
+      <not-started :ready_flag="ready_flag"></not-started>
+      <button @click="click()">1</button>
     </div>
 
   </div>
@@ -104,25 +105,28 @@ export default {
       //加入牌局，创建牌局
       //加入大厅
       //退出登录
-      if(data.type==="get_me_id"){
-        this.$store.commit("get_me_id",data.player_id);
-      }
+
       if(data.type==="draw_self"){
-        this.$store.commit("draw_self",data.tile);
+        this.$store.commit("draw_self",data.data.tile);
         this.$store.commit("my_sort");
       }
       else if(data.type==="draw_other"){
-        this.$store.commit("draw_other",data.player_id);
+        this.$store.commit("draw_other",data.data.player_index);
       }
       else if(data.type==="action_choose"){
-        this.$store.commit("action_choose",data.action);
+        this.$store.commit("action_choose",data.data.action);
         this.$store.commit("my_sort");
       }      
       else if(data.type==="get_point"){
         this.$store.commit("get_point",data.point);
       }
       else if(data.type==="countdown"){
-        this.$store.commit("countdown",data.time);
+        this.$store.commit("countdown",data.data.count);
+      }
+      else if(data.type==="init_info"){
+        //开始游戏
+        this.$store.commit("start");
+        this.$store.commit("init",data.data)
       }
       else if(data.type === "exit"){
         this.$root.$socket.send('exit');
@@ -139,8 +143,18 @@ export default {
       else if(data.type==="logout"){
         this.$root.$socket.send("logout");
       }
+      else if(data.type==="can_ready"){
+        this.ready_flag=true;
+      }
 
-
+    },
+    click(){
+      this.ready_flag=true;
+    }
+  },
+  data(){
+    return{
+    ready_flag:false
     }
   },
   mounted() {
