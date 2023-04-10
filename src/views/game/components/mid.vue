@@ -1,14 +1,14 @@
 <template>
   <div id="mid">
-    <img id="yu" :src=src>
-    <div class="pointContainer">
-      <img  class="point" v-for="point in $store.state.points" :key="point"  :src="require(`../../../../public/img/3/${point}.png`)">
-
+    <img id="yu" :src="require(`../../../../public/img/3/left.png`)">
+    <div class="yuContainer">
+      <img  class="yu" v-for="yu in $store.state.yu_array" :key="yu"  :src="require(`../../../../public/img/3/${yu}.png`)">
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "mid",
@@ -18,6 +18,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style scoped>
@@ -34,13 +35,14 @@ export default {
   background-size: contain;
 }
 #yu{
+
   position: absolute;
   left:36%;
   top:55%;
   width: 11%;
   height:6%;
 }
-.pointContainer{
+.yuContainer{
   position: absolute;
   left:50%;
   top:55%;
@@ -48,7 +50,7 @@ export default {
   height:7%;
   border: 1px solid gray;
 }
-.point{
+.yu{
   height: 100%;
   width: 50%;
   float: left;

@@ -1,9 +1,10 @@
 <template>
   <div class="container">
     <div class="font">等待开始</div>
-    <div class="font">当前人数:</div>
-    <div class="font">xx</div>
+    <div class="font">当前人数:{{$store.state.number}}</div>
+    <div class="font">玩家列表</div>
     <div  id="start" class="font" @click="start()">{{msg}}</div>
+    <div id="countdown" class="font">准备倒计时:{{$store.state.countdown}}</div>
     <div class="font" id="exit" @click="exit()">退出</div>
   </div>
 </template>
@@ -21,6 +22,7 @@ export default {
     start(){
       this.msg="✓";
       this.exi.style.display = "none";
+      this.countDown.style.display="none";
       this.$root.$socket.send(JSON.stringify({
         type:"ready"
       }));
@@ -52,6 +54,7 @@ export default {
   mounted() {
     this.exi=document.getElementById("exit");
     this.sta=document.getElementById("start");
+    this.countDown=document.getElementById("countdown");
   },
   watch:{
     ready_flag: function(newValue, oldValue) {
@@ -59,6 +62,7 @@ export default {
       if(newValue==true) {
         // do something with the new value
         this.sta.style.display = "block";
+        this.countDown.style.display="block";
         this.flag = false;
       }
     }
@@ -81,6 +85,9 @@ export default {
   display: none;
   border: 1px solid gray;
   cursor: pointer;
+}
+#countdown{
+  display: none;
 }
 #exit{
   border: 1px solid gray;

@@ -1,10 +1,19 @@
 <template>
-  <div class="buttonContainer"></div>
+  <div class="buttonContainer">
+    <img v-for="choice in $store.state.options" :key="choice.action" @click="choose(choice)" :src="require(`../../../../public/img/4/${choice.action}.gif`)">
+  </div>
 </template>
 
 <script>
 export default {
-  name: "buttonContainer"
+  name: "buttonContainer",
+  methods:{
+    choose(action){
+      console.log(action);
+      //清空
+      this.$store.commit("clear_options");
+    }
+  }
 }
 </script>
 

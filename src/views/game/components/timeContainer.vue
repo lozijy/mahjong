@@ -14,17 +14,33 @@ export default {
       url: require(`../../../../public/img/5/${this.$store.state.time}.png`)
     }
   },
+  props:{
+    countdown_flag:{
+      type:Boolean,
+      require:true
+    }
+  },
   watch:{
     time: function (newValue,oldValue){
       console.log(newValue,oldValue)
       new Audio("../../../public/audio.countdown5.mp3").play();
-    }
+      if(newValue===0){
+        document.getElementById("timeContainer").style.display="none";
+      }
+    },
+    countdown_flag: function (newValue,oldValue){
+      console.log(newValue,oldValue)
+      if(this.countdown_flag===true){
+        document.getElementById("timeContainer").style.display="block";
+      }
+    },
   }
 }
 </script>
 
 <style scoped>
 .timeContainer{
+  display: none;
   position: absolute;
   width: 6%;
   height: 10%;

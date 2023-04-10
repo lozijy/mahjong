@@ -6,7 +6,7 @@
   <img src="../../../public/img/hall/black.png">
   <div class="centered"><img src="../../../public/img/hall/border.png" class="centered"></div>
 
-    <div class="title-window"><div class="logout" @click="logout()">退出</div><div class="create" @click="create()">创建</div><div class="flushed" @click="flushed()">刷新</div></div>
+    <div class="title-window"><div class="logout" @click="logout()">???</div><div class="create" @click="create()">????</div><div class="flushed" @click="flushed()">???</div></div>
   <div class="content-window">
     <house v-for="house in $store.state.house" :house="house" :key="house.number"></house>
   </div>
@@ -42,9 +42,9 @@ export default {
             token:window.localStorage.getItem("token")
           }
       ).then((response)=> {
-        //修改id
+        //???id
         this.$store.state.me.id=response.data.user_id;
-        //修改table_code
+        //???table_code
         this.$store.state.table_code=response.data.table_code;
 
       }).catch(
@@ -52,7 +52,7 @@ export default {
             alert(error);
           });
 
-      //跳转到game组件
+      //?????game???
       this.$router.push("/game");
 
     },
@@ -63,10 +63,10 @@ export default {
             token:window.localStorage.getItem("token")
           }
       ).then((response)=> {
-        //本地删除UserId和token
+        //???????UserId??token
         console.log(response)
         localStorage.clear();
-
+        this.$router.push("/login");
       }).catch(
           function (error) {
             alert(error);
@@ -74,7 +74,7 @@ export default {
     }
   },
   mounted() {
-    //刷新
+    //???
     this.$http.post('http://198.211.12.166:23333/hall', {
           user_id: window.localStorage.getItem("userId"),
           token:window.localStorage.getItem("token")
@@ -90,18 +90,18 @@ export default {
 </script>
 
 <style scoped>
-  /* 璁剧疆鏍峰紡 */
+  /* 设置样式 */
 body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  /* 闅愯棌婊氬姩鏉? */
+  /* 隐藏滚动?? */
 }
 div.bg {
   background-image:url("../../../public/img/hall/indoor.jpg");
   background-position: center center;
   background-size: cover;
-  /* 鍥剧墖鑷?傚簲 */
+  /* 图片自???应 */
   background-repeat: no-repeat;
   position: fixed;
   top: 0;
@@ -109,17 +109,17 @@ div.bg {
   right: 0;
   bottom: 0;
   z-index: -1;
-  /* 灏嗚儗鏅浘鐗囧眰绾ц涓烘渶浣? */
+  /* 将背景图片层级设为最?? */
 }
 .centered {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* 杞崲浣嶇疆浠ュ皢鍏冪礌缃簬椤甸潰涓ぎ */
+  /* 转换位置以将元素置于页面中央 */
   width: 85%;
   height: 95%;
-  /* 璋冩暣鍏冪礌瀹藉害浠ヨ繘琛屾斁澶? */
+  /* 调整元素宽度以进行放?? */
   image-rendering: pixelated;
 }
 .title-window {
@@ -210,23 +210,23 @@ div.bg {
   /* padding-right: 5px; */
   /* background-color: aqua; */
 }
-/* 鏀寔Webkit娴忚鍣? */
+/* 支持Webkit浏览?? */
 .content-window::-webkit-scrollbar {
   width: 8px;
-  /* 璁剧疆婊氬姩鏉″搴? */
+  /* 设置滚动条宽?? */
   position: right;
 }
 .content-window::-webkit-scrollbar-track {
   background: #666;
-  /* 璁剧疆婊氬姩鏉¤儗鏅鑹? */
+  /* 设置滚动条背景颜?? */
 }
 .content-window::-webkit-scrollbar-thumb {
   background-color: rgb(199, 160, 89);
-  /* 璁剧疆婊氬姩鏉℃嫋鍔ㄥ潡棰滆壊 */
+  /* 设置滚动条拖动块颜色 */
 }
-/* 鏀寔Edge,FireFox娴忚鍣? */
+/* 支持Edge,FireFox浏览?? */
 .content-window {
-  /* 璁剧疆婊氬姩鏉℃牱寮? */
+  /* 设置滚动条样?? */
   scrollbar-width: thin;
   scrollbar-color: rgb(199, 160, 89) #666;
 }

@@ -32,7 +32,6 @@
       <time-container></time-container>
 
       <not-started :ready_flag="ready_flag"></not-started>
-      <button @click="click()">1</button>
     </div>
 
   </div>
@@ -105,13 +104,22 @@ export default {
       //加入牌局，创建牌局
       //加入大厅
       //退出登录
+      if(data.type==="init_info"){
+          //开始游戏
+          this.$store.commit("start");
+          this.$store.commit("init",data.data)
 
-      if(data.type==="draw_self"){
+        }
+      else if(data.type==="draw_self"){
         this.$store.commit("draw_self",data.data.tile);
         this.$store.commit("my_sort");
+        //修改余
+        this.$store.commit("yu");
       }
       else if(data.type==="draw_other"){
         this.$store.commit("draw_other",data.data.player_index);
+        //修改余
+        this.$store.commit("yu");
       }
       else if(data.type==="action_choose"){
         this.$store.commit("action_choose",data.data.action);
@@ -121,40 +129,28 @@ export default {
         this.$store.commit("get_point",data.point);
       }
       else if(data.type==="countdown"){
+        if(this.$store.state.started===true){
+          this.countdown_flag=true;
+        }
         this.$store.commit("countdown",data.data.count);
       }
-      else if(data.type==="init_info"){
-        //开始游戏
-        this.$store.commit("start");
-        this.$store.commit("init",data.data)
-      }
-      else if(data.type === "exit"){
-        this.$root.$socket.send('exit');
-      }
       else if(data.type==="join"){
-        this.$root.$socket.send('join');
+        this.$store.commit("join",data.data);
       }
-      else if(data.type==="create"){
-        this.$root.$socket.send("create");
-      }
-      else if(data.type==="hall"){
-        this.$root.$socket.send("hall");
-      }
-      else if(data.type==="logout"){
-        this.$root.$socket.send("logout");
-      }
+
+
+      //可以准备
       else if(data.type==="can_ready"){
         this.ready_flag=true;
       }
 
     },
-    click(){
-      this.ready_flag=true;
-    }
   },
   data(){
     return{
-    ready_flag:false
+      ready_flag:false,
+      countdown_flag:false
+
     }
   },
   mounted() {

@@ -5,9 +5,20 @@ Vue.use(Vuex);
 /* eslint-disable*/
 const mutations={
     draw_self(state,tile){
+
         state.me.number++;
         state.me.p_tiles.unshift(tile);
 
+    },
+    //余牌减少1
+    yu(state){
+
+        if(state.yu_array[1]===0){
+            state.yu_array[0]-=1;
+            state.yu_array[1]=9;
+        }else{
+            state.yu_array[1]--;
+        }
     },
 
     draw_other(state,player_id){
@@ -42,6 +53,9 @@ const mutations={
         state.started=1;
     },
     init(state,info){
+
+        //修改yu_array
+        state.yu_array=[5,6]
         //初始化
         state.me.name=info.self.name;
         state.me.user_id=info.self.user_id;
@@ -68,6 +82,7 @@ const mutations={
                 state[position[str]].name=info.table[i].name;
                 state[position[str]].user_id=info.table[i].user_id;
                 state[position[str]].total_score=info.table[i].total_score;
+                state[position[str]].number=13;
             }
         }
     },
@@ -79,6 +94,14 @@ const mutations={
                 return (a.codePointAt(1) - b.codePointAt(1));
             }
         })
+    },
+    //玩家加入
+    join(state,data){
+        state.number++;
+    },
+    //清空选择
+    clear_options(state){
+        state.options=[];
     }
 }
 
@@ -132,12 +155,17 @@ const state={
     time: 0,
     //准备倒计时
     countdown:0,
+    //分数
     points:[],
     options:[],
     //房间
     house:[],
     table_code:0,
-    started:0//游戏是否开始
+    //游戏是否开始
+    started:0,
+    yu_array:[5,6],
+    //当前房间人数
+    number:0
 }
 export default new Vuex.Store({
     actions,mutations,state

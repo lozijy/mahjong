@@ -11,6 +11,7 @@ export default {
       url: require(`../../../../public/img/5/${this.$store.state.time}.png`)
     }
   },
+
 }
 </script>
 
