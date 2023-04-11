@@ -3,6 +3,8 @@
     <div id="background">
 <!--      打出去的牌-->
       <div id="BO">
+        <bottom-discard class="B" :tile="'1s'"></bottom-discard>
+        <bottom-discard class="B" :tile="'1s'"></bottom-discard>
         <img v-for="card in $store.state.me.discarded_card" :key="card" :src="require(`../../../public/img/1/${card}.gif`)">
       </div>
       <div id="LE">
@@ -76,6 +78,7 @@ import buttonContainer from "@/views/game/components/buttonContainer.vue";
 import TimeContainer from "@/views/game/components/timeContainer.vue";
 
 import notStarted from "@/views/game/components/notStarted.vue";
+import bottomDiscard from "@/views/game/components/bottom-discard.vue";
 export default {
   name: 'App',
   //解决浏览器前进后退不会重新渲染的问题
@@ -83,6 +86,7 @@ export default {
   //
   // },
   components: {
+    bottomDiscard,
     // eslint-disable-next-line vue/no-unused-components
     notStarted,
 
@@ -194,7 +198,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.B{
+  width: 15%;
+  height: 30%;
+}
+
 #topName{
   border: 1px solid gray;
   position: absolute;

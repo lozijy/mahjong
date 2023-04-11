@@ -37,10 +37,10 @@ export default {
       }).then((response)=> {
         console.log("接受数据");
         console.log(response);
-
+        this.$store.state.table_code=0;
+        this.$router.push("/hall");
       });
-      this.$store.state.table_code=0;
-      this.$router.push("/hall");
+
 
     }
   },
@@ -73,6 +73,7 @@ export default {
 
 <style scoped>
 .container{
+  display: none;
   background-color: #00000060;
   width: 20%;
   height: 60%;
