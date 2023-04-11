@@ -1,6 +1,6 @@
 <template>
   <div class="buttonContainer">
-    <img v-for="choice in $store.state.options" :key="choice.action" @click="choose(choice)" :src="require(`../../../../public/img/4/${choice.action}.gif`)">
+    <img v-for="choice in $store.state.options" :key="choice.action" @click="choose(choice)" :src="require(`../../../../public/img/4/${choice.action}.png`)">
   </div>
 </template>
 
@@ -8,8 +8,11 @@
 export default {
   name: "buttonContainer",
   methods:{
-    choose(action){
-      console.log(action);
+    choose(choice){
+      console.log(choice);
+      choice.type=choice.action;
+      //向后端发送
+      this.$root.$socket.send(JSON.stringify(choice));
       //清空
       this.$store.commit("clear_options");
     }
@@ -20,7 +23,7 @@ export default {
 <style scoped>
 .buttonContainer{
   position: absolute;
-  width: 30%;
+  width: 29%;
   height:10%;
   bottom: 11%;
   right:35%;

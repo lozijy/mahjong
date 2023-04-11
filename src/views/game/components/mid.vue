@@ -35,7 +35,6 @@ export default {
   background-size: contain;
 }
 #yu{
-
   position: absolute;
   left:36%;
   top:55%;

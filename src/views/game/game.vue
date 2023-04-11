@@ -14,6 +14,25 @@
       <div id="TO">
         <img v-for="card in $store.state.front.discarded_card" :key="card" :src="require(`../../../public/img/1/${card}.gif`)">
       </div>
+
+<!--      名字-->
+      <div id="topName">
+        <div id="NA">lozijy</div>
+        <div >9024分</div>
+      </div>
+      <div id="bottomName">
+        <div id="NA">人机求轻虐~</div>
+        <div >9024分</div>
+      </div>
+      <div id="leftName">
+        <div id="NA">打我啊笨蛋啊啊</div>
+        <div >9024分</div>
+      </div>
+      <div id="rightName">
+        <div id="NA">?</div>
+        <div >9024分</div>
+      </div>
+
 <!--      桌子-->
       <mid></mid>
 <!--      上下左右-->
@@ -143,6 +162,10 @@ export default {
       else if(data.type==="can_ready"){
         this.ready_flag=true;
       }
+      else if(data.type==="dismiss"){
+        this.$router.push("/hall");
+        alert("房间消失");
+      }
 
     },
   },
@@ -172,6 +195,58 @@ export default {
 </script>
 
 <style>
+#topName{
+  border: 1px solid gray;
+  position: absolute;
+  width: 7%;
+  height: 6%;
+  top: 12%;
+  right:38%;
+}
+#topName #NA{
+  font-size: 10px;
+  background: rgba(76, 175, 80, 0.8);
+  border: 1px solid gray;
+}
+#bottomName {
+  border: 1px solid gray;
+  position: absolute;
+  width: 7%;
+  height: 6%;
+  bottom: 22%;
+  left: 30%;
+}
+#bottomName #NA{
+  font-size: 10px;
+  background: rgba(76, 175, 80, 0.8);
+  border: 1px solid gray;
+}
+#leftName{
+  border: 1px solid gray;
+  position: absolute;
+  width: 7%;
+  height: 6%;
+  top: 20%;
+  left:32%;
+
+}
+#leftName #NA{
+  font-size: 10px;
+  border: 1px solid gray;
+  background: rgba(76, 175, 80, 0.8);
+}
+#rightName{
+  border: 1px solid gray;
+  position: absolute;
+  width: 7%;
+  height: 6%;
+  top: 20%;
+  right:30%;
+}
+#rightName #NA{
+  font-size: 10px;
+  background: rgba(76, 175, 80, 0.8);
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
