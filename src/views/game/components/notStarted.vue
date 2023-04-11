@@ -24,7 +24,7 @@ export default {
       this.exi.style.display = "none";
       this.countDown.style.display="none";
       this.$root.$socket.send(JSON.stringify({
-        type:"ready"
+        "type":"ready"
       }));
     },
     exit(){

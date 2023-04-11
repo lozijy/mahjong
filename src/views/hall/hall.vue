@@ -46,6 +46,7 @@ export default {
         this.$store.state.me.id=response.data.user_id;
         //???table_code
         this.$store.state.table_code=response.data.table_code;
+        this.$router.push("/game");
 
       }).catch(
           function (error) {
@@ -53,7 +54,7 @@ export default {
           });
 
       //?????game???
-      this.$router.push("/game");
+
 
     },
     logout(){
