@@ -30,6 +30,7 @@
         <input type="password" placeholder="请确认密码" v-model="r_password1">
       </div>
       <div class="botton_container" >
+        <button id="login_box" @click="retur()">返回</button>>
         <button  type="submit" id="login_button" @click="click">完成注册</button>
       </div>
     </div>
@@ -56,60 +57,70 @@ export default {
       r_user_id:"",
       r_email:"",
       r_password:"",
-      r_error:""
+      r_error:"",
+      r_password1:"",
     }
   },
   methods:{
     login(){
-      this.axios.post('http://198.211.12.166:23333/login',
-          {
-            user_id: this.user_id,
-            password: this.password
-          },
-          {
-            headers:{
-              "Access-Control-Allow-Origin":"*"
+      if(this.user_id!==""&&this.password!=="") {
+        this.axios.post('http://198.211.12.166:23333/login',
+            {
+              user_id: this.user_id,
+              password: this.password
+            },
+            {
+              headers: {
+                "Access-Control-Allow-Origin": "*"
+              }
+            }).then((response) => {
+              // eslint-disable-next-line no-undef
+              alert(response.data.user_id);
+              window.localStorage.setItem('userId', response.data.user_id);
+              window.localStorage.setItem('token', response.data.token);
+              this.$router.push("/hall");
             }
-          }).then((response)=> {
-            // eslint-disable-next-line no-undef
-            alert(response.data.user_id);
-            window.localStorage.setItem('userId',response.data.user_id);
-            window.localStorage.setItem('token',response.data.token);
-            this.$router.push("/hall");
-          }
-      )
+        )
+      }else{
+        alert("请输入账号或者密码");
+      }
 
     },
     sign_up_button(){
       this.loginBox.style.display = "none";
       this.registerBox.style.display = "block";
     },
+    retur(){
+      this.loginBox.style.display = "block";
+      this.registerBox.style.display = "none";
+    },
     click(){
-      //发送post请求
-      this.$http.post('http://198.211.12.166:23333/register', {
-        name: this.r_name,
-        user_id: this.r_user_id,
-        email: this.r_email,
-        password: this.r_password
-      }).then((response)=> {
-        this.loginBox.style.display = "block";
-        this.registerBox.style.display = "none";
-        alert(response.data.text);
-      }).catch(
-          function (error) {
-            const pipei={
-                "ensure this value has at most 7 characters":"昵称最多7位",
-              "string does not match regex \"^[a-zA-Z\\u4e00-\\u9fa5]+$\"":"昵称格式不对",
-              "ensure this value has at least 5 characters":"ID至少包含5个字符",
-              "value is not a valid email address":"不是正确的邮箱地址",
-              "ensure this value has at least 8 characters":"密码至少八位",
-              "该邮箱已存在":"该邮箱已存在"
-            }
-            var i=0;
+      if(this.r_password===this.r_password1) {
+        //发送post请求
+        this.$http.post('http://198.211.12.166:23333/register', {
+          name: this.r_name,
+          user_id: this.r_user_id,
+          email: this.r_email,
+          password: this.r_password
+        }).then((response) => {
+          this.loginBox.style.display = "block";
+          this.registerBox.style.display = "none";
+          alert(response.data.text);
+        }).catch(
+            function (error) {
+              const pipei = {
+                "ensure this value has at most 7 characters": "昵称最多7位",
+                "string does not match regex \"^[a-zA-Z\\u4e00-\\u9fa5]+$\"": "昵称格式不对",
+                "ensure this value has at least 5 characters": "ID至少包含5个字符",
+                "value is not a valid email address": "不是正确的邮箱地址",
+                "ensure this value has at least 8 characters": "密码至少八位",
+                "该邮箱已存在": "该邮箱已存在"
+              }
+              var i = 0;
 
-              if(typeof error.response.data.detail=="string"){
+              if (typeof error.response.data.detail == "string") {
                 alert(error.response.data.detail);
-              }else {
+              } else {
                 while (error.response.data.detail[i]) {
                   if (pipei[error.response.data.detail[i].msg]) {
                     alert(pipei[error.response.data.detail[i].msg]);
@@ -122,10 +133,14 @@ export default {
                 this.getElementById("r_error").display = "block";
 
               }
-          });
+            });
 
-      this.loginBox.style.display = "block";
-      this.registerBox.style.display = "none";
+        this.loginBox.style.display = "block";
+        this.registerBox.style.display = "none";
+      }
+      else{
+        alert("密码和确认密码不一致");
+      }
 
     }
   }
@@ -172,6 +187,7 @@ div.bg {
 }
 
 #login_box {
+  display: block;
   position: absolute;
   /* left:900px; */
   width: 200px;
