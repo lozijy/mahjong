@@ -115,7 +115,7 @@ div.bg {
 }
 .centered {
   position: absolute;
-  float: auto;
+  /* float: auto; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

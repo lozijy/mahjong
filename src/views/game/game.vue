@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <div id="background" >
+    <div class="background" >
+      <div class="background-container"></div>
+      <!-- <img src="../../../public/img/table.jpg" class="background1"> -->
 <!--      打出去的牌-->
       <div id="BO">
         <bottom-discard v-for="tile in $store.state.me.discarded_card" class="B" :key="tile" :tile="tile"></bottom-discard>
@@ -279,23 +281,49 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-#background{
+.background{
   display: inline;
   position: absolute;
   top: 0;
   left: 0;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  /* top: 50%;
+  left: 50%; */
+  /* transform: translate(-50%, -50%); */
   width: 100%;
   height: 100%;
-  background-image: url('../../../public/img/table.jpg');
+  /* background-image: url('../../../public/img/table.jpg'); */
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
   transform-style: preserve-3d;
   /* transform: rotateX(30deg) rotateY(0deg) translateZ(0px);   */
 }
+
+.background-container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width:50%;
+  height:100%;
+  transform: translate(-50%, -50%);
+  background-image: url('../../../public/img/table.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+}
+
+.background1{
+  position: absolute;
+  /* top: 0;
+  left: 0; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 550px;
+  height: 550px;
+  /* overflow: hidden; */
+}
+
 #BO{
 position: absolute;
   bottom: 22%;
