@@ -1,15 +1,14 @@
 <template>
 
 
-  <div class="hall">
-  <div class="bg"></div>
-  <img src="../../../public/img/hall/black.png">
-  <div class="centered"><img src="../../../public/img/hall/border.png" class="centered"></div>
-
-    <div class="title-window"><div class="logout" @click="logout()">???</div><div class="create" @click="create()">????</div><div class="flushed" @click="flushed()">???</div></div>
-  <div class="content-window">
-    <house v-for="house in $store.state.house" :house="house" :key="house.number"></house>
-  </div>
+    <div class="hall">
+    <div class="bg"></div>
+    <img src="../../../public/img/hall/black.png">
+    <div class="centered"><img src="../../../public/img/hall/border.png" class="centered"></div>
+        <div class="title-window"><div class="logout" @click="logout()">???</div><div class="create" @click="create()">????</div><div class="flushed" @click="flushed()">???</div></div>
+    <div class="content-window">
+        <house v-for="house in $store.state.house" :house="house" :key="house.number"></house>
+    </div>
 
   </div>
 </template>
@@ -114,12 +113,17 @@ div.bg {
 }
 .centered {
   position: absolute;
+  float: auto;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   /* 转换位置以将元素置于页面中央 */
   width: 85%;
+  /* width:912px; */
+  /* max-width: 912px; */
+  /* height: expression_r(this.width >542 ? (542*(this.height/this.width)): true); */
   height: 95%;
+  /* height:500px; */
   /* 调整元素宽度以进行放?? */
   image-rendering: pixelated;
 }
@@ -150,7 +154,7 @@ div.bg {
     border: none;
     background-color: transparent;
     top: 10%;
-    left: 50%;
+    left: 85%;
     width: 10%;
     height: 80%;
   }
@@ -165,7 +169,7 @@ div.bg {
     border: none;
     background-color: transparent;
     top: 10%;
-    left: -40%;
+    left: 7%;
     width: 10%;
     height: 80%;
   }
@@ -180,7 +184,7 @@ div.bg {
     border: none;
     background-color: transparent;
     top: 10%;
-    left: -38%;
+    left: -15%;
     width: 10%;
     height: 80%;
   }

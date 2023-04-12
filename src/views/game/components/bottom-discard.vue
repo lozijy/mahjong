@@ -33,8 +33,8 @@ export default {
   border-right: 0.5px solid black;
 }
 #body{
-  position: absolute;
-  left: 20%;
+  position: relative;
+  left: 10%;
   top:1%;
   width: 60%;
   height: 80%;

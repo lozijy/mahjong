@@ -47,7 +47,7 @@ export default {
   width: 30%;
   height: 60%;
   z-index:2;
-  transform: rotateZ(90deg);
+  transform: rotateZ(270deg);
   image-rendering: high-quality;
 }
 </style>

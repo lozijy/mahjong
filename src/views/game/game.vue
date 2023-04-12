@@ -9,10 +9,10 @@
         <left-discard v-for="tile in $store.state.left.discarded_card" class="B" :key="tile" :tile="tile"></left-discard>
       </div>
       <div id="RI">
-        <img v-for="card in $store.state.right.discarded_card" :key="card" :src="require(`../../../public/img/1/${card}.gif`)">
+        <right-discard v-for="tile in $store.state.right.discarded_card" class="B" :key="tile" :tile="tile"></right-discard>
       </div>
       <div id="TO">
-        <img v-for="card in $store.state.front.discarded_card" :key="card" :src="require(`../../../public/img/1/${card}.gif`)">
+        <top-discard v-for="tile in $store.state.front.discarded_card" class="B" :key="tile" :tile="tile"></top-discard>
       </div>
 
 <!--      名字-->
@@ -57,6 +57,8 @@
 </template>
 
 <script>
+import rightDiscard from "./components/right-discard.vue";
+import topDiscard from "./components/top-discard.vue";
 import mid from "@/views/game/components/mid.vue";
 import top from "@/views/game/components/top.vue";
 import topTile from "@/views/game/components/top-tile.vue";
@@ -85,6 +87,10 @@ export default {
   //
   // },
   components: {
+            // eslint-disable-next-line vue/no-unused-components
+    rightDiscard,
+        // eslint-disable-next-line vue/no-unused-components
+    topDiscard,
     LeftDiscard,
     bottomDiscard,
     // eslint-disable-next-line vue/no-unused-components

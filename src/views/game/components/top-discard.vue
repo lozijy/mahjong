@@ -26,7 +26,7 @@ export default {
   position: relative;
   width: 35%;
   height: 25%;
-  background-image: url('../../../../public/img/2/hai1.png');
+  background-image: url('../../../../public/img/2/hai2.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
@@ -47,7 +47,7 @@ export default {
   width: 30%;
   height: 60%;
   z-index:2;
-  transform: rotateZ(90deg);
+  transform: rotateZ(180deg);
   image-rendering: high-quality;
 }
 
