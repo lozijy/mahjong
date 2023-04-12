@@ -1,5 +1,5 @@
 <template>
-    <img  ref="tile" :src ="url" class="bottom-tile" @click="click(history)">  
+    <img  :ref="tile" :src ="url" class="bottom-tile" @click="click(history,change,tile)">
 </template>
 
 <script>
@@ -11,34 +11,39 @@ props:{
     required: true // 是否必须传递
   },
   history:{
-    type: String, // props 的数据类型
+    type: Object, // props 的数据类型
     required: true // 是否必须传递
   },
   flag:{
     type:Boolean,
     required:true
+  },
+  change:{
+    type:String,
+    require:true
   }
 },
-data(){
+  data(){
   return{
   url: require(`../../../../public/img/1/${this.tile}.gif`)
   }
 },
 methods:{
-  click(history){
-    if(history.count==0){
-      this.$refs.tile.classList.toggle("move");
-      history.count=1,
+  click(history,change,tile){
+    if(history.count===0){
+      change=tile;
+      history.count=1;
       history.last=this.tile;
     }
     else{
-      if(history.last==this.tile){
+      if(history.last===this.tile){
         history.count=0;
+        change="";
         history.last=this.tile;
-        this.$emit('updateFlag', true);
+        console.log(this.$root);
+        // this.$emit('updateFlag', true);
       }else{
-        this.refs.history.last.classList.toggle("move");
-        this.$refs.tile.classList.toggle("move");
+        change=tile;
         history.last=this.tile;
       }
     }
