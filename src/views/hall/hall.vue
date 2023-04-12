@@ -92,18 +92,18 @@ export default {
 </script>
 
 <style scoped>
-  /* ÉèÖÃÑùÊ½ */
+  /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ */
 body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  /* Òþ²Ø¹ö¶¯?? */
+  /* ï¿½ï¿½ï¿½Ø¹ï¿½ï¿½ï¿½?? */
 }
 div.bg {
   background-image:url("../../../public/img/hall/indoor.jpg");
   background-position: center center;
   background-size: cover;
-  /* Í¼Æ¬×Ô???Ó¦ */
+  /* Í¼Æ¬ï¿½ï¿½???Ó¦ */
   background-repeat: no-repeat;
   position: fixed;
   top: 0;
@@ -111,7 +111,7 @@ div.bg {
   right: 0;
   bottom: 0;
   z-index: -1;
-  /* ½«±³¾°Í¼Æ¬²ã¼¶ÉèÎª×î?? */
+  /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ã¼¶ï¿½ï¿½Îªï¿½ï¿½?? */
 }
 .centered {
   position: absolute;
@@ -119,14 +119,14 @@ div.bg {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* ×ª»»Î»ÖÃÒÔ½«ÔªËØÖÃÓÚÒ³ÃæÖÐÑë */
+  /* ×ªï¿½ï¿½Î»ï¿½ï¿½ï¿½Ô½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
   /* width: 4*height; */
   width:912px;
   /* max-width: 912px; */
   /* height: expression_r(this.width >542 ? (542*(this.height/this.width)): true); */
   height: 500px;
   /* height:500px; */
-  /* µ÷ÕûÔªËØ¿í¶ÈÒÔ½øÐÐ·Å?? */
+  /* ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¿ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½Ð·ï¿½?? */
   image-rendering: pixelated;
 }
 .title-window {
@@ -219,23 +219,23 @@ div.bg {
   /* padding-right: 5px; */
   /* background-color: aqua; */
 }
-/* Ö§³ÖWebkitä¯ÀÀ?? */
+/* Ö§ï¿½ï¿½Webkitï¿½ï¿½ï¿½?? */
 .content-window::-webkit-scrollbar {
   width: 8px;
-  /* ÉèÖÃ¹ö¶¯Ìõ¿í?? */
+  /* ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?? */
   position: right;
 }
 .content-window::-webkit-scrollbar-track {
   background: #666;
-  /* ÉèÖÃ¹ö¶¯Ìõ±³¾°ÑÕ?? */
+  /* ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?? */
 }
 .content-window::-webkit-scrollbar-thumb {
   background-color: rgb(199, 160, 89);
-  /* ÉèÖÃ¹ö¶¯ÌõÍÏ¶¯¿éÑÕÉ« */
+  /* ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ï¿½ï¿½É« */
 }
-/* Ö§³ÖEdge,FireFoxä¯ÀÀ?? */
+/* Ö§ï¿½ï¿½Edge,FireFoxï¿½ï¿½ï¿½?? */
 .content-window {
-  /* ÉèÖÃ¹ö¶¯ÌõÑù?? */
+  /* ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?? */
   scrollbar-width: thin;
   scrollbar-color: rgb(199, 160, 89) #666;
 }

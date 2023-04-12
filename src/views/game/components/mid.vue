@@ -25,7 +25,7 @@ export default {
 #mid{
   position: absolute;
   width: 24%;
-  height: 23.9%;
+  height: 24%;
   top:38.2%;
   left:37.8%;
   border: 1px solid gray;

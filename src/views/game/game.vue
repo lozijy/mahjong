@@ -160,6 +160,8 @@ export default {
         this.$store.commit("countdown", data.data.count);
       } else if (data.type === "join") {
         this.$store.commit("join", data.data);
+      }else if(data.type ==="discard"){
+        this.$store.commit("discard",data.tile_type,data.player_index);
       }
 
 
