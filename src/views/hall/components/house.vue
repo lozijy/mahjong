@@ -1,5 +1,5 @@
 <template>
-  <div class="house-window" @click="click(house.table_code)">
+  <div class="house-window" @click="click(house)">
     <img src="../../../../public/img/hall/lablefather.png">
     <p id="house-window-number">{{house.table_code}}</p>
     <house-window  v-for="item in house.players" :item="item"  :key="item.id"></house-window>
@@ -24,11 +24,11 @@ export default {
     },
   },
   methods:{
-    click(table_code){
+    click(house){
       console.log("click");
-      console.log(table_code);
+      console.log(house.number);
       this.$http.post('http://198.211.12.166:23333/join', {
-        table_code: table_code,
+        table_code: house.number,
         user_id: window.localStorage.getItem("userId"),
         token:window.localStorage.getItem("token")
       }).then((response)=> {
@@ -36,7 +36,8 @@ export default {
         console.log(response);
         this.$router.push("/game");
       });
-      this.$store.state.table_code=table_code;
+      this.$store.state.table_code=house.number;
+      this.$store.state.number=house.players.length;
 
     }
   }

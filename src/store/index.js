@@ -102,6 +102,20 @@ const mutations={
     //清空选择
     clear_options(state){
         state.options=[];
+    },
+    discard(state,tile_type,player_index){
+        if(player_index===state.me.player_id){
+            state.me.p_tiles.unshift(tile);
+        }else{
+            const position = {
+                "-1" : "left",
+                "1" : "right",
+                "2" : "front",
+                "-2" : "front"
+            };
+            var str = i-state.me.player_id.toString();
+            state[position[str]].number--;
+        }
     }
 }
 
@@ -169,6 +183,8 @@ const state={
     yu_array:[5,6],
     //当前房间人数
     number:0
+    //房间里有哪些人
+    
 }
 export default new Vuex.Store({
     actions,mutations,state

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="font">等待开始</div>
-    <div class="font">当前人数:{{$store.state.number}}</div>
+    <div class="font">当前人数:{{$store.state.number+1}}</div>
     <div class="font">玩家列表</div>
     <div  id="start" class="font" @click="start()">{{msg}}</div>
     <div id="countdown" class="font">准备倒计时:{{$store.state.countdown}}</div>
@@ -84,7 +84,7 @@ export default {
 
 <style scoped>
 .container{
-  display: none;
+  display: block;
   background-color: #00000060;
   width: 20%;
   height: 60%;
@@ -106,7 +106,7 @@ export default {
   cursor: pointer;
 }
 .font{
-  font-size: 60px;
+  font-size: 20px;
   position: relative;
   top:50px;
   color: red;
