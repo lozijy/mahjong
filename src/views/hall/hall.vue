@@ -3,12 +3,14 @@
 
     <div class="hall">
     <div class="bg"></div>
-    <img src="../../../public/img/hall/black.png">
-    <div class="centered"><img src="../../../public/img/hall/border.png" class="centered"></div>
+    <!-- <img src="../../../public/img/hall/black.png"> -->
+    <div class="centered"><img src="../../../public/img/hall/border.png" class="centered">
         <div class="title-window"><div class="logout" @click="logout()">???</div><div class="create" @click="create()">????</div><div class="flushed" @click="flushed()">???</div></div>
-    <div class="content-window">
+        <div class="content-window">
         <house v-for="house in $store.state.house" :house="house" :key="house.number"></house>
     </div>
+      </div>
+    
 
   </div>
 </template>
@@ -118,29 +120,31 @@ div.bg {
   left: 50%;
   transform: translate(-50%, -50%);
   /* 转换位置以将元素置于页面中央 */
-  width: 85%;
-  /* width:912px; */
+  /* width: 4*height; */
+  width:912px;
   /* max-width: 912px; */
   /* height: expression_r(this.width >542 ? (542*(this.height/this.width)): true); */
-  height: 95%;
+  height: 500px;
   /* height:500px; */
   /* 调整元素宽度以进行放?? */
   image-rendering: pixelated;
 }
 .title-window {
   position: absolute;
-  top: 12%;
+  top: 7%;
   left: 50%;
+  /* top:0;
+  left:0; */
   bottom: -100px;
   transform: translate(-50%, -50%);
-  width: 65%;
+  width: 80%;
   height: 7%;
   z-index: 0;
   background-image: url("../../../public/img/hall/title.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* background-color: aliceblue; */
+  /* background-color:; */
 }
 
   .title-window .logout {
@@ -206,8 +210,8 @@ div.bg {
   left: 50%;
   bottom: -100px;
   transform: translate(-50%, -50%);
-  width: 65%;
-  height: 70%;
+  width: 90%;
+  height: 80%;
   overflow: auto;
   z-index: 0;
   overflow-x: hidden;

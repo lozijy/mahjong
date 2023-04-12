@@ -118,7 +118,7 @@ const state={
         user_id:"",
         p_tiles:[],
         open:[],
-        discarded_card:[],
+        discarded_card:["1s"],
         score:0,
         },
     front : {
@@ -162,7 +162,7 @@ const state={
     points:[],
     options:[],
     //房间
-    house:[],
+    house: [],
     table_code:0,
     //游戏是否开始
     started:0,

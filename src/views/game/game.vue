@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="background">
+    <div id="background" >
 <!--      打出去的牌-->
       <div id="BO">
         <bottom-discard v-for="tile in $store.state.me.discarded_card" class="B" :key="tile" :tile="tile"></bottom-discard>
@@ -284,6 +284,9 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
   background-image: url('../../../public/img/table.jpg');
