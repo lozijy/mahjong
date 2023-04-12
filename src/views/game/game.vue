@@ -17,19 +17,19 @@
 
 <!--      名字-->
       <div id="topName">
-        <div id="NA">lozijy</div>
+        <div id="NA">{{$store.state.front.name}}</div>
         <div >9024分</div>
       </div>
       <div id="bottomName">
-        <div id="NA">人机求轻虐~</div>
+        <div id="NA">{{$store.state.me.name}}</div>
         <div >9024分</div>
       </div>
       <div id="leftName">
-        <div id="NA">打我啊笨蛋啊啊</div>
+        <div id="NA">{{$store.state.left.name}}</div>
         <div >9024分</div>
       </div>
       <div id="rightName">
-        <div id="NA">?</div>
+        <div id="NA">{{$store.state.right.name}}</div>
         <div >9024分</div>
       </div>
 
@@ -50,7 +50,7 @@
 <!--倒计时-->
       <time-container></time-container>
 
-      <not-started :ready_flag="ready_flag"></not-started>
+      <not-started :ready_flag="ready_flag" :start_flag="start_flag"></not-started>
     </div>
 
   </div>
@@ -123,84 +123,88 @@ export default {
     buttonContainer,
 
 
-
-
   },
-  methods:{
-    checkdata(data){
+  methods: {
+    checkdata(data) {
 
       //websocket各种请求,和store.js耦合，get_me_id获取我的词句游戏的id,自己和别人摸牌,自己选择一个选择，获取分数，倒计时，退出
       //加入牌局，创建牌局
       //加入大厅
       //退出登录
-      if(data.type==="init_info"){
-          //开始游戏
-          this.$store.commit("start");
-          this.$store.commit("init",data.data)
+      if (data.type === "init_info") {
+        this.start_flag = true;
+        //开始游戏
+        this.$store.commit("start");
+        this.$store.commit("init", data.data)
 
-        }
-      else if(data.type==="draw_self"){
-        this.$store.commit("draw_self",data.data.tile);
+      } else if (data.type === "draw_self") {
+        this.$store.commit("draw_self", data.data.tile);
         this.$store.commit("my_sort");
         //修改余
         this.$store.commit("yu");
-      }
-      else if(data.type==="draw_other"){
-        this.$store.commit("draw_other",data.data.player_index);
+      } else if (data.type === "draw_other") {
+        this.$store.commit("draw_other", data.data.player_index);
         //修改余
         this.$store.commit("yu");
-      }
-      else if(data.type==="action_choose"){
-        this.$store.commit("action_choose",data.data.action);
+      } else if (data.type === "action_choose") {
+        this.$store.commit("action_choose", data.data.action);
         this.$store.commit("my_sort");
-      }      
-      else if(data.type==="get_point"){
-        this.$store.commit("get_point",data.point);
-      }
-      else if(data.type==="countdown"){
-        if(this.$store.state.started===true){
-          this.countdown_flag=true;
+      } else if (data.type === "get_point") {
+        this.$store.commit("get_point", data.point);
+      } else if (data.type === "countdown") {
+        if (this.$store.state.started === true) {
+          this.countdown_flag = true;
         }
-        this.$store.commit("countdown",data.data.count);
-      }
-      else if(data.type==="join"){
-        this.$store.commit("join",data.data);
+        this.$store.commit("countdown", data.data.count);
+      } else if (data.type === "join") {
+        this.$store.commit("join", data.data);
       }
 
 
       //可以准备
-      else if(data.type==="can_ready"){
-        this.ready_flag=true;
-      }
-      else if(data.type==="dismiss"){
+      else if (data.type === "can_ready") {
+        this.ready_flag = true;
+      } else if (data.type === "dismiss") {
         this.$router.push("/hall");
         alert("房间消失");
       }
 
     },
   },
-  data(){
-    return{
-      ready_flag:false,
-      countdown_flag:false
-
+  data() {
+    return {
+      ready_flag: false,
+      countdown_flag: false,
+      start_flag: false
     }
   },
   mounted() {
     //自动发送websocket请求
-      this.$root.$socket=new WebSocket(`ws://198.211.12.166:23333/ws/${window.localStorage.getItem("userId")}/${window.localStorage.getItem("token")}`);
-      this.$root.$socket.addEventListener('open', () => {
-        console.log('Connected to server');
-      });
-      this.$root.$socket.addEventListener('message', (event) => {
-        console.log('Received message:', event.data);
-        this.checkdata(JSON.parse(event.data));
-      });
-      this.$root.$socket.addEventListener('close', (a) => {
-        console.log('Disconnected from server');
-        console.log(a);
-      });
+    this.$root.$socket = new WebSocket(`ws://198.211.12.166:23333/ws/${window.localStorage.getItem("userId")}/${window.localStorage.getItem("token")}`);
+    this.$root.$socket.addEventListener('open', () => {
+      console.log('Connected to server');
+    });
+    this.$root.$socket.addEventListener('message', (event) => {
+      console.log('Received message:', event.data);
+      this.checkdata(JSON.parse(event.data));
+    });
+    this.$root.$socket.addEventListener('close', (a) => {
+      console.log('Disconnected from server');
+      console.log(a);
+    });
+  },
+  watch: {
+    start_flag: function (newValue, oldValue) {
+      console.log(newValue + oldValue);
+      if (newValue === true) {
+        // do something with the new value
+        document.getElementById("topName").style.display = "block";
+        document.getElementById("leftName").style.display = "block";
+        document.getElementById("rightName").style.display = "block";
+        document.getElementById("bottomName").style.display = "block";
+      }
     }
+  }
 }
 </script>
 
@@ -211,6 +215,7 @@ export default {
 }
 
 #topName{
+  display: none;
   border: 1px solid gray;
   position: absolute;
   width: 7%;
@@ -219,11 +224,13 @@ export default {
   right:38%;
 }
 #topName #NA{
+
   font-size: 10px;
   background: rgba(76, 175, 80, 0.8);
   border: 1px solid gray;
 }
 #bottomName {
+  display: none;
   border: 1px solid gray;
   position: absolute;
   width: 7%;
@@ -237,6 +244,7 @@ export default {
   border: 1px solid gray;
 }
 #leftName{
+  display: none;
   border: 1px solid gray;
   position: absolute;
   width: 7%;
@@ -251,6 +259,7 @@ export default {
   background: rgba(76, 175, 80, 0.8);
 }
 #rightName{
+  display: none;
   border: 1px solid gray;
   position: absolute;
   width: 7%;

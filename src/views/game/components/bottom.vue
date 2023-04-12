@@ -1,6 +1,7 @@
 <template>
   <div id="bottom">
-    <bottom-tile v-for="tile in this.$store.state.me.p_tiles" :tile="tile" :key="tile" :history="history" :flag="flag" @updateFlag="flag = $event"></bottom-tile>
+<!--    <bottom-tile v-for="tile in this.$store.state.me.p_tiles" :tile="tile" :key="tile" :history="history" :flag="flag" @updateFlag="flag = $event"></bottom-tile>-->
+    <bottom-tile :ref="tile" v-for="tile in this.$store.state.me.p_tiles" :change="change" :tile="tile" :key="tile" :history="history" :flag="flag"></bottom-tile>
   </div>
 </template>
 
@@ -13,18 +14,21 @@ export default {
     components: { bottomTile },
     data() {
     return {
-      flag: false
+      flag: false,
+      history:{
+        count:0,
+        last:"",
+      },
+      change:""
     }
   },
     methods:{
       go(tile){
-        console.log(tile);
-        console.log("go");
         //向后端发送数据
         const information={
-          type:"discard_a_card",
-          player_id:this.$store.state.me.player_id,
-          card:tile
+          "type":"discard_a_card",
+          "player_id":this.$store.state.me.player_id,
+          "card":tile
         };
         this.$root.$socket.send(JSON.stringify(information))
 
@@ -34,22 +38,27 @@ export default {
         p_tiles.splice(index,1);
       }
     },
-    mounted(){
-      this.history={
-        count:0,
-        last:"",
-      }
+    mounted() {
+      document.getElementById("hah").classList.toggle("move")
     },
-    watch: {
+  watch: {
       flag: function(newValue, oldValue) {
         console.log(newValue+oldValue);
-        if(newValue==true) {
+        if(newValue===true) {
           // do something with the new value
           this.go(this.history.last);
-          this.flag = false;
+          this.$root.flag = false;
         }
+      },
+    change: function(newValue, oldValue) {
+      console.log(newValue+oldValue);
+      if(newValue!=="") {
+        // do something with the new value
+        this.$refs[newValue].classList.toggle("move");
       }
+    },
     }
+
 
 }
 </script>
@@ -63,6 +72,10 @@ export default {
   right:37%;
   border: 1px solid gray;
   display: inline;
+}
+.move{
+  position: relative;
+  bottom:20px;
 }
 
 
