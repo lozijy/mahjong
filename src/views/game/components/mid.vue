@@ -24,10 +24,10 @@ export default {
 <style scoped>
 #mid{
   position: absolute;
-  width: 23.6%;
-  height: 23.4%;
-  top:38.5%;
-  left:38.1%;
+  width: 24%;
+  height: 23.9%;
+  top:38.2%;
+  left:37.8%;
   border: 1px solid gray;
   background-image: url("../../../../public/img/bg.png");
   background-repeat: no-repeat;
@@ -43,8 +43,8 @@ export default {
 }
 .yuContainer{
   position: absolute;
-  left:49.5%;
-  top:55.6%;
+  left:49%;
+  top:55%;
   width: 16%;
   height:10%;
   border: 1px solid gray;
@@ -53,7 +53,7 @@ export default {
   height: 100%;
   width: 50%;
   float: left;
-  margin: -8%;
+  margin: -5%;
 }
 
 </style>

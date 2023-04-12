@@ -330,7 +330,7 @@ position: absolute;
   bottom: 22.1%;
   right: 38%;
   width: 24%;
-  height: 15.6%;
+  height: 15.4%;
   border: 1px solid gray;
 }
 #TO{
@@ -338,12 +338,12 @@ position: absolute;
   top: 22.7%;
   right: 38%;
   width: 24%;
-  height: 15.6%;
+  height: 15.4%;
   border: 1px solid gray;
 }
 #LE{
   position: absolute;
-  width: 15.6%;
+  width: 15.3%;
   height: 24%;
   top:38.2%;
   left:22.4%;
@@ -354,7 +354,7 @@ position: absolute;
   width: 15.6%;
   height: 24%;
   top:38.2%;
-  right:22.4%;
+  right:22.3%;
   border: 1px solid gray;
 }
 #BO img{

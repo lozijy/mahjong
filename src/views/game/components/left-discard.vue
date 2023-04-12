@@ -23,15 +23,17 @@ export default {
 
 <style scoped>
 #container {
-  position: relative;
+  position: absolute;
   width: 35%;
   height: 25%;
   background-image: url('../../../../public/img/2/hai1.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
-  border-right: 0.5px solid black;
+  border: 0.5px solid black;
   float: right;
+  background-attachment: fixed;
+  /* transform: rotate(90deg); */
 }
 #body{
   /*position: absolute;*/
@@ -42,12 +44,12 @@ export default {
   /*z-index:2;*/
   /*transform: rotateY(90deg);*/
   position: absolute;
-  left: 30%;
-  top:10%;
-  width: 30%;
+  left: 33%;
+  top:13%;
+  width: 35%;
   height: 60%;
   z-index:2;
   transform: rotateZ(90deg);
-  image-rendering: high-quality;
+  image-rendering: auto;
 }
 </style>

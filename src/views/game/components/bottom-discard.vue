@@ -30,13 +30,13 @@ export default {
   background-position: center center;
   background-size: contain;
   float: left;
-  border-right: 0.3px solid black;
+  border: 0.3px solid black;
 }
 #body{
   position: absolute;
-  left: 17%;
+  left: 13%;
   top:-30%;
-  width: 60%;
+  width: 70%;
   height: 130%;
   z-index:2;
   transform: rotateX(60deg);

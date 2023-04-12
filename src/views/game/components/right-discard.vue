@@ -30,7 +30,7 @@ export default {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
-  border-right: 0.5px solid black;
+  border: 0.5px solid black;
   float: right;
 }
 #body{
@@ -43,11 +43,11 @@ export default {
   /*transform: rotateY(90deg);*/
   position: absolute;
   left: 30%;
-  top:10%;
-  width: 30%;
+  top:15%;
+  width: 35%;
   height: 60%;
   z-index:2;
   transform: rotateZ(270deg);
-  image-rendering: high-quality;
+  image-rendering: atuo;
 }
 </style>
