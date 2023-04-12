@@ -1,10 +1,16 @@
 <template>
-  <div class="rightContainer"></div>
+  <div class="rightContainer">
+    <right-discard v-for="tile in $store.state.right.discarded_card" class="B" :key="tile" :tile="tile"></right-discard>
+  </div>
 </template>
 
 <script>
+import rightDiscard from "@/views/game/components/right-discard.vue";
 export default {
-  name: "rightContainer"
+  name: "rightContainer",
+  components:{
+    rightDiscard
+  }
 }
 </script>
 

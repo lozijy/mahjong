@@ -1,7 +1,6 @@
 <template>
   <div class="leftContainer">
-    <leftDiscard ></leftDiscard>
-    <leftDiscard ></leftDiscard>
+    <left-discard v-for="tile in $store.state.left.discarded_card" class="B" :key="tile" :tile="tile"></left-discard>
   </div>
 
 

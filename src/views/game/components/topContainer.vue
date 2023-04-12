@@ -1,10 +1,16 @@
 <template>
-  <div class="topContainer"></div>
+  <div class="topContainer">
+    <top-discard v-for="tile in this.$store.state.front.open" :key="tile" class="B" :tile="tile"></top-discard>
+  </div>
 </template>
 
 <script>
+import topDiscard from "@/views/game/components/top-discard.vue";
 export default {
-  name: "topContainer"
+  name: "topContainer",
+  components:{
+    topDiscard
+  }
 }
 </script>
 

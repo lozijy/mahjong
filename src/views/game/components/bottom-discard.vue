@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <img src="../../../../public/img/2/5m.png" id="body" />
+    <img :src="url" id="body" />
   </div>
 </template>
 

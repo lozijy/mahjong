@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "left-discard",
+  name: "top-discard",
   props:{
     tile:{
       type:String,
@@ -50,4 +50,5 @@ export default {
   transform: rotateZ(90deg);
   image-rendering: high-quality;
 }
+
 </style>

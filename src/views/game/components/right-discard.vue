@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "left-discard",
+  name: "right-discard",
   props:{
     tile:{
       type:String,

@@ -3,12 +3,10 @@
     <div id="background">
 <!--      打出去的牌-->
       <div id="BO">
-        <bottom-discard class="B" :tile="'1s'"></bottom-discard>
-        <bottom-discard class="B" :tile="'1s'"></bottom-discard>
-        <img v-for="card in $store.state.me.discarded_card" :key="card" :src="require(`../../../public/img/1/${card}.gif`)">
+        <bottom-discard v-for="tile in $store.state.me.discarded_card" class="B" :key="tile" :tile="tile"></bottom-discard>
       </div>
       <div id="LE">
-        <img v-for="card in $store.state.left.discarded_card" :key="card" :src="require(`../../../public/img/1/${card}.gif`)">
+        <left-discard v-for="tile in $store.state.left.discarded_card" class="B" :key="tile" :tile="tile"></left-discard>
       </div>
       <div id="RI">
         <img v-for="card in $store.state.right.discarded_card" :key="card" :src="require(`../../../public/img/1/${card}.gif`)">
@@ -79,6 +77,7 @@ import TimeContainer from "@/views/game/components/timeContainer.vue";
 
 import notStarted from "@/views/game/components/notStarted.vue";
 import bottomDiscard from "@/views/game/components/bottom-discard.vue";
+import LeftDiscard from "@/views/game/components/left-discard.vue";
 export default {
   name: 'App',
   //解决浏览器前进后退不会重新渲染的问题
@@ -86,6 +85,7 @@ export default {
   //
   // },
   components: {
+    LeftDiscard,
     bottomDiscard,
     // eslint-disable-next-line vue/no-unused-components
     notStarted,

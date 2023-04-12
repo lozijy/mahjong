@@ -1,7 +1,6 @@
 <template>
   <div class="bottomContainer">
-    <bottom-discard class="B" :tile="'1s'"></bottom-discard>
-    <bottom-discard class="B" :tile="'1s'"></bottom-discard>
+    <bottom-discard v-for="tile in this.$store.state.me.open" :key="tile" class="B" :tile="tile"></bottom-discard>
   </div>
 </template>
 

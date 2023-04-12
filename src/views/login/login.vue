@@ -84,7 +84,6 @@ export default {
       }else{
         alert("请输入账号或者密码");
       }
-
     },
     sign_up_button(){
       this.loginBox.style.display = "none";
