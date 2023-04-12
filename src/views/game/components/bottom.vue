@@ -66,10 +66,10 @@ export default {
 <style scoped>
 #bottom {
   position: absolute;
-  width: 27%;
-  height:6%;
-  bottom:6%;
-  right:37%;
+  width: 49%;
+  height:7%;
+  bottom:5.5%;
+  right:25.4%;
   border: 1px solid gray;
   display: inline;
 }

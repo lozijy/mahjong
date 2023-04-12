@@ -22,10 +22,10 @@ export default {
 }
 .bottomContainer{
   position: absolute;
-  bottom:6%;
-  width:7%;
-  right:28%;
-  height: 18%;
+  bottom:5.5%;
+  width:19.3%;
+  right:6%;
+  height: 19.3%;
   border: 1px solid gray;
 }
 .bottomContainer #body{

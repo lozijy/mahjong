@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="background" >
-      <div class="background-container"></div>
+      <div class="background-container">
       <!-- <img src="../../../public/img/table.jpg" class="background1"> -->
 <!--      打出去的牌-->
       <div id="BO">
@@ -54,7 +54,7 @@
 
       <not-started :ready_flag="ready_flag" :start_flag="start_flag"></not-started>
     </div>
-
+  </div>
   </div>
 </template>
 
@@ -296,6 +296,7 @@ export default {
   background-position: center center;
   background-size: contain;
   transform-style: preserve-3d;
+  background-color: black;
   /* transform: rotateX(30deg) rotateY(0deg) translateZ(0px);   */
 }
 
@@ -303,8 +304,8 @@ export default {
   position: absolute;
   top: 50%;
   left: 50%;
-  width:50%;
-  height:100%;
+  width:640px;
+  height:538px;
   transform: translate(-50%, -50%);
   background-image: url('../../../public/img/table.jpg');
   background-repeat: no-repeat;
@@ -326,34 +327,34 @@ export default {
 
 #BO{
 position: absolute;
-  bottom: 22%;
-  right: 44%;
-  width: 12%;
-  height: 16%;
+  bottom: 22.1%;
+  right: 38%;
+  width: 24%;
+  height: 15.6%;
   border: 1px solid gray;
 }
 #TO{
   position: absolute;
-  top: 22%;
-  right: 44%;
-  width: 12%;
-  height: 16%;
+  top: 22.7%;
+  right: 38%;
+  width: 24%;
+  height: 15.6%;
   border: 1px solid gray;
 }
 #LE{
   position: absolute;
-  width: 6%;
-  height: 20%;
-  top:40%;
-  left:37%;
+  width: 15.6%;
+  height: 24%;
+  top:38.2%;
+  left:22.4%;
   border: 1px solid gray;
 }
 #RI{
   position: absolute;
-  width: 6%;
-  height: 20%;
-  top:40%;
-  right:37%;
+  width: 15.6%;
+  height: 24%;
+  top:38.2%;
+  right:22.4%;
   border: 1px solid gray;
 }
 #BO img{

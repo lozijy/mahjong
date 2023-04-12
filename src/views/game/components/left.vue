@@ -19,10 +19,10 @@ export default {
 /* 左右 */
 #left{
   position: absolute;
-  width: 3%;
-  height:30%;
-  left:28%;
-  top:20%;
+  width: 7%;
+  height:39.8%;
+  left:6%;
+  top:25.5%;
   border: 1px solid gray;
   display: flex;
   align-items: center;

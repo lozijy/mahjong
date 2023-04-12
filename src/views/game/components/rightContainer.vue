@@ -18,10 +18,10 @@ export default {
 .rightContainer{
   position: absolute;
   border: 1px solid gray;
-  width:7%;
-  height: 15%;
-  right:28%;
-  top:5%;
+  width:19.3%;
+  height: 19.3%;
+  right:6%;
+  top:6%;
 
 }
 

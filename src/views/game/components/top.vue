@@ -18,10 +18,10 @@ export default {
 <style scoped>
 #top{
   position: absolute;
-  width: 27%;
-  height:6%;
-  top:5%;
-  right:35%;
+  width: 49%;
+  height:7%;
+  top:6%;
+  right:25.4%;
   border: 1px solid gray;
   display: inline;
 }

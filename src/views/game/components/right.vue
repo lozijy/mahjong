@@ -18,10 +18,10 @@ export default {
 <style scoped>
 #right{
   position: absolute;
-  width: 3%;
-  height:30%;
-  right:27%;
-  top:20%;
+  width: 7%;
+  height:39.8%;
+  right:6%;
+  top:25.5%;
   border: 1px solid gray;
   display: flex;
   align-items: center;

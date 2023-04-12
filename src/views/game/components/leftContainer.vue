@@ -20,10 +20,10 @@ export default {
 .leftContainer{
   position: absolute;
   border: 1px solid gray;
-  width:7%;
-  height: 15%;
-  left:28%;
-  bottom: 6%;
+  width:19.3%;
+  height: 19.3%;
+  left:6%;
+  bottom: 5.5%;
 
 }
 </style>

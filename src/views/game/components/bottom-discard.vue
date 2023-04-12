@@ -23,23 +23,24 @@ export default {
 
 <style scoped>
 #container {
-  position: relative;
+  position: absolute;
 
   background-image: url('../../../../public/img/2/hai2.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
   float: left;
-  border-right: 0.5px solid black;
+  border-right: 0.3px solid black;
 }
 #body{
-  position: relative;
-  left: 10%;
-  top:1%;
+  position: absolute;
+  left: 17%;
+  top:-30%;
   width: 60%;
-  height: 80%;
+  height: 130%;
   z-index:2;
   transform: rotateX(60deg);
-  image-rendering: high-quality;
+  /* image-rendering: high-quality; */
+  image-rendering: auto;
 }
 </style>

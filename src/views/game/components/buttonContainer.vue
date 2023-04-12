@@ -23,10 +23,10 @@ export default {
 <style scoped>
 .buttonContainer{
   position: absolute;
-  width: 29%;
-  height:10%;
-  bottom: 11%;
-  right:35%;
+  width: 49%;
+  height:9.4%;
+  bottom: 12.6%;
+  right:25.4%;
   border: 1px solid gray;
 }
 .buttonContainer img{
