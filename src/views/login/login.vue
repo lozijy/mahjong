@@ -30,8 +30,8 @@
         <input type="password" placeholder="请确认密码" v-model="r_password1">
       </div>
       <div class="botton_container" >
-        <button id="login_box" @click="retur()">返回</button>>
         <button  type="submit" id="login_button" @click="click">完成注册</button>
+        <button  type="button" id="login_button1" @click="retur()">返回</button>
       </div>
     </div>
   </div>
@@ -185,24 +185,7 @@ div.bg {
   /* background-size: ; */
 }
 
-#login_box {
-  display: block;
-  position: absolute;
-  /* left:900px; */
-  width: 200px;
-  /* bottom: 100%; */
-  height: 300px;
-  /* background-position: center center; */
-  background-color: #00000060;
-  margin: auto;
-  margin-left: 500px;
-  margin-top: -300px;
-  /* margin-bottom: 10%; */
-  text-align: center;
-  border-radius: 10px;
-  padding: 50px 50px;
-  z-index: 1;
-}
+
 
 #register_box {
   width: 200px;
@@ -286,6 +269,38 @@ button {
   margin-left: 10px;
 }
 
+#login_button1 {
+  margin-top: 10px;
+  width: 60%;
+  height: 30px;
+  border-radius: 10px;
+  border: 0;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+  font-size: 15px;
+  background-image: linear-gradient(to right, #30cfd0, #330867);
+  margin-left: 10px;
+}
+
+#login_box {
+  display: block;
+  position: absolute;
+  /* left:900px; */
+  width: 200px;
+  /* bottom: 100%; */
+  height: 300px;
+  /* background-position: center center; */
+  background-color: #00000060;
+  margin: auto;
+  margin-left: 500px;
+  margin-top: -300px;
+  /* margin-bottom: 10%; */
+  text-align: center;
+  border-radius: 10px;
+  padding: 50px 50px;
+  z-index: 1;
+}
 
 .botton_container {
   display: flex;
