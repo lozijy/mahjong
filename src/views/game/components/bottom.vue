@@ -2,7 +2,6 @@
   <div id="bottom">
 <!--    <bottom-tile v-for="tile in this.$store.state.me.p_tiles" :tile="tile" :key="tile" :history="history" :flag="flag" @updateFlag="flag = $event"></bottom-tile>-->
     <bottom-tile :ref="tile" v-for="tile in this.$store.state.me.p_tiles" :change="change" :tile="tile" :key="tile" :history="history" :flag="flag"></bottom-tile>
-    <bottom-tile  id="hah" :history="history " :flag="flag" tile="2s" ></bottom-tile>
   </div>
 </template>
 

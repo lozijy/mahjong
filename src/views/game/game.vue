@@ -50,7 +50,7 @@
 <!--倒计时-->
       <time-container></time-container>
 
-      <not-started :ready_flag="ready_flag"></not-started>
+      <not-started :ready_flag="ready_flag" :start_flag="start_flag"></not-started>
     </div>
 
   </div>

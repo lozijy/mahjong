@@ -16,7 +16,11 @@ export default {
     ready_flag:{
       type:Boolean,
       required: true // 是否必须传递
-    }
+    },
+    start_flag:{
+      type:Boolean,
+      required: true // 是否必须传递
+    },
   },
   methods:{
     start(){
@@ -59,11 +63,18 @@ export default {
   watch:{
     ready_flag: function(newValue, oldValue) {
       console.log(newValue+oldValue);
-      if(newValue==true) {
+      if(newValue===true) {
         // do something with the new value
         this.sta.style.display = "block";
         this.countDown.style.display="block";
         this.flag = false;
+      }
+    },
+    start_flag: function(newValue, oldValue) {
+      console.log(newValue+oldValue);
+      if(newValue===true) {
+        // do something with the new value
+        document.getElementsByClassName("container")[0].style.display="none";
       }
     }
   },
@@ -73,7 +84,7 @@ export default {
 
 <style scoped>
 .container{
-  display: none;
+  display: block;
   background-color: #00000060;
   width: 20%;
   height: 60%;

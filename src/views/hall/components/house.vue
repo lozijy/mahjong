@@ -34,7 +34,6 @@ export default {
       }).then((response)=> {
         console.log("接受数据");
         console.log(response);
-        alert("加入成功");
         this.$router.push("/game");
       });
       this.$store.state.table_code=table_code;

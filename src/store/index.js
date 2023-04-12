@@ -116,7 +116,7 @@ const state={
         player_id:-1,
         name:"",
         user_id:"",
-        p_tiles:["1s","2s"],
+        p_tiles:[],
         open:[],
         discarded_card:[],
         score:0,
