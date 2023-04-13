@@ -50,7 +50,7 @@ export default {
 
   vertical-align: top;
   top: 0%;
-  height: 34%;
+  height: 18%;
   width: 99%;
   display: flex;
   justify-content: space-between;
