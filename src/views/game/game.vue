@@ -215,7 +215,7 @@ export default {
 <style scoped>
 .B{
   width: 15%;
-  height: 30%;
+  height: 34%;
 }
 
 #topName{
