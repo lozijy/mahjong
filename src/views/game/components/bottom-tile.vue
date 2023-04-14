@@ -49,6 +49,8 @@ watch:{
         console.log(newValue+oldValue);
         if(newValue===true) {
           // do something with the new value
+          document.getElementsByClassName("bottom-tile")[0].style.cursor="pointer";
+        }else{
           document.getElementsByClassName("bottom-tile")[0].style.cursor="none";
         }
       },
@@ -68,7 +70,7 @@ watch:{
   margin-right: 0px;
   margin-bottom: 5px;
   float: left;
-  cursor: pointer;
+  cursor: none;
 }
 .move{ 
     position: relative;
