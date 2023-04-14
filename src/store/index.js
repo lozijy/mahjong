@@ -142,7 +142,7 @@ const state={
         name:"",
         user_id:"",
         p_tiles:["1s","3s","2s","2m","6p","2p","3p"],
-        open:[],
+        open:["8s"],
         discarded_card: ["1s"],
         score:0,
         },
@@ -152,7 +152,7 @@ const state={
         //位置
         player_id:-1,
         discarded_card:["2s"],
-        open:[],
+        open:["7s"],
         name:"",
         user_id:"",
         total_score:0
@@ -163,7 +163,7 @@ const state={
         //位置
         player_id:-1,
         discarded_card:["3s"],
-        open:[],
+        open:["5s"],
         name:"",
         user_id:"",
         total_score:0
@@ -174,7 +174,7 @@ const state={
         //位置
         player_id:-1,
         discarded_card:["4s"],
-        open:[],
+        open:["6s"],
         name:"",
         user_id:"",
         total_score:0

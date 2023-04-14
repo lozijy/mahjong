@@ -1,6 +1,6 @@
 <template>
   <div class="rightContainer">
-    <right-discard v-for="tile in $store.state.right.discarded_card" class="B" :key="tile" :tile="tile"></right-discard>
+    <right-discard v-for="tile in $store.state.right.open" class="B" :key="tile" :tile="tile"></right-discard>
   </div>
 </template>
 
@@ -23,6 +23,10 @@ export default {
   right:6%;
   top:6%;
 
+}
+.B{
+  width:24%;
+  height:15%;
 }
 
 </style>

@@ -5,16 +5,16 @@
       <!-- <img src="../../../public/img/table.jpg" class="background1"> -->
 <!--      打出去的牌-->
       <div id="BO">
-        <bottom-discard v-for="tile in $store.state.me.discarded_card" class="B" :key="tile" :tile="tile"></bottom-discard>
+        <bottom-discard v-for="tile in $store.state.me.discarded_card" class="B_bottom" :key="tile" :tile="tile"></bottom-discard>
       </div>
       <div id="LE">
-        <left-discard v-for="tile in $store.state.left.discarded_card" class="B" :key="tile" :tile="tile"></left-discard>
+        <left-discard v-for="tile in $store.state.left.discarded_card" class="B_left" :key="tile" :tile="tile"></left-discard>
       </div>
       <div id="RI">
-        <right-discard v-for="tile in $store.state.right.discarded_card" class="B" :key="tile" :tile="tile"></right-discard>
+        <right-discard v-for="tile in $store.state.right.discarded_card" class="B_right" :key="tile" :tile="tile"></right-discard>
       </div>
       <div id="TO">
-        <top-discard v-for="tile in $store.state.front.discarded_card" class="B" :key="tile" :tile="tile"></top-discard>
+        <top-discard v-for="tile in $store.state.front.discarded_card" class="B_top" :key="tile" :tile="tile"></top-discard>
       </div>
 
 <!--      名字-->
@@ -217,9 +217,21 @@ export default {
 </script>
 
 <style scoped>
-.B{
+.B_top{
   width: 15%;
-  height: 34%;
+  height: 30%;
+}
+.B_bottom{
+  width: 15%;
+  height: 30%;
+}
+.B_left{
+  width:30%;
+  height:15%;
+}
+.B_right{
+  width:30%;
+  height:15%;
 }
 
 #topName{

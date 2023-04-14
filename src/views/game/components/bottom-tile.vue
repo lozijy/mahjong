@@ -66,7 +66,7 @@ watch:{
 <style scoped>
 .bottom-tile{
   width: 7%;
-  height: 100%;
+  height: 84%;
   margin-right: 0px;
   margin-bottom: 5px;
   float: left;

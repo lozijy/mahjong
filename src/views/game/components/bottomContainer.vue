@@ -17,8 +17,8 @@ export default {
 
 <style scoped>
 .B{
-  width: 25%;
-  height: 35%;
+  width: 19%;
+  height: 27%;
 }
 .bottomContainer{
   position: absolute;
