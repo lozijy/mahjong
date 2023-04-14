@@ -8,7 +8,7 @@ const mutations={
 
         state.me.number++;
         state.me.p_tiles.unshift(tile);
-
+        state.my_sort();
     },
     //余牌减少1
     yu(state){
@@ -85,6 +85,8 @@ const mutations={
                 state[position[str]].number=13;
             }
         }
+        //排序
+        state.my_sort();
     },
     my_sort(state) {
         state.me.p_tiles.sort(function (a, b) {
@@ -95,9 +97,13 @@ const mutations={
             }
         })
     },
+    draw_flag(state,value){
+        state.drawFlag=value;
+    },
     //玩家加入
     join(state,data){
         state.number++;
+        state.people.unshift(data.data)
     },
     //清空选择
     clear_options(state){
@@ -106,6 +112,10 @@ const mutations={
     discard(state,tile_type,player_index){
         if(player_index===state.me.player_id){
             state.me.p_tiles.unshift(tile);
+            //自动打牌后不能打牌
+            state.drawFlag=false;
+            //排序
+            state.my_sort();
         }else{
             const position = {
                 "-1" : "left",
@@ -124,13 +134,14 @@ const actions={
 }
 
 const state={
+    drawFlag:false,
     me : {
         number:0,
         //位置
         player_id:-1,
         name:"",
         user_id:"",
-        p_tiles:[],
+        p_tiles:["1s","3s","2s","2m","6p","2p","3p"],
         open:[],
         discarded_card: ["1s"],
         score:0,
@@ -182,8 +193,9 @@ const state={
     started:0,
     yu_array:[5,6],
     //当前房间人数
-    number:0
+    number:0,
     //房间里有哪些人
+    people:[]
     
 }
 export default new Vuex.Store({

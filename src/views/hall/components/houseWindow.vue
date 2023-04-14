@@ -1,8 +1,8 @@
 <template>
   <div class="house-window-room">
     <div class="User">
-      <p id="Username">{{item}}</p>
-      <p id="ID">12345</p>
+      <p id="Username">{{item.name}}</p>
+      <p id="ID">{{ item.user_id }}}</p>
     </div>
   </div>
 </template>

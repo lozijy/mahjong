@@ -1,7 +1,7 @@
 <template>
   <div id="bottom">
-<!--    <bottom-tile v-for="tile in this.$store.state.me.p_tiles" :tile="tile" :key="tile" :history="history" :flag="flag" @updateFlag="flag = $event"></bottom-tile>-->
-    <bottom-tile :ref="tile" v-for="tile in this.$store.state.me.p_tiles" :change="change" :tile="tile" :key="tile" :history="history" :flag="flag"></bottom-tile>
+<!--    <bottom-tile v-for="tile in this.$store.state.me.p_tiles" :tile="tile" :key="tile"  ></bottom-tile>-->
+    <bottom-tile :ref="tile" v-for="tile in this.$store.state.me.p_tiles"  :tile="tile" :key="tile"   @click.native="click(tile)" :get_message="get_message" :change="change"></bottom-tile>
   </div>
 </template>
 
@@ -14,16 +14,16 @@ export default {
     components: { bottomTile },
     data() {
     return {
-      flag: false,
-      history:{
-        count:0,
-        last:"",
-      },
-      change:""
+        //收到可以打牌的消息
+        get_message:false,
+        //是否打牌
+        drawFlag: this.$store.state.drawFlag,
+        change:""
     }
   },
     methods:{
       go(tile){
+        console.log("go"+tile);
         //向后端发送数据
         const information={
           "type":"discard_a_card",
@@ -33,30 +33,45 @@ export default {
         this.$root.$socket.send(JSON.stringify(information))
 
         //在me中删除这个牌
+        console.log(tile);
         var p_tiles=this.$store.state.me.p_tiles
         var index=p_tiles.indexOf(tile);
+        console.log(tile);
         p_tiles.splice(index,1);
+        console.log(p_tiles);
+        //修改change
+        this.change="";
+        this.drawFlag=false;
+      },
+      click(tile){
+        if(this.get_message){
+        //第一次点
+        if(this.change===""){
+          this.change=tile;
+          }
+          else{
+            if(this.change===tile){
+              this.drawFlag=true;
+            }else{
+              this.change=tile;
+            }
+          }
       }
+    }
     },
-    mounted() {
-      document.getElementById("hah").classList.toggle("move")
-    },
+
   watch: {
-      flag: function(newValue, oldValue) {
+      //打牌
+      drawFlag: function(newValue, oldValue) {
+        console.log("drawFlag change");
         console.log(newValue+oldValue);
         if(newValue===true) {
           // do something with the new value
-          this.go(this.history.last);
-          this.$root.flag = false;
+          this.go(this.change);
         }
-      },
-    change: function(newValue, oldValue) {
-      console.log(newValue+oldValue);
-      if(newValue!=="") {
-        // do something with the new value
-        this.$refs[newValue].classList.toggle("move");
-      }
-    },
+      },      
+
+
     }
 
 

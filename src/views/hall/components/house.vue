@@ -38,6 +38,7 @@ export default {
       });
       this.$store.state.table_code=house.number;
       this.$store.state.number=house.players.length;
+      this.$store.state.people=house.players;
 
     }
   }

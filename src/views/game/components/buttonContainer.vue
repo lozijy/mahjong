@@ -13,8 +13,12 @@ export default {
       choice.type=choice.action;
       //向后端发送
       this.$root.$socket.send(JSON.stringify(choice));
+      //不能打牌
+      this.$store.commit("draw_flag",false);
       //清空
       this.$store.commit("clear_options");
+      //排序
+      this.$store.commit("my_sort");
     }
   }
 }

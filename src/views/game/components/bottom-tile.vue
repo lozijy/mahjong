@@ -1,5 +1,5 @@
 <template>
-    <img  :ref="tile" :src ="url" class="bottom-tile" @click="click(history,change,tile)">
+    <img  :ref="tile" :src ="url" class="bottom-tile" >
 </template>
 
 <script>
@@ -10,45 +10,51 @@ props:{
     type: String, // props 的数据类型
     required: true // 是否必须传递
   },
-  history:{
-    type: Object, // props 的数据类型
-    required: true // 是否必须传递
-  },
-  flag:{
-    type:Boolean,
-    required:true
-  },
   change:{
     type:String,
     require:true
-  }
+  },
+  get_message:{
+    type:Boolean,
+    require:true
+  },
+
 },
   data(){
   return{
   url: require(`../../../../public/img/1/${this.tile}.gif`)
   }
 },
-methods:{
-  click(history,change,tile){
-    if(history.count===0){
-      change=tile;
-      history.count=1;
-      history.last=this.tile;
-    }
-    else{
-      if(history.last===this.tile){
-        history.count=0;
-        change="";
-        history.last=this.tile;
-        console.log(this.$root);
-        // this.$emit('updateFlag', true);
-      }else{
-        change=tile;
-        history.last=this.tile;
+watch:{
+  change: function(newValue, oldValue) {
+      console.log(newValue+oldValue);
+      if(newValue===""){
+        console.log("pass");
       }
-    }
-  },
+      else if(oldValue==="") {
+
+        this.$refs[newValue].classList.toggle("move");
+      }
+      else{
+        if(this.$refs[oldValue]!==undefined){
+        this.$refs[oldValue].classList.toggle("move");
+        }
+        if(this.$refs[newValue]!==undefined){
+        this.$refs[newValue].classList.toggle("move");
+        }
+      }
+    },
+    get_message: function(newValue, oldValue) {
+        console.log("drawFlag change");
+        console.log(newValue+oldValue);
+        if(newValue===true) {
+          // do something with the new value
+          document.getElementsByClassName("bottom-tile")[0].style.cursor="none";
+        }
+      },
 }
+
+
 
 
 
@@ -57,7 +63,7 @@ methods:{
 
 <style scoped>
 .bottom-tile{
-  width: 6%;
+  width: 7%;
   height: 100%;
   margin-right: 0px;
   margin-bottom: 5px;

@@ -142,6 +142,8 @@ export default {
       } else if (data.type === "draw_self") {
         this.$store.commit("draw_self", data.data.tile);
         this.$store.commit("my_sort");
+        //不能打牌
+        this.$store.commit("draw_flag",false);
         //修改余
         this.$store.commit("yu");
       } else if (data.type === "draw_other") {
@@ -149,6 +151,8 @@ export default {
         //修改余
         this.$store.commit("yu");
       } else if (data.type === "action_choose") {
+        //可以打牌
+        this.$store.commit("draw_flag",true);
         this.$store.commit("action_choose", data.data.action);
         this.$store.commit("my_sort");
       } else if (data.type === "get_point") {
