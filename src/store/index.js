@@ -98,7 +98,7 @@ const mutations={
         })
     },
     draw_flag(state,value){
-        state.drawFlag=value;
+        state.draw_Flag=value;
     },
     //玩家加入
     join(state,data){
@@ -109,13 +109,18 @@ const mutations={
     clear_options(state){
         state.options=[];
     },
+
+    //自动打牌
     discard(state,tile_type,player_index){
         if(player_index===state.me.player_id){
             state.me.p_tiles.unshift(tile);
             //自动打牌后不能打牌
-            state.drawFlag=false;
+            state.draw_Flag=false;
             //排序
+        
             state.my_sort();
+            //在open里添加这张牌
+            state.me.open.unshift("tile_type")
         }else{
             const position = {
                 "-1" : "left",
@@ -134,16 +139,17 @@ const actions={
 }
 
 const state={
-    drawFlag:false,
+    //
+    draw_Flag:false,
     me : {
         number:0,
         //位置
         player_id:-1,
         name:"",
         user_id:"",
-        p_tiles:["1s","3s","2s","2m","6p","2p","3p"],
-        open:["8s"],
-        discarded_card: ["1s"],
+        p_tiles:["1s","2s"],
+        open:[],
+        discarded_card: [],
         score:0,
         },
     front : {
@@ -151,8 +157,8 @@ const state={
         number:0,
         //位置
         player_id:-1,
-        discarded_card:["2s"],
-        open:["7s"],
+        discarded_card:[],
+        open:[],
         name:"",
         user_id:"",
         total_score:0
@@ -162,8 +168,8 @@ const state={
         number:0,
         //位置
         player_id:-1,
-        discarded_card:["3s"],
-        open:["5s"],
+        discarded_card:[],
+        open:[],
         name:"",
         user_id:"",
         total_score:0
@@ -173,8 +179,8 @@ const state={
         number:0,
         //位置
         player_id:-1,
-        discarded_card:["4s"],
-        open:["6s"],
+        discarded_card:[],
+        open:[],
         name:"",
         user_id:"",
         total_score:0
@@ -185,7 +191,7 @@ const state={
     countdown:0,
     //分数
     points:[],
-    options:[{action:"chi"},{action:"chi"},{action:"pon"}],
+    options:[],
     //房间
     house: [],
     table_code:0,

@@ -28,7 +28,7 @@ export default {
       console.log("click");
       console.log(house.number);
       this.$http.post('http://198.211.12.166:23333/join', {
-        table_code: house.number,
+        table_code: house.table_code,
         user_id: window.localStorage.getItem("userId"),
         token:window.localStorage.getItem("token")
       }).then((response)=> {

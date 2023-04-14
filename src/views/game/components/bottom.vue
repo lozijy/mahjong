@@ -15,10 +15,10 @@ export default {
     data() {
     return {
         //收到可以打牌的消息
-        get_message:false,
-        //是否打牌
-        drawFlag: this.$store.state.drawFlag,
-        change:""
+        get_message:this.$store.state.draw_Flag,
+        //是否可以打牌
+        drawFlag: false,
+        change:"",
     }
   },
     methods:{
@@ -26,7 +26,7 @@ export default {
         console.log("go"+tile);
         //向后端发送数据
         const information={
-          "type":"discard_a_card",
+          "type":"discard",
           "player_id":this.$store.state.me.player_id,
           "card":tile
         };
@@ -39,6 +39,8 @@ export default {
         console.log(tile);
         p_tiles.splice(index,1);
         console.log(p_tiles);
+        //在open里面加牌
+        this.$store.commit()
         //修改change
         this.change="";
         this.drawFlag=false;

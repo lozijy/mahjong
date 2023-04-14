@@ -2,7 +2,7 @@
   <div class="house-window-room">
     <div class="User">
       <p id="Username">{{item.name}}</p>
-      <p id="ID">{{ item.user_id }}}</p>
+      <p id="ID">{{ item.user_id }}</p>
     </div>
   </div>
 </template>
@@ -10,7 +10,7 @@
 <script>
 export default {
   name: "houseWindow",
-  props:{
+  props:{ 
     item:{
       type: Object, // props 的数据类型
       required: true // 是否必须传递
