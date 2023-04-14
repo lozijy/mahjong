@@ -51,7 +51,7 @@ watch:{
           // do something with the new value
           document.getElementsByClassName("bottom-tile")[0].style.cursor="pointer";
         }else{
-          document.getElementsByClassName("bottom-tile")[0].style.cursor="none";
+          document.getElementsByClassName("bottom-tile")[0].style.cursor="auto";
         }
       },
 }
@@ -70,7 +70,7 @@ watch:{
   margin-right: 0px;
   margin-bottom: 5px;
   float: left;
-  cursor: none;
+  cursor: auto;
 }
 .move{ 
     position: relative;

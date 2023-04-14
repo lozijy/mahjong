@@ -185,7 +185,7 @@ const state={
     countdown:0,
     //分数
     points:[],
-    options:[],
+    options:[{action:"chi"},{action:"chi"},{action:"pon"}],
     //房间
     house: [],
     table_code:0,

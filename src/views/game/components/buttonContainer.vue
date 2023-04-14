@@ -1,12 +1,19 @@
 <template>
   <div class="buttonContainer">
-    <img v-for="choice in $store.state.options" :key="choice.action" @click="choose(choice)" :src="require(`../../../../public/img/4/${choice.action}.png`)">
+    <template v-for="choice in $store.state.options" >
+      <img :ref="choice.action" :key="choice.action" @click="choose(choice)" :src="require(`../../../../public/img/4/${choice.action}.png`)" v-if="choice.action!=='chi'||flag ">
+    </template>
   </div>
 </template>
 
 <script>
 export default {
   name: "buttonContainer",
+  data(){
+    return{
+      flag:true,
+    }
+  },
   methods:{
     choose(choice){
       console.log(choice);
@@ -20,8 +27,16 @@ export default {
       //排序
       this.$store.commit("my_sort");
     }
+  },
+  computed(){
+    return {
+      number:function(){
+        return this.$refs
+      }
+    }
   }
 }
+
 </script>
 
 <style scoped>
