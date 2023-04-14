@@ -24,8 +24,8 @@ export default {
   border: 1px solid gray;
 }
 .B{
-  width:17%;
-  height:24%;
+  width:18%;
+  height:29%;
 }
 
 </style>
