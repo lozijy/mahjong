@@ -23,5 +23,9 @@ export default {
   height: 19.3%;
   border: 1px solid gray;
 }
+.B{
+  width:17%;
+  height:24%;
+}
 
 </style>

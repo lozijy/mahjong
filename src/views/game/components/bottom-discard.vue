@@ -1,5 +1,6 @@
 <template>
   <div id="container">
+    <img src="../../../../public/img/2/hai2.png" id="img">
     <img :src="url" id="body" />
   </div>
 </template>
@@ -25,19 +26,28 @@ export default {
 #container {
   position: absolute;
 
-  background-image: url('../../../../public/img/2/hai2.png');
+  /* background-image: url('../../../../public/img/2/hai2.png');
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: contain;
+  background-size: contain; */
   float: left;
   border: 0.3px solid black;
 }
+
+#container img{
+  display: block; /* 使图片成为块级元素，自动适应父元素大小 */
+    max-width: 100%; /* 让图片宽度不超过容器的宽度 */
+    height: auto; /* 高度自适应，保持图片的宽高比 */
+    /* border: 1px solid #000; 边框样式，可根据需要自定义 */
+    box-sizing: border-box; /* 边框计入盒模型，保持边框和容器边缘对齐 */
+}
+
 #body{
   position: absolute;
-  left: 13%;
-  top:-30%;
-  width: 70%;
-  height: 130%;
+  left: -2%;
+  top:-23%;
+  width: 100%;
+  height: 100%;
   z-index:2;
   transform: rotateX(60deg);
   /* image-rendering: high-quality; */
