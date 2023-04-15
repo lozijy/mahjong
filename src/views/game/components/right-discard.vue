@@ -53,9 +53,9 @@ export default {
   /*transform: rotateY(90deg);*/
   position: absolute;
   right: 29%;
-  top:-12.2%;
+  top:-8.2%;
   width: 54%;
-  height: 113%;
+  height: 97%;
   z-index:2;
   transform: rotateZ(270deg);
   image-rendering: atuo;

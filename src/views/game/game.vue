@@ -224,6 +224,7 @@ export default {
 .B_bottom{
   width: 13%;
   height: 29%;
+  float: left;
 }
 .B_left{
   width:27%;

@@ -30,7 +30,7 @@ export default {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain; */
-  float: left;
+  /* float: left; */
   border: 0.3px solid black;
 }
 

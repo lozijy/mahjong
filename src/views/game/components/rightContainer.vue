@@ -25,8 +25,8 @@ export default {
 
 }
 .B{
-  width:24%;
-  height:15%;
+  width:23%;
+  height:20%;
 }
 
 </style>
