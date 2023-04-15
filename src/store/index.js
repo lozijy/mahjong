@@ -165,9 +165,9 @@ const state={
         player_id:-1,
         name:"",
         user_id:"",
-        p_tiles:["1s","2s"],
+        p_tiles:["1s","2s","3s"],
         open:[],
-        discarded_card: ["1s","2s","1s","2s","1s","2s"],
+        discarded_card: ["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
         score:0,
         },
     front : {
@@ -175,7 +175,7 @@ const state={
         number:0,
         //位置
         player_id:-1,
-        discarded_card:[],
+        discarded_card:["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
         open:[],
         name:"",
         user_id:"",
@@ -186,7 +186,7 @@ const state={
         number:0,
         //位置
         player_id:-1,
-        discarded_card:[],
+        discarded_card:["1s","2s","3s","4s","5s","6s","7s","8s","9s"],
         open:[],
         name:"",
         user_id:"",
@@ -197,7 +197,7 @@ const state={
         number:0,
         //位置
         player_id:-1,
-        discarded_card:[],
+        discarded_card:["1s","2s","3s","4s","5s","6s","7s","8s","1p"],
         open:[],
         name:"",
         user_id:"",

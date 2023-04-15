@@ -38,7 +38,7 @@ export default {
 #container img{
   display: block; /* 使图片成为块级元素，自动适应父元素大小 */
     max-width: 100%; /* 让图片宽度不超过容器的宽度 */
-    height: auto; /* 高度自适应，保持图片的宽高比 */
+    /* height: auto; 高度自适应，保持图片的宽高比 */
     /* border: 1px solid #000; 边框样式，可根据需要自定义 */
     box-sizing: border-box; /* 边框计入盒模型，保持边框和容器边缘对齐 */
 }
@@ -52,10 +52,10 @@ export default {
   /*z-index:2;*/
   /*transform: rotateY(90deg);*/
   position: absolute;
-  right: 21%;
-  top:-23.2%;
-  width: 58%;
-  height: 60%;
+  right: 29%;
+  top:-12.2%;
+  width: 54%;
+  height: 113%;
   z-index:2;
   transform: rotateZ(270deg);
   image-rendering: atuo;
