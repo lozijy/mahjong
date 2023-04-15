@@ -24,7 +24,7 @@ export default {
 
 <style scoped>
 #container {
-  position: absolute;
+  position: relative;
   /* width: 29%;
   height: 17%; */
   /* background-image: url('../../../../public/img/2/hai1.png');
@@ -32,7 +32,7 @@ export default {
   background-position: center center;
   background-size: contain; */
   border: 0.5px solid black;
-  float: right;
+  float: left;
   background-attachment: fixed;
   /* display: inline-block; */
   /* padding: 0; */
@@ -56,9 +56,9 @@ export default {
   /*z-index:2;*/
   /*transform: rotateY(90deg);*/
   position: absolute;
-  left: 30%;
+  left: 27%;
   top:-10.2%;
-  width: 49%;
+  width: 52%;
   height: 60%;
   z-index:2;
   transform: rotateZ(90deg);

@@ -218,19 +218,19 @@ export default {
 
 <style scoped>
 .B_top{
-  width: 15%;
-  height: 30%;
+  width: 13%;
+  height: 29%;
 }
 .B_bottom{
-  width: 15%;
-  height: 30%;
+  width: 13%;
+  height: 29%;
 }
 .B_left{
-  width:30%;
+  width:27%;
   height:15%;
 }
 .B_right{
-  width:30%;
+  width:27%;
   height:15%;
 }
 

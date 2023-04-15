@@ -24,7 +24,8 @@ export default {
 
 <style scoped>
 #container {
-  position: absolute;
+  position: relative;
+  /* top:-10%; */
   /* width: 40%;
   height: 25%; */
   /* background-image: url('../../../../public/img/2/hai2.png');
@@ -32,13 +33,13 @@ export default {
   background-position: center center;
   background-size: contain; */
   border-right: 0.5px solid black;
-  float: right;
+  float: left;
 }
 
 #container img{
   display: block; /* 使图片成为块级元素，自动适应父元素大小 */
     max-width: 100%; /* 让图片宽度不超过容器的宽度 */
-    height: auto; /* 高度自适应，保持图片的宽高比 */
+    /* height: auto; 高度自适应，保持图片的宽高比 */
     /* border: 1px solid #000; 边框样式，可根据需要自定义 */
     box-sizing: border-box; /* 边框计入盒模型，保持边框和容器边缘对齐 */
 }
@@ -52,13 +53,13 @@ export default {
   /*z-index:2;*/
   /*transform: rotateY(90deg);*/
   position: absolute;
-  left: 15%;
-  top:3%;
+  left: 19%;
+  top:1%;
   width: 70%;
-  height: 70%;
+  height: 76%;
   z-index:2;
   transform: rotateZ(180deg);
-  image-rendering: auto;
+  image-rendering:auto;
 }
 
 </style>
