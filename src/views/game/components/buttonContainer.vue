@@ -1,8 +1,7 @@
 <template>
   <div class="buttonContainer">
-    <template v-for="choice in $store.state.options" >
-      <img :ref="choice.action" :key="choice.action" @click="choose(choice)" :src="require(`../../../../public/img/4/${choice.action}.png`)" v-if="choice.action!=='chi'||flag ">
-    </template>
+      <img v-for="choice in $store.state.options"  :key="choice.action" @click="choose(choice)" :src="require(`../../../../public/img/4/${choice.action}.png`)" >
+      <div id="chiContainer"></div>
   </div>
 </template>
 
@@ -11,11 +10,12 @@ export default {
   name: "buttonContainer",
   data(){
     return{
-      flag:true,
+      number:this.$refs
     }
   },
   methods:{
     choose(choice){
+      if(choice.action!=="chi"){
       console.log(choice);
       choice.type=choice.action;
       //向后端发送
@@ -26,13 +26,27 @@ export default {
       this.$store.commit("clear_options");
       //排序
       this.$store.commit("my_sort");
+      }else{
+        document.getElementById("chiContainer").style.display="block";
+        console.log(choice);
+      }
     }
   },
-  computed(){
-    return {
-      number:function(){
-        return this.$refs
+  
+  computed:{
+      flag:function(){ return this.number.chi;}
+  },
+  mounted(){
+
+    var number=0;
+    for (let index = 0; index < this.$store.state.options.length; index++) {
+      const element = this.$store.state.options[index];
+      if(element.action==="chi"){
+        number++;
       }
+    }
+    if(number>=2){
+      this.$store.commit("chi");
     }
   }
 }
@@ -57,6 +71,15 @@ export default {
 }
 .buttonContainer img:hover{
   transform: scale(1.2);
+}
+#chiContainer{
+  display: block;
+  position: absolute;
+  width: 80%;
+  height:100%;
+  bottom: 100%;
+  right:10%;
+  border: 1px solid gray;
 }
 
 </style>

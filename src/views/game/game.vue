@@ -344,7 +344,8 @@ export default {
 }
 
 #BO{
-position: absolute;
+  position: absolute;
+  float: left;
   bottom: 22.1%;
   right: 38%;
   width: 24%;

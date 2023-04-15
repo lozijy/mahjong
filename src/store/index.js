@@ -131,6 +131,24 @@ const mutations={
             var str = i-state.me.player_id.toString();
             state[position[str]].number--;
         }
+    },
+    chi(state){
+        var flag=false;
+        for (let index = 0; index < state.options.length; index++) {
+            console.log(index);
+            const element = state.options[index];
+            if(element.action==="chi"){
+            console.log(index);
+            state.chi.unshift(element);
+            index--;
+            state.options.splice(index, 1)
+            }
+            flag=true;
+        }
+        if(flag){
+        state.options.unshift({action:"chi"});
+        }
+
     }
 }
 
@@ -149,7 +167,7 @@ const state={
         user_id:"",
         p_tiles:["1s","2s"],
         open:[],
-        discarded_card: [],
+        discarded_card: ["1s","2s","1s","2s","1s","2s"],
         score:0,
         },
     front : {
@@ -191,7 +209,8 @@ const state={
     countdown:0,
     //分数
     points:[],
-    options:[],
+    options:[{action:"chi"},{action:"chi"}],
+    chi:[],
     //房间
     house: [],
     table_code:0,
