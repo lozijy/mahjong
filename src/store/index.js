@@ -166,7 +166,7 @@ const state={
         name:"",
         user_id:"",
         p_tiles:["1s","2s","3s"],
-        open:[],
+        open:["1s","2s","3s","4s","5s","6s","7s","8s","9s"],
         discarded_card: ["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
         score:0,
         },
@@ -176,7 +176,7 @@ const state={
         //位置
         player_id:-1,
         discarded_card:["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
-        open:[],
+        open:["1s","2s","3s","4s","5s","6s","7s","8s","9s"],
         name:"",
         user_id:"",
         total_score:0
@@ -186,8 +186,8 @@ const state={
         number:0,
         //位置
         player_id:-1,
-        discarded_card:["1s","2s","3s","4s","5s","6s","7s","8s","9s"],
-        open:[],
+        discarded_card:["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
+        open:["1s","2s","3s","4s","5s","6s","7s","8s","9s"],
         name:"",
         user_id:"",
         total_score:0
@@ -197,8 +197,8 @@ const state={
         number:0,
         //位置
         player_id:-1,
-        discarded_card:["1s","2s","3s","4s","5s","6s","7s","8s","1p"],
-        open:[],
+        discarded_card:["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
+        open:["1s","2s","3s","4s","5s","6s","7s","8s","9s"],
         name:"",
         user_id:"",
         total_score:0
