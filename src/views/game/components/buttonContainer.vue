@@ -2,7 +2,7 @@
   <div class="buttonContainer">
       <img v-for="choice in $store.state.options"  :key="choice.action" @click="choose(choice)" :src="require(`../../../../public/img/4/${choice.action}.png`)" >
       <div id="chiContainer">
-        <button v-for="chi in $store.state.chi" :key="chi" @click="chi(chi)">{{ chi.tiles[0] }}{{ chi.tiles[1] }}</button>
+        <button v-for="chi in $store.state.chi" :key="chi" @click="chi_func(chi)">{{ chi.tiles[0] }}{{ chi.tiles[1] }}</button>
       </div>
   </div>
 </template>
@@ -31,8 +31,7 @@ export default {
         document.getElementById("chiContainer").style.display="inline";
       }
     },
-    chi(chi){
-      console.log(chi);
+    chi_func(chi){
       //向后端发送
       this.$root.$socket.send(JSON.stringify(chi));
       //不能打牌
@@ -41,6 +40,7 @@ export default {
       this.$store.commit("clear_options");
       //排序
       this.$store.commit("my_sort");
+      document.getElementById("chiContainer").style.display="none";
     }
   },
   
@@ -84,7 +84,7 @@ export default {
   transform: scale(1.2);
 }
 #chiContainer{
-  display: inline;
+  display: none;
   position: absolute;
   width: 80%;
   height:100%;

@@ -40,7 +40,7 @@ export default {
 
 <style scoped>
 .timeContainer{
-  display: none;
+  display: block;
   position: absolute;
   width: 6%;
   height: 10%;
@@ -55,6 +55,6 @@ img{
   margin-bottom: 5px;
   float: left;
   cursor: pointer;
-  image-rendering: pixelated;
+  image-rendering: auto;
 }
 </style>

@@ -133,7 +133,7 @@ const mutations={
         }
     },
     chi(state){
-        var flag=false;
+        var number=0;
         var length=state.options.length;
         for (let index = 0; index < length; index++) {
             if(index>=0){
@@ -142,13 +142,12 @@ const mutations={
                 state.chi.unshift(element);
                 state.options.splice(index, 1);
                 index--;
-                flag=true;
+                number++;
                 }
             }
             console.log(flag);
         }
-        console.log(flag);
-        if(flag===true){
+        if(number>0){
         state.options.unshift({action:"chi"});
         }
     }
