@@ -47,14 +47,15 @@ export default {
 
 <style>
 .house-window {
-  border: 1px solid gray;
-
+  /* border: 1px solid rgb(194, 164, 82); */
+  position: relative;
   vertical-align: top;
-  top: 0%;
+  margin-bottom: 2%;
+  top: 1%;
   height: 18%;
   width: 99%;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   cursor: pointer;
 
 }
@@ -69,7 +70,7 @@ export default {
 #house-window-number {
   position: absolute;
   width: 200px;
-  left: 310px;
+  left: 302px;
   margin: 0;
   text-align: center;
   vertical-align:middle;
