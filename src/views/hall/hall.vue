@@ -219,7 +219,7 @@ div.bg {
   /* padding-right: 5px; */
   /* background-color: aqua; */
 }
-/* ֧��Webkit���?? */
+/* ֧��Webkit���??? */
 .content-window::-webkit-scrollbar {
   width: 8px;
   /* ���ù�������?? */
@@ -230,14 +230,14 @@ div.bg {
   /* ���ù�����������?? */
 }
 .content-window::-webkit-scrollbar-thumb {
-  background-color: rgb(199, 160, 89);
+  background-color: rgb(216, 203, 179);
   /* ���ù������϶�����ɫ */
 }
-/* ֧��Edge,FireFox���?? */
+/* ֧��Edge,FireFox���??? */
 .content-window {
   /* ���ù�������?? */
   scrollbar-width: thin;
-  scrollbar-color: rgb(199, 160, 89) #666;
+  scrollbar-color: rgb(112, 89, 45) #666;
 }
 
 
