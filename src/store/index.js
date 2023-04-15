@@ -134,21 +134,23 @@ const mutations={
     },
     chi(state){
         var flag=false;
-        for (let index = 0; index < state.options.length; index++) {
-            console.log(index);
-            const element = state.options[index];
-            if(element.action==="chi"){
-            console.log(index);
-            state.chi.unshift(element);
-            index--;
-            state.options.splice(index, 1)
+        var length=state.options.length;
+        for (let index = 0; index < length; index++) {
+            if(index>=0){
+                const element = state.options[index];
+                if(element.action==="chi"){
+                state.chi.unshift(element);
+                state.options.splice(index, 1);
+                index--;
+                flag=true;
+                }
             }
-            flag=true;
+            console.log(flag);
         }
-        if(flag){
+        console.log(flag);
+        if(flag===true){
         state.options.unshift({action:"chi"});
         }
-
     }
 }
 
@@ -209,7 +211,7 @@ const state={
     countdown:0,
     //分数
     points:[],
-    options:[{action:"chi"},{action:"chi"}],
+    options:[{action:"chi",tiles:["1s","2s"]},{action:"chi",tiles:["2s","3s"]}],
     chi:[],
     //房间
     house: [],
