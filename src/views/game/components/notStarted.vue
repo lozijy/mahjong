@@ -5,7 +5,7 @@
     <div class="font">玩家列表</div>
     <div class="font" v-for="person in $store.state.people" :key="person">{{ person.name }}</div>
     <div  id="start" class="font" @click="start()">{{msg}}</div>
-    <div id="countdown" class="font">准备倒计时:{{$store.state.countdown}}</div>
+    <div id="countdown" class="font">准备倒计时:{{$store.state.time}}</div>
     <div class="font" id="exit" @click="exit()">退出</div>
   </div>
 </template>

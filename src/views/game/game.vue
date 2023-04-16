@@ -156,15 +156,15 @@ export default {
       } 
       //倒计时
       else if (data.type === "countdown") {
-        this.$store.dispatch("countdown",data);
+        this.$store.dispatch("init_info",data);
       } 
       //玩家加入
       else if (data.type === "join") {
-        this.$store.dispatch("join",data);
+        this.$store.dispatch("init_info",data);
       }
       //打牌,肯定是其他人打牌
       else if(data.type ==="discard"){
-        this.$store.dispatch("discard",data);
+        this.$store.dispatch("init_info",data);
       }
 
 
@@ -184,7 +184,7 @@ export default {
     return {
       ready_flag: false,
       countdown_flag: false,
-      start_flag: false
+
     }
   },
   mounted() {

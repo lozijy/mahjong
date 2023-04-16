@@ -45,18 +45,12 @@ const mutations={
         for(var i=0;i<action.length;i++){
             state.options.push(action[i]);
         }
-        state.me.turn=1;
     },
 
     countdown(state,time){
         //游戏没开始时，修改准备倒计时
-        if(state.started===0){
-            state.countdown=time;
-        }
-        //否则修改游戏内倒计时
-        else {
-            state.time = time;
-        }
+        state.time = time;
+
     },
     //游戏开始，修改state
     start(state){
@@ -119,46 +113,45 @@ const mutations={
     clear_options(state){
         state.options=[];
     },
+    discard_self(state,tile_type){
+        for (let index = 0; index < length; index++) {
+            const element = state.me.p_tiles[index]; 
+            if(element===tile_type){
+                console.log("delete");
+                state.me.p_tiles.splice(index, 1);
+                break;
+            }
+        }
+        //在discard_card里添加这张牌
+        state.me.discarded_card.push(tile_type);
+    },
+    discard_other(state,data){
+        let tile_type=data.tile_type;
+        let player_index=data.player_index;
+        const position = {
+            "-1" : "left",
+            "1" : "right",
+            "2" : "front",
+            "-2" : "front"
+        };
+        var str = player_index-state.me.player_id.toString();
+        state[position[str]].number--;
+        state[position[str]].discarded_card.push(tile_type); 
+    },
     //打牌,我们要修改，p_tiles和discard_tile discarded_card
     discard(state,data){
         let tile_type=data.tile_type;
         let player_index=data.player_index;
         console.log(data.player_index);
         if(player_index===state.me.player_id){
-            for (let index = 0; index < length; index++) {
-                const element = state.me.p_tiles[index]; 
-                if(element===tile_type){
-                    console.log("delete");
-                    state.me.p_tiles.splice(index, 1);
-                    break;
-                }
-            }
-            // this.my_sort();
 
-            
-            //不能打牌
-            state.draw_Flag=false;
-            //在discard_card里添加这张牌
-            state.me.discarded_card.push(tile_type);
+            // this.my_sort();
             //修改turn
             state.me.turn=0;
             state.right.turn=1;
         }else{
-            const position = {
-                "-1" : "left",
-                "1" : "right",
-                "2" : "front",
-                "-2" : "front"
-            };
-            var str = player_index-state.me.player_id.toString();
-            state[position[str]].number--;
-            state[position[str]].turn=0; 
-            state[position[str]].discarded_card.push(tile_type); 
-            if(str==="2"||str==="-2"){
-                state["left"].turn=1;
-            }else{
-                state[(player_index-state.me.player_id+1).toString()].turn=1;
-            }
+            
+
         }
     },
     chi(state){
@@ -180,11 +173,15 @@ const mutations={
         state.options.push({action:"chi"});
         }
     },
-    my_Turn(state){
+    my_turn(state){
         state.left.turn=0;
         state.me.turn=1;
     },
-    other_Turn(state,player_index){
+    my_turn_end(state){
+        state.right.turn=1;
+        state.me.turn=0;
+    },
+    other_turn(state,player_index){
         const position = {
             "-1" : "left",
             "1" : "right",
@@ -192,9 +189,29 @@ const mutations={
             "-2" : "front",
             "0" : "me"
         };
-        var str = player_id-state.me.player_id.toString();
+        var str = (player_index-state.me.player_id).toString();
+        if(str==="2"||str==="-2"){
+            state["right"].turn=0;
+        }else{
+            state[(player_index-state.me.player_id-1).toString()].turn=0;
+        }
         state[position[str]].turn=1;
-        state.me.turn=0;
+    },
+    other_turn_end(state,player_index){
+        const position = {
+            "-1" : "left",
+            "1" : "right",
+            "2" : "front",
+            "-2" : "front",
+            "0" : "me"
+        };
+        var str = (player_index-state.me.player_id).toString();
+        if(str==="2"||str==="-2"){
+            state["left"].turn=1;
+        }else{
+            state[(player_index-state.me.player_id+1).toString()].turn=1;
+        }
+        state[position[str]].turn=0;
     }
 }
 
@@ -205,25 +222,26 @@ const actions={
         context.commit("init", data.data)
     },
     draw_self(context,data){
-        context.commit("draw_self", data.data.tile);
         //能打牌，自己的回合
         context.commit("discard_flag",true);
+        context.commit("my_turn");
         context.state.me.turn=1;
         //修改余
         context.commit("yu");
         //排序:自己摸牌draw_self，打牌 go 自动打牌，
+
+        context.commit("draw_self", data.data.tile);
     },
     draw_other(context,data){
-        context.commit("draw_other", data.data.player_index);
         //不能打牌，自己的回合
         context.commit("discard_flag",false);
-        context.state.me.turn=0;
+        context.commit("other_turn",data.data.player_index)
         //修改余
         context.commit("yu");
+
+        context.commit("draw_other", data.data.player_index);
     },
     action_choose(context,data){
-        //可以打牌
-        context.commit("discard_flag",true);
         //选择
         context.commit("action_choose", data.data.action);
     },
@@ -231,16 +249,21 @@ const actions={
         context.commit("get_point", data.point);
     },
     countdown(context,data){
-        if (context.state.started === true) {
-            this.countdown_flag = true;
-          }
           context.commit("countdown", data.data.count);
     },
     join(context,data){
         context.commit("join", data.data);
     },
     discard(context,data){
-        context.commit("discard",data);
+        let player_index=data.player_index;
+        if(context.state.me.player_id===player_index){
+            context.commit("discard_self",data.tile_type);
+            context.commit("discard_flag",false);
+            context.commit("my_turn_end");
+        }else{
+            context.commit("discard_other",data);
+            context.commit("other_turn_end",player_index);
+        }
     },
 
 

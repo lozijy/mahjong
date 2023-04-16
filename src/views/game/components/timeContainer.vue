@@ -1,6 +1,6 @@
 <template>
   <div class="timeContainer">
-    {{ time }}
+    {{ $store.state.time }}
   </div>
 
 </template>
@@ -13,21 +13,22 @@ export default {
       url: require(`../../../../public/img/5/${this.$store.state.time}.png`)
     }
   },
-  props:{
-    countdown_flag:{
-      type:Boolean,
-      require:true
-    }
-  },
   computed:{
     time(){
       console.log("time");
-      return this.$store.state.time}
+      return this.$store.state.time
+    },
+    countdown_flag(){
+      return this.$store.state.started
+    },
+    turn(){
+      return this.$store.state.me.turn;
+    }
   },
   watch:{
     time: function (newValue,oldValue){
       console.log(newValue,oldValue)
-      new Audio("../../../public/audio.countdown5.mp3").play();
+      new Audio("../../../../public/audio/countdown5.mp3").play();
       if(newValue===0){
         document.getElementById("timeContainer").style.display="none";
       }
@@ -38,13 +39,21 @@ export default {
         document.getElementById("timeContainer").style.display="block";
       }
     },
+    turn: function (newValue,oldValue){
+      console.log(newValue,oldValue)
+      if(newValue===1){
+        document.getElementById("timeContainer").style.display="block";
+      }else{
+        document.getElementById("timeContainer").style.display="none";
+      }
+    },
   }
 }
 </script>
 
 <style scoped>
 .timeContainer{
-  display: block;
+  display: none;
   position: absolute;
   width: 6%;
   height: 10%;
