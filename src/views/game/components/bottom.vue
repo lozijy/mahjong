@@ -36,13 +36,10 @@ export default {
         console.log(tile);
         p_tiles.splice(index,1);
         console.log(p_tiles);
-        //在open里面加牌
-        this.$store.commit()
+        //在discard_card里面加牌
+        this.$store.state.me.discarded_card.push(tile);
         //修改change
         this.change="";
-        this.discardFlag=false;
-        console.log(this.discardFlag);
-        //
         this.$store.commit("clear_options");
     },
     Click(tile){

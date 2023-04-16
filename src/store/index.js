@@ -7,7 +7,7 @@ const mutations={
     draw_self(state,tile){
 
         state.me.number++;
-        state.me.p_tiles.unshift(tile);
+        state.me.p_tiles.push(tile);
         // state.my_sort();
         state.left.turn=0;
         state.me.turn=1;
@@ -43,7 +43,7 @@ const mutations={
 
     action_choose(state,action){
         for(var i=0;i<action.length;i++){
-            state.options.unshift(action[i]);
+            state.options.push(action[i]);
         }
         state.me.turn=1;
     },
@@ -113,21 +113,20 @@ const mutations={
     //玩家加入
     join(state,data){
         state.number++;
-        state.people.unshift(data);
+        state.people.push(data);
     },
     //清空选择
     clear_options(state){
         state.options=[];
     },
 
-    //打牌
+    //打牌,我们要修改，p_tiles和discard_tile discarded_card
     discard(state,data){
         let tile_type=data.tile_type;
         let player_index=data.player_index;
         console.log(data.player_index);
         if(player_index===state.me.player_id){
             for (let index = 0; index < length; index++) {
-
                 const element = state.me.p_tiles[index]; 
                 if(element===tile_type){
                     console.log("delete");
@@ -136,10 +135,12 @@ const mutations={
                 }
             }
             // this.my_sort();
+
+            
             //自动打牌后不能打牌
             state.draw_Flag=false;
-            //在open里添加这张牌
-            state.me.discarded_card.unshift(tile_type);
+            //在discard_card里添加这张牌
+            state.me.discarded_card.push(tile_type);
             //修改turn
             state.me.turn=0;
             state.right.turn=1;
@@ -153,7 +154,7 @@ const mutations={
             var str = player_index-state.me.player_id.toString();
             state[position[str]].number--;
             state[position[str]].turn=0; 
-            state[position[str]].discarded_card.unshift(tile_type); 
+            state[position[str]].discarded_card.push(tile_type); 
             if(str==="2"||str==="-2"){
                 state["left"].turn=1;
             }else{
@@ -168,7 +169,7 @@ const mutations={
             if(index>=0){
                 const element = state.options[index];
                 if(element.action==="chi"){
-                state.chi.unshift(element);
+                state.chi.push(element);
                 state.options.splice(index, 1);
                 index--;
                 number++;
@@ -177,7 +178,7 @@ const mutations={
             console.log(flag);
         }
         if(number>0){
-        state.options.unshift({action:"chi"});
+        state.options.push({action:"chi"});
         }
     }
 }

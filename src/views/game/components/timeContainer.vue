@@ -20,7 +20,9 @@ export default {
     }
   },
   computed:{
-    time(){return this.$store.state.time}
+    time(){
+      console.log("time");
+      return this.$store.state.time}
   },
   watch:{
     time: function (newValue,oldValue){

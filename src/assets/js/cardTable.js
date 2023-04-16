@@ -44,7 +44,7 @@ function deal() {
     var hand = shuffle(tiles).slice(0, 13);
     for (var i = 0; i < hand.length; i++) {
         (function(index) {
-            me.p_tiles.unshift({id:hand[index],checked:false});
+            me.p_tiles.push({id:hand[index],checked:false});
             me.number++;
         })(i);
     }
