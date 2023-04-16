@@ -29,18 +29,11 @@ export default {
           "tile_type":tile
         };
         this.$root.$socket.send(JSON.stringify(information))
-        //在me中删除这个牌
-        console.log(tile);
-        var p_tiles=this.$store.state.me.p_tiles
-        var index=p_tiles.indexOf(tile);
-        console.log(tile);
-        p_tiles.splice(index,1);
-        console.log(p_tiles);
-        //在discard_card里面加牌
-        this.$store.state.me.discarded_card.push(tile);
         //修改change
         this.change="";
         this.$store.commit("clear_options");
+        //修改store
+        this.$store.dispatch("discard",{player_index:this.$store.me.player_id,tile_type:tile});
     },
     Click(tile){
         if(this.get_message){

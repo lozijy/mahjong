@@ -52,7 +52,7 @@
 <!--倒计时-->
       <time-container></time-container>
 
-      <not-started :ready_flag="ready_flag" :start_flag="start_flag"></not-started>
+      <not-started :ready_flag="ready_flag"></not-started>
     </div>
   </div>
   </div>
@@ -135,8 +135,6 @@ export default {
       //退出登录
       if (data.type === "init_info") {
         this.$store.dispatch("init_info",data);
-
-
       } 
       //自己摸牌
       else if (data.type === "draw_self") {
@@ -156,19 +154,16 @@ export default {
       } 
       //倒计时
       else if (data.type === "countdown") {
-        this.$store.dispatch("init_info",data);
+        this.$store.dispatch("countdown",data);
       } 
       //玩家加入
       else if (data.type === "join") {
-        this.$store.dispatch("init_info",data);
+        this.$store.dispatch("join",data);
       }
       //打牌,肯定是其他人打牌
       else if(data.type ==="discard"){
-        this.$store.dispatch("init_info",data);
+        this.$store.dispatch("discard",data);
       }
-
-
-
 
       //可以准备
       else if (data.type === "can_ready") {
@@ -184,7 +179,11 @@ export default {
     return {
       ready_flag: false,
       countdown_flag: false,
-
+    }
+  },
+  computed:{
+    start_flag(){
+      return this.$store.state.started===1;
     }
   },
   mounted() {

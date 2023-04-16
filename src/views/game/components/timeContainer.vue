@@ -19,7 +19,7 @@ export default {
       return this.$store.state.time
     },
     countdown_flag(){
-      return this.$store.state.started
+      return this.$store.state.started===1
     },
     turn(){
       return this.$store.state.me.turn;

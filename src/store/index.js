@@ -138,22 +138,6 @@ const mutations={
         state[position[str]].number--;
         state[position[str]].discarded_card.push(tile_type); 
     },
-    //打牌,我们要修改，p_tiles和discard_tile discarded_card
-    discard(state,data){
-        let tile_type=data.tile_type;
-        let player_index=data.player_index;
-        console.log(data.player_index);
-        if(player_index===state.me.player_id){
-
-            // this.my_sort();
-            //修改turn
-            state.me.turn=0;
-            state.right.turn=1;
-        }else{
-            
-
-        }
-    },
     chi(state){
         var number=0;
         var length=state.options.length;
@@ -167,7 +151,6 @@ const mutations={
                 number++;
                 }
             }
-            console.log(flag);
         }
         if(number>0){
         state.options.push({action:"chi"});
@@ -193,7 +176,7 @@ const mutations={
         if(str==="2"||str==="-2"){
             state["right"].turn=0;
         }else{
-            state[(player_index-state.me.player_id-1).toString()].turn=0;
+            state[position[(player_index-state.me.player_id-1).toString()]].turn=0;
         }
         state[position[str]].turn=1;
     },
@@ -219,7 +202,8 @@ const actions={
     init_info(context,data){
         //开始游戏
         context.commit("start");
-        context.commit("init", data.data)
+        context.commit("init", data.data);
+        context.commit("my_sort");
     },
     draw_self(context,data){
         //能打牌，自己的回合
@@ -229,8 +213,9 @@ const actions={
         //修改余
         context.commit("yu");
         //排序:自己摸牌draw_self，打牌 go 自动打牌，
-
+        context.commit("my_sort");
         context.commit("draw_self", data.data.tile);
+        
     },
     draw_other(context,data){
         //不能打牌，自己的回合
@@ -244,6 +229,7 @@ const actions={
     action_choose(context,data){
         //选择
         context.commit("action_choose", data.data.action);
+        context.commit("chi");
     },
     get_point(context,data){
         context.commit("get_point", data.point);
@@ -254,17 +240,23 @@ const actions={
     join(context,data){
         context.commit("join", data.data);
     },
+    
     discard(context,data){
+        console.log("discard");
         let player_index=data.player_index;
         if(context.state.me.player_id===player_index){
+            console.log("discard_self");
             context.commit("discard_self",data.tile_type);
             context.commit("discard_flag",false);
             context.commit("my_turn_end");
+            context.commit("my_sort");
         }else{
             context.commit("discard_other",data);
             context.commit("other_turn_end",player_index);
         }
     },
+
+
 
 
     

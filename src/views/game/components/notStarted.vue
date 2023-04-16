@@ -18,10 +18,6 @@ export default {
       type:Boolean,
       required: true // 是否必须传递
     },
-    start_flag:{
-      type:Boolean,
-      required: true // 是否必须传递
-    },
   },
   methods:{
     start(){
@@ -55,7 +51,11 @@ export default {
       msg: "准备开始"
     }
   },
-
+  computed:{
+    start_flag(){
+      return this.$store.state.started===1
+    }
+  },
   mounted() {
     this.exi=document.getElementById("exit");
     this.sta=document.getElementById("start");
