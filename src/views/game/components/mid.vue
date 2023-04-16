@@ -3,11 +3,11 @@
     <img id="yu" :src="require(`../../../../public/img/3/left.png`)">
     <div class="yuContainer">
       <img  class="yu" v-for="yu in $store.state.yu_array" :key="yu"  :src="require(`../../../../public/img/3/${yu}.png`)">
-    </div>
-    <div class="top"></div>
-    <div class="right"></div>
-    <div class="left"></div>
-    <div class="bottom"></div>
+    </div>  
+    <div class="top" v-if="this.$store.state.front.turn===1"></div>
+    <div class="right" v-if="this.$store.state.right.turn===1"></div>
+    <div class="left" v-if="this.$store.state.left.turn===1"></div>
+    <div class="bottom" v-if="this.$store.state.me.turn===1"></div>
   </div>
 </template>
 
@@ -20,6 +20,9 @@ export default {
     return {
       src:"../../../../public/img/3/left.png"
     }
+  },
+  computed:{
+    
   }
 }
 

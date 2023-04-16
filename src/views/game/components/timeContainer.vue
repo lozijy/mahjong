@@ -1,7 +1,6 @@
 <template>
   <div class="timeContainer">
-    <time></time>
-    <img :src="url">
+    {{ time }}
   </div>
 
 </template>
@@ -19,6 +18,9 @@ export default {
       type:Boolean,
       require:true
     }
+  },
+  computed:{
+    time(){return this.$store.state.time}
   },
   watch:{
     time: function (newValue,oldValue){
@@ -47,6 +49,8 @@ export default {
   right:30%;
   bottom: 30%;
   border: 1px solid gray;
+  font-size: 30px;
+  color: crimson;
 }
 img{
   width: 40%;

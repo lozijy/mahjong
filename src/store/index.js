@@ -8,11 +8,12 @@ const mutations={
 
         state.me.number++;
         state.me.p_tiles.unshift(tile);
-        state.my_sort();
+        // state.my_sort();
+        state.left.turn=0;
+        state.me.turn=1;
     },
     //余牌减少1
     yu(state){
-
         if(state.yu_array[1]===0){
             state.yu_array[0]-=1;
             state.yu_array[1]=9;
@@ -26,16 +27,25 @@ const mutations={
             "-1" : "left",
             "1" : "right",
             "2" : "front",
-            "-2" : "front"
+            "-2" : "front",
+            "0" : "me"
         };
         var str = player_id-state.me.player_id.toString();
         state[position[str]].number++;
+        state[position[str]].turn=1;
+        if(str==="2"||str==="-2"){
+            state["right"].turn=0;
+        }else{
+            console.log(player_id-state.me.player_id-1);
+            state[(player_id-state.me.player_id-1).toString()].turn=0;
+        }
     },
 
     action_choose(state,action){
         for(var i=0;i<action.length;i++){
             state.options.unshift(action[i]);
         }
+        state.me.turn=1;
     },
 
     countdown(state,time){
@@ -86,7 +96,7 @@ const mutations={
             }
         }
         //排序
-        state.my_sort();
+        // state.my_sort();
     },
     my_sort(state) {
         state.me.p_tiles.sort(function (a, b) {
@@ -97,30 +107,42 @@ const mutations={
             }
         })
     },
-    draw_flag(state,value){
-        state.draw_Flag=value;
+    discard_flag(state,value){
+        state.discard_Flag=value;
     },
     //玩家加入
     join(state,data){
         state.number++;
-        state.people.unshift(data.data)
+        state.people.unshift(data);
     },
     //清空选择
     clear_options(state){
         state.options=[];
     },
 
-    //自动打牌
-    discard(state,tile_type,player_index){
+    //打牌
+    discard(state,data){
+        let tile_type=data.tile_type;
+        let player_index=data.player_index;
+        console.log(data.player_index);
         if(player_index===state.me.player_id){
-            state.me.p_tiles.unshift(tile);
+            for (let index = 0; index < length; index++) {
+
+                const element = state.me.p_tiles[index]; 
+                if(element===tile_type){
+                    console.log("delete");
+                    state.me.p_tiles.splice(index, 1);
+                    break;
+                }
+            }
+            // this.my_sort();
             //自动打牌后不能打牌
             state.draw_Flag=false;
-            //排序
-        
-            state.my_sort();
             //在open里添加这张牌
-            state.me.open.unshift("tile_type")
+            state.me.discarded_card.unshift(tile_type);
+            //修改turn
+            state.me.turn=0;
+            state.right.turn=1;
         }else{
             const position = {
                 "-1" : "left",
@@ -128,8 +150,15 @@ const mutations={
                 "2" : "front",
                 "-2" : "front"
             };
-            var str = i-state.me.player_id.toString();
+            var str = player_index-state.me.player_id.toString();
             state[position[str]].number--;
+            state[position[str]].turn=0; 
+            state[position[str]].discarded_card.unshift(tile_type); 
+            if(str==="2"||str==="-2"){
+                state["left"].turn=1;
+            }else{
+                state[(player_index-state.me.player_id+1).toString()].turn=1;
+            }
         }
     },
     chi(state){
@@ -154,55 +183,71 @@ const mutations={
 }
 
 const actions={
-
+    //游戏开始
+    start(context){
+        console.log(1);
+    },
+    //你的轮次
+    yourTurn(context){
+        console.log(1);
+    },
+    //做出一个选择
+    choose(context){
+        console.log(1);
+    }
+    
 }
 
 const state={
     //
-    draw_Flag:false,
+    discard_Flag:false,
     me : {
         number:0,
         //位置
         player_id:-1,
         name:"",
         user_id:"",
-        p_tiles:["1s","2s","3s"],
-        open:["1s","2s","3s","4s","5s","6s","7s","8s","9s"],
-        discarded_card: ["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
+        p_tiles:[],
+        open:[],
+        discarded_card: [],
         score:0,
+        turn:0
         },
     front : {
         //牌数
         number:0,
         //位置
         player_id:-1,
-        discarded_card:["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
-        open:["1s","2s","3s","4s","5s","6s","7s","8s","9s"],
+        discarded_card:[],
+        open:[],
         name:"",
         user_id:"",
-        total_score:0
+        total_score:0,
+        turn:0
     },
     left : {
         //牌数
         number:0,
         //位置
         player_id:-1,
-        discarded_card:["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
-        open:["1s","2s","3s","4s","5s","6s","7s","8s","9s"],
+        discarded_card:[],
+        open:[],
         name:"",
         user_id:"",
-        total_score:0
+        total_score:0,
+        turn:0
     },
     right : {
         //牌数
         number:0,
         //位置
         player_id:-1,
-        discarded_card:["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
-        open:["1s","2s","3s","4s","5s","6s","7s","8s","9s"],
+        discarded_card:[],
+        open:[],
         name:"",
         user_id:"",
-        total_score:0
+        total_score:0,
+        turn:0
         },
     //游戏内倒计时
     time: 0,
@@ -210,10 +255,10 @@ const state={
     countdown:0,
     //分数
     points:[],
-    options:[{action:"chi",tiles:["1s","2s"]},{action:"chi",tiles:["2s","3s"]}],
+    options:[],
     chi:[],
     //房间
-    house: [{table_code:123,players:[{name:"lozijy",user_id:123},{name:"ee",user_id:1233}]},{table_code:456,players:[{name:"lozijy",user_id:123},{name:"ee",user_id:1233}]}],
+    house: [],
     table_code:0,
     //游戏是否开始
     started:0,

@@ -85,7 +85,7 @@ export default {
 
 <style scoped>
 .container{
-  display: none;
+  display: blockx;
   background-color: #00000060;
   width: 20%;
   height: 60%;

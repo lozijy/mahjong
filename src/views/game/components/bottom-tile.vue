@@ -32,7 +32,6 @@ watch:{
         console.log("pass");
       }
       else if(oldValue==="") {
-
         this.$refs[newValue].classList.toggle("move");
       }
       else{

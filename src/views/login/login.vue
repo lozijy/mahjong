@@ -75,7 +75,6 @@ export default {
               }
             }).then((response) => {
               // eslint-disable-next-line no-undef
-              alert(response.data.user_id);
               window.localStorage.setItem('userId', response.data.user_id);
               window.localStorage.setItem('token', response.data.token);
               this.$router.push("/hall");

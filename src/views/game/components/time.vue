@@ -1,4 +1,5 @@
 <template>
+  
   <img :src="url">
 </template>
 

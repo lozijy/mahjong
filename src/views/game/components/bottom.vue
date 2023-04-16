@@ -1,7 +1,7 @@
 <template>
   <div id="bottom">
 <!--    <bottom-tile v-for="tile in this.$store.state.me.p_tiles" :tile="tile" :key="tile"  ></bottom-tile>-->
-    <bottom-tile :ref="tile" v-for="tile in this.$store.state.me.p_tiles"  :tile="tile" :key="tile"   @click.native="click(tile)" :get_message="get_message" :change="change"></bottom-tile>
+    <bottom-tile :ref="tile" v-for="tile in p_tiles"  :tile="tile" :key="tile"   @click.native="Click(tile)" :get_message="get_message" :change="change"></bottom-tile>
   </div>
 </template>
 
@@ -14,10 +14,8 @@ export default {
     components: { bottomTile },
     data() {
     return {
-        //收到可以打牌的消息
-        get_message:this.$store.state.draw_Flag,
-        //是否可以打牌
-        drawFlag: false,
+        //是否选择打牌
+        discardFlag: false,
         change:"",
     }
   },
@@ -43,9 +41,13 @@ export default {
         this.$store.commit()
         //修改change
         this.change="";
-        this.drawFlag=false;
-      },
-      click(tile){
+        this.discardFlag=false;
+        console.log(this.discardFlag);
+        //
+        this.$store.commit("clear_options");
+    },
+    Click(tile){
+      console.log("click");
         if(this.get_message){
         //第一次点
         if(this.change===""){
@@ -53,30 +55,28 @@ export default {
           }
           else{
             if(this.change===tile){
-              this.drawFlag=true;
+              // this.discardFlag=true;
+              this.go(this.change);
+              this.change="";
+              this.discardFlag=false;
             }else{
               this.change=tile;
             }
           }
       }
+      console.log(this.change);
     }
-    },
-
-  watch: {
-      //打牌
-      drawFlag: function(newValue, oldValue) {
-        console.log("drawFlag change");
-        console.log(newValue+oldValue);
-        if(newValue===true) {
-          // do something with the new value
-          this.go(this.change);
-        }
-      },      
-
+      },
+    computed:{
+      get_message(){return this.$store.state.discard_Flag},
+      p_tiles(){return this.$store.state.me.p_tiles}
+    }
     }
 
+  
 
-}
+
+
 </script>
 
 <style scoped>
