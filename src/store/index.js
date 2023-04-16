@@ -213,7 +213,7 @@ const state={
     options:[{action:"chi",tiles:["1s","2s"]},{action:"chi",tiles:["2s","3s"]}],
     chi:[],
     //房间
-    house: [],
+    house: [{table_code:123,players:[{name:"lozijy",user_id:123},{name:"ee",user_id:1233}]},{table_code:456,players:[{name:"lozijy",user_id:123},{name:"ee",user_id:1233}]}],
     table_code:0,
     //游戏是否开始
     started:0,
