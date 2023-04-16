@@ -25,11 +25,10 @@ export default {
         //向后端发送数据
         const information={
           "type":"discard",
-          "player_id":this.$store.state.me.player_id,
-          "card":tile
+          "player_id":this.$store. state.me.player_id,
+          "tile_type":tile
         };
         this.$root.$socket.send(JSON.stringify(information))
-
         //在me中删除这个牌
         console.log(tile);
         var p_tiles=this.$store.state.me.p_tiles
