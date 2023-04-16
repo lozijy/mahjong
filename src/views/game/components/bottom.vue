@@ -1,7 +1,7 @@
 <template>
   <div id="bottom">
 <!--    <bottom-tile v-for="tile in this.$store.state.me.p_tiles" :tile="tile" :key="tile"  ></bottom-tile>-->
-    <bottom-tile :ref="tile" v-for="tile in p_tiles"  :tile="tile" :key="tile"   @click.native="Click(tile)" :get_message="get_message" :change="change"></bottom-tile>
+    <bottom-tile :ref="tile" v-for="tile in p_tiles"  :tile="tile" :key="tile"   @click.native="Click(tile)" :change="change"></bottom-tile>
   </div>
 </template>
 
@@ -43,24 +43,17 @@ export default {
         this.$store.commit("clear_options");
     },
     Click(tile){
-      console.log("click");
         if(this.get_message){
         //第一次点
-        if(this.change===""){
-          this.change=tile;
-          }
-          else{
-            if(this.change===tile){
+        if(this.change===tile){
               // this.discardFlag=true;
-              this.go(this.change);
-              this.change="";
-              this.discardFlag=false;
-            }else{
-              this.change=tile;
-            }
+            this.go(this.change);
+            this.change="";
+            this.discardFlag=false;
+          }else{
+            this.change=tile;
           }
       }
-      console.log(this.change);
     }
       },
     computed:{

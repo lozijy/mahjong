@@ -14,10 +14,6 @@ props:{
     type:String,
     require:true
   },
-  get_message:{
-    type:Boolean,
-    require:true
-  },
 
 },
   data(){
@@ -53,7 +49,10 @@ watch:{
           document.getElementsByClassName("bottom-tile")[0].style.cursor="auto";
         }
       },
-}
+},
+  computed:{
+    get_message(){return this.$store.state.discard_Flag},
+  }
 
 
 

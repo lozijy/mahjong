@@ -134,56 +134,40 @@ export default {
       //加入大厅
       //退出登录
       if (data.type === "init_info") {
-        this.start_flag = true;
-        //开始游戏
-        this.$store.commit("start");
-        this.$store.commit("init", data.data)
+        this.$store.dispatch("init_info",data);
+
 
       } 
       //自己摸牌
       else if (data.type === "draw_self") {
-        this.$store.commit("draw_self", data.data.tile);
-        this.$store.commit("my_sort");
-        //不能打牌
-        this.$store.commit("draw_flag",false);
-        //修改余
-        this.$store.commit("yu");
-        this.$store.state.me.turn=1;
+        this.$store.dispatch("draw_self",data);
       } 
       //别人摸牌
       else if (data.type === "draw_other") {
-        this.$store.commit("draw_other", data.data.player_index);
-        //修改余
-        this.$store.commit("yu");
+        this.$store.dispatch("draw_other",data);
       }
       //做出选择
        else if (data.type === "action_choose") {
-        //自己的回合
-        //可以打牌
-        this.$store.commit("discard_flag",true);
-        //选择
-        this.$store.commit("action_choose", data.data.action);
-        //排序
-        this.$store.commit("my_sort");
+        this.$store.dispatch("action_choose",data);
       } 
       //得到分数
       else if (data.type === "get_point") {
-        this.$store.commit("get_point", data.point);
+        this.$store.dispatch("get_point",data);
       } 
       //倒计时
       else if (data.type === "countdown") {
-        if (this.$store.state.started === true) {
-          this.countdown_flag = true;
-        }
-        this.$store.commit("countdown", data.data.count);
-      } else if (data.type === "join") {
-        this.$store.commit("join", data.data);
+        this.$store.dispatch("countdown",data);
+      } 
+      //玩家加入
+      else if (data.type === "join") {
+        this.$store.dispatch("join",data);
       }
-      //自动打牌
+      //打牌,肯定是其他人打牌
       else if(data.type ==="discard"){
-        this.$store.commit("discard",data);
-
+        this.$store.dispatch("discard",data);
       }
+
+
 
 
       //可以准备

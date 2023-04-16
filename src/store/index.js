@@ -119,7 +119,6 @@ const mutations={
     clear_options(state){
         state.options=[];
     },
-
     //打牌,我们要修改，p_tiles和discard_tile discarded_card
     discard(state,data){
         let tile_type=data.tile_type;
@@ -137,7 +136,7 @@ const mutations={
             // this.my_sort();
 
             
-            //自动打牌后不能打牌
+            //不能打牌
             state.draw_Flag=false;
             //在discard_card里添加这张牌
             state.me.discarded_card.push(tile_type);
@@ -180,22 +179,71 @@ const mutations={
         if(number>0){
         state.options.push({action:"chi"});
         }
+    },
+    my_Turn(state){
+        state.left.turn=0;
+        state.me.turn=1;
+    },
+    other_Turn(state,player_index){
+        const position = {
+            "-1" : "left",
+            "1" : "right",
+            "2" : "front",
+            "-2" : "front",
+            "0" : "me"
+        };
+        var str = player_id-state.me.player_id.toString();
+        state[position[str]].turn=1;
+        state.me.turn=0;
     }
 }
 
 const actions={
-    //游戏开始
-    start(context){
-        console.log(1);
+    init_info(context,data){
+        //开始游戏
+        context.commit("start");
+        context.commit("init", data.data)
     },
-    //你的轮次
-    yourTurn(context){
-        console.log(1);
+    draw_self(context,data){
+        context.commit("draw_self", data.data.tile);
+        //能打牌，自己的回合
+        context.commit("discard_flag",true);
+        context.state.me.turn=1;
+        //修改余
+        context.commit("yu");
+        //排序:自己摸牌draw_self，打牌 go 自动打牌，
     },
-    //做出一个选择
-    choose(context){
-        console.log(1);
-    }
+    draw_other(context,data){
+        context.commit("draw_other", data.data.player_index);
+        //不能打牌，自己的回合
+        context.commit("discard_flag",false);
+        context.state.me.turn=0;
+        //修改余
+        context.commit("yu");
+    },
+    action_choose(context,data){
+        //可以打牌
+        context.commit("discard_flag",true);
+        //选择
+        context.commit("action_choose", data.data.action);
+    },
+    get_point(context,data){
+        context.commit("get_point", data.point);
+    },
+    countdown(context,data){
+        if (context.state.started === true) {
+            this.countdown_flag = true;
+          }
+          context.commit("countdown", data.data.count);
+    },
+    join(context,data){
+        context.commit("join", data.data);
+    },
+    discard(context,data){
+        context.commit("discard",data);
+    },
+
+
     
 }
 
