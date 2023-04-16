@@ -25,7 +25,7 @@ export default {
         //向后端发送数据
         const information={
           "type":"discard",
-          "player_id":this.$store. state.me.player_id,
+          "player_id":this.$store.state.me.player_id,
           "tile_type":tile
         };
         this.$root.$socket.send(JSON.stringify(information))
@@ -35,25 +35,26 @@ export default {
         //修改store
         this.$store.dispatch("discard",{player_index:this.$store.me.player_id,tile_type:tile});
     },
-    Click(tile){
-        if(this.get_message){
-        //第一次点
-        if(this.change===tile){
-              // this.discardFlag=true;
-            this.go(this.change);
-            this.change="";
-            this.discardFlag=false;
-          }else{
-            this.change=tile;
+      Click(tile){
+          if(this.get_message){
+          //第一次点
+          if(this.change===tile){
+                // this.discardFlag=true;
+              this.go(this.change);
+              this.change="";
+              this.discardFlag=false;
           }
+          else {
+              this.change=tile;
+          }
+        }
       }
-    }
-      },
+    },
     computed:{
       get_message(){return this.$store.state.discard_Flag},
       p_tiles(){return this.$store.state.me.p_tiles}
     }
-    }
+  }
 
   
 
