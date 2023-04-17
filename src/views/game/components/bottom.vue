@@ -27,19 +27,18 @@ export default {
       go(tile){
         console.log("go"+tile);
         //向后端发送数据
-        // const information={
-        //   "type":"discard",
-        //   "player_id":this.$store.state.me.player_id,
-        //   "tile_type":tile
-        // };
-        // this.$root.$socket.send(JSON.stringify(information))
+        const information={
+          "type":"discard",
+          "player_id":this.$store.state.me.player_id,
+          "tile_type":tile
+        };
+        this.$root.$socket.send(JSON.stringify(information))
         //修改change
         this.change="";
         this.$store.commit("clear_options");
         //修改store
         this.$store.dispatch("discard",{player_index:this.$store.state.me.player_id,tile_type:tile});
     },
-
       Click(tile) {
         if (this.get_message===1) {
           //第一次点
@@ -55,6 +54,7 @@ export default {
       }
     },
 
+
   }
 
   
@@ -67,15 +67,11 @@ export default {
 #bottom {
   position: absolute;
   width: 49%;
-  height:10%;
+  height:6%;
   bottom:5.5%;
   right:25.4%;
   border: 1px solid gray;
   display: inline;
-}
-.move{
-  position: relative;
-  bottom:20px;
 }
 
 
