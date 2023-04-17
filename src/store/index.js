@@ -41,7 +41,7 @@ const mutations={
         }
     },
 
-    action_choose(state,action){
+    accept_action_choose(state,action){
         for(var i=0;i<action.length;i++){
             state.options.push(action[i]);
         }
@@ -101,27 +101,16 @@ const mutations={
             }
         })
     },
-    discard_flag(state,value){
-        state.discard_Flag=value;
-    },
+
     //玩家加入
     join(state,data){
         state.number++;
         state.people.push(data);
     },
-    //清空选择
-    clear_options(state){
-        state.options=[];
-    },
+    //打牌部分，2个
     discard_self(state,tile_type){
-        for (let index = 0; index < length; index++) {
-            const element = state.me.p_tiles[index]; 
-            if(element===tile_type){
-                console.log("delete");
-                state.me.p_tiles.splice(index, 1);
-                break;
-            }
-        }
+        let index=state.me.p_tiles.indexOf(tile_type);
+        state.me.p_tiles.splice(index, 1);
         //在discard_card里添加这张牌
         state.me.discarded_card.push(tile_type);
     },
@@ -138,24 +127,8 @@ const mutations={
         state[position[str]].number--;
         state[position[str]].discarded_card.push(tile_type); 
     },
-    chi(state){
-        var number=0;
-        var length=state.options.length;
-        for (let index = 0; index < length; index++) {
-            if(index>=0){
-                const element = state.options[index];
-                if(element.action==="chi"){
-                state.chi.push(element);
-                state.options.splice(index, 1);
-                index--;
-                number++;
-                }
-            }
-        }
-        if(number>0){
-        state.options.push({action:"chi"});
-        }
-    },
+
+    //轮次部分，4个
     my_turn(state){
         state.left.turn=0;
         state.me.turn=1;
@@ -195,59 +168,128 @@ const mutations={
             state[(player_index-state.me.player_id+1).toString()].turn=1;
         }
         state[position[str]].turn=0;
-    }
+    },
+    //选择部分,3个
+    accept_options(state,data){
+        let player_index=data.player_index;
+        let tiles=data.tiles;
+        const position = {
+            "-1" : "left",
+            "1" : "right",
+            "2" : "front",
+            "-2" : "front",
+            "0" : "me"
+        };
+        var str = (player_index-state.me.player_id).toString();
+        let index;
+        for (let i = 0; i < tiles.length; i++) {
+            index=state[position[str]].p_tiles.indexOf(tiles[i]);
+            state[position[str]].p_tiles.splice(index,1);
+        }
+        state[position[str]].open.push(tiles);
+    },
+    //为了防止多个吃选择的情况
+    chi(state){
+        let number=0;
+        for (let index = 0; index < state.options.length; index++) {
+            if(index>=0){
+                const element = state.options[index];
+                if(element.action==="chi"){
+                    state.chi.push(element);
+                    state.options.splice(index, 1);
+                    index--;
+                    number++;
+                }
+            }
+        }
+        if(number!==0) {
+            state.options.push({action: "chi"});
+        }
+
+    },
+    //清空选择
+    clear_options(state){
+        state.options=[];
+    },
 }
 
 const actions={
+    //排序,摸牌，打牌，做出选择
+
+    //初始化，收到信息
     init_info(context,data){
         //开始游戏
         context.commit("start");
         context.commit("init", data.data);
         context.commit("my_sort");
     },
+
+    //摸牌部分，同时可以决定该谁的轮次，收到消息
     draw_self(context,data){
-        //能打牌，自己的回合
-        context.commit("discard_flag",true);
         context.commit("my_turn");
-        context.state.me.turn=1;
         //修改余
         context.commit("yu");
         //排序:自己摸牌draw_self，打牌 go 自动打牌，
         context.commit("my_sort");
         context.commit("draw_self", data.data.tile);
-        
     },
+    //收到消息
     draw_other(context,data){
-        //不能打牌，自己的回合
-        context.commit("discard_flag",false);
         context.commit("other_turn",data.data.player_index)
         //修改余
         context.commit("yu");
 
         context.commit("draw_other", data.data.player_index);
     },
-    action_choose(context,data){
-        //选择
-        context.commit("action_choose", data.data.action);
-        context.commit("chi");
-    },
+
+    //分数部分，收到消息 逻辑没理清楚
     get_point(context,data){
         context.commit("get_point", data.point);
     },
+    //收到信息的倒计时，收到消息
     countdown(context,data){
           context.commit("countdown", data.data.count);
     },
+    //加入，收到消息
     join(context,data){
         context.commit("join", data.data);
     },
-    
+
+    //选择部分，三个函数
+    //自己选择，非收到消息
+    action_choose(context){
+        //不能打牌
+        context.commit("my_turn_end");
+        //清空
+        context.commit("clear_options");
+        //排序
+        context.commit("my_sort");
+    },
+    //收到可以执行的操作的信息后修改store,收到消息
+    accept_action_choose(context,data){
+        //选择
+        context.commit("accept_action_choose", data.data.action);
+        context.commit("chi");
+
+    },
+    //收到玩家作出的操作,包括自己作出的操作和别人作出的操作，收到消息
+    accept_options(context,data){
+        let player_index=data.player_index;
+        let my_index=context.state.me.player_id;
+        context.commit("accept_options",data);
+        if(player_index===my_index) {
+            context.commit("my_turn_end");
+        }else{
+            context.commit("other_turn_end",player_index);
+        }
+    },
+
+    //打牌，要分成自己打牌和其他人打牌
     discard(context,data){
         console.log("discard");
         let player_index=data.player_index;
         if(context.state.me.player_id===player_index){
-            console.log("discard_self");
             context.commit("discard_self",data.tile_type);
-            context.commit("discard_flag",false);
             context.commit("my_turn_end");
             context.commit("my_sort");
         }else{
@@ -263,19 +305,17 @@ const actions={
 }
 
 const state={
-    //
-    discard_Flag:false,
     me : {
         number:0,
         //位置
         player_id:-1,
         name:"",
         user_id:"",
-        p_tiles:[],
+        p_tiles:["3s","1s","2s"],
         open:[],
         discarded_card: [],
         score:0,
-        turn:0
+        turn:1
         },
     front : {
         //牌数
@@ -319,7 +359,7 @@ const state={
     countdown:0,
     //分数
     points:[],
-    options:[],
+    options:[{action:"pon"},{action:"chi",tiles:["1s","2s"]},{action:"chi",tiles:["1s","2s"]}],
     chi:[],
     //房间
     house: [],

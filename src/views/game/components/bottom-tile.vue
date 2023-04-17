@@ -31,10 +31,10 @@ watch:{
         this.$refs[newValue].classList.toggle("move");
       }
       else{
-        if(this.$refs[oldValue]!==undefined){
+        if(this.$refs[oldValue]!== undefined){
         this.$refs[oldValue].classList.toggle("move");
         }
-        if(this.$refs[newValue]!==undefined){
+        if(this.$refs[newValue]!== undefined){
         this.$refs[newValue].classList.toggle("move");
         }
       }
@@ -42,7 +42,7 @@ watch:{
     get_message: function(newValue, oldValue) {
         console.log("drawFlag change");
         console.log(newValue+oldValue);
-        if(newValue===true) {
+        if(newValue===1) {
           // do something with the new value
           document.getElementsByClassName("bottom-tile")[0].style.cursor="pointer";
         }else{
@@ -51,7 +51,7 @@ watch:{
       },
 },
   computed:{
-    get_message(){return this.$store.state.discard_Flag},
+    get_message(){return this.$store.state.me.turn},
   }
 
 

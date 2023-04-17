@@ -21,12 +21,8 @@ export default {
       choice.type=choice.action;
       //向后端发送
       this.$root.$socket.send(JSON.stringify(choice));
-      //不能打牌
-      this.$store.commit("draw_flag",false);
-      //清空
-      this.$store.commit("clear_options");
-      //排序
-      this.$store.commit("my_sort");
+      this.$store.dispatch("action_choose");
+
       }else{
         document.getElementById("chiContainer").style.display="inline";
       }
@@ -34,12 +30,7 @@ export default {
     chi_func(chi){
       //向后端发送
       this.$root.$socket.send(JSON.stringify(chi));
-      //不能打牌
-      this.$store.commit("draw_flag",false);
-      //清空
-      this.$store.commit("clear_options");
-      //排序
-      this.$store.commit("my_sort");
+      this.$store.dispatch("action_choose");
       document.getElementById("chiContainer").style.display="none";
     }
   },
@@ -47,18 +38,8 @@ export default {
   computed:{
       flag:function(){ return this.number.chi;}
   },
-  mounted(){
-
-    var number=0;
-    for (let index = 0; index < this.$store.state.options.length; index++) {
-      const element = this.$store.state.options[index];
-      if(element.action==="chi"){
-        number++;
-      }
-    }
-    if(number>=2){
-      this.$store.commit("chi");
-    }
+  mounted() {
+    this.$store.commit("chi");
   }
 }
 

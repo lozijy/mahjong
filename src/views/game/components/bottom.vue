@@ -19,41 +19,42 @@ export default {
         change:"",
     }
   },
+  computed:{
+    get_message(){return this.$store.state.me.turn},
+    p_tiles(){return this.$store.state.me.p_tiles}
+  },
     methods:{
       go(tile){
         console.log("go"+tile);
         //向后端发送数据
-        const information={
-          "type":"discard",
-          "player_id":this.$store.state.me.player_id,
-          "tile_type":tile
-        };
-        this.$root.$socket.send(JSON.stringify(information))
+        // const information={
+        //   "type":"discard",
+        //   "player_id":this.$store.state.me.player_id,
+        //   "tile_type":tile
+        // };
+        // this.$root.$socket.send(JSON.stringify(information))
         //修改change
         this.change="";
         this.$store.commit("clear_options");
         //修改store
-        this.$store.dispatch("discard",{player_index:this.$store.me.player_id,tile_type:tile});
+        this.$store.dispatch("discard",{player_index:this.$store.state.me.player_id,tile_type:tile});
     },
-      Click(tile){
-          if(this.get_message){
+
+      Click(tile) {
+        if (this.get_message===1) {
           //第一次点
-          if(this.change===tile){
-                // this.discardFlag=true;
-              this.go(this.change);
-              this.change="";
-              this.discardFlag=false;
-          }
-          else {
-              this.change=tile;
+          if (this.change === tile) {
+            // this.discardFlag=true;
+            this.go(this.change);
+            this.change = "";
+            this.discardFlag = false;
+          } else {
+            this.change = tile;
           }
         }
       }
     },
-    computed:{
-      get_message(){return this.$store.state.discard_Flag},
-      p_tiles(){return this.$store.state.me.p_tiles}
-    }
+
   }
 
   

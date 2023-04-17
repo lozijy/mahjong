@@ -146,7 +146,7 @@ export default {
       }
       //做出选择
        else if (data.type === "action_choose") {
-        this.$store.dispatch("action_choose",data);
+        this.$store.dispatch("accept_action_choose",data);
       } 
       //得到分数
       else if (data.type === "get_point") {
@@ -164,6 +164,11 @@ export default {
       else if(data.type ==="discard"){
         this.$store.dispatch("discard",data);
       }
+      else if(data.type==="chi"||data.type==="pon"||data.type==="kan"){
+        this.$store.dispatch("accept_options",data);
+      }
+
+
 
       //可以准备
       else if (data.type === "can_ready") {
@@ -172,6 +177,7 @@ export default {
         this.$router.push("/hall");
         alert("房间消失");
       }
+
 
     },
   },
