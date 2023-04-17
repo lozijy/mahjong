@@ -2,6 +2,7 @@ import Vuex from "vuex"
 import Vue from "vue"
 Vue.use(Vuex);
 
+//1
 /* eslint-disable*/
 const mutations={
     draw_self(state,tile){
