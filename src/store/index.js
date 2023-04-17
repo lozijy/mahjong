@@ -124,7 +124,7 @@ const mutations={
             "2" : "front",
             "-2" : "front"
         };
-        var str = player_index-state.me.player_id.toString();
+        var str = (player_index-state.me.player_id).toString();
         state[position[str]].number--;
         state[position[str]].discarded_card.push(tile_type); 
     },
