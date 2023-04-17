@@ -1,7 +1,7 @@
 <template>
   <div>
   <div class="bg"></div>
-  <img src="../../../public/img/logo1.png" class="logo">
+  <img src="../../../public/img/logo2.png" class="logo">
     <div id="login_box">
       <h2>LOGIN</h2>
       <h3 id="l_error">账号密码错误！</h3>
@@ -175,11 +175,13 @@ div.bg {
 }
 
 .logo {
-  position: relative;
+  position: absolute;
   /* margin-left: 290px; */
   /* margin-top: 8%; */
-  left: -250px;
-  opacity: 90%;
+  left: 30%;
+  top:50%;
+  transform: translate(-50%,-50%);
+  /* opacity: 90%; */
   z-index: 0;
   /* background-size: ; */
 }
@@ -187,16 +189,38 @@ div.bg {
 
 
 #register_box {
+  position: absolute;
   width: 200px;
   height: 300px;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%,-50%);
   background-color: #00000060;
-  margin: auto;
+  /* margin: auto;
   margin-left: 500px;
-  margin-top: -300px;
+  margin-top: -300px; */
   text-align: center;
   border-radius: 10px;
   padding: 50px 50px;
   z-index: 1;
+}
+
+#login_box {
+  display: block;
+  position: absolute;
+  top:50%;
+  left:50%;
+  /* left:900px; */
+  width: 200px;
+  /* bottom: 100%; */
+  height: 300px;
+  /* background-position: center center; */
+  background-color: #00000060;
+  text-align: center;
+  border-radius: 10px;
+  padding: 50px 50px;
+  z-index: 1;
+  transform:translate(-50%,-50%);
 }
 
 h2 {
@@ -282,24 +306,7 @@ button {
   margin-left: 10px;
 }
 
-#login_box {
-  display: block;
-  position: absolute;
-  /* left:900px; */
-  width: 200px;
-  /* bottom: 100%; */
-  height: 300px;
-  /* background-position: center center; */
-  background-color: #00000060;
-  margin: auto;
-  margin-left: 500px;
-  margin-top: -300px;
-  /* margin-bottom: 10%; */
-  text-align: center;
-  border-radius: 10px;
-  padding: 50px 50px;
-  z-index: 1;
-}
+
 
 .botton_container {
   display: flex;
