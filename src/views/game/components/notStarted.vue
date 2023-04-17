@@ -85,8 +85,9 @@ export default {
 
 <style scoped>
 .container{
-  display: none;
-  background-color: #00000060;
+  display: block;
+  /* background-image: url("../public/img/table.png"); */
+  background-color: #5f525260;
   width: 20%;
   height: 60%;
   position: absolute;
