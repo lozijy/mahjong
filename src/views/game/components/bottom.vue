@@ -27,12 +27,12 @@ export default {
       go(tile){
         console.log("go"+tile);
         //向后端发送数据
-        // const information={
-        //   "type":"discard",
-        //   "player_id":this.$store.state.me.player_id,
-        //   "tile_type":tile
-        // };
-        // this.$root.$socket.send(JSON.stringify(information))
+        const information={
+          "type":"discard",
+          "player_id":this.$store.state.me.player_id,
+          "tile_type":tile
+        };
+        this.$root.$socket.send(JSON.stringify(information))
         //修改change
         this.change="";
         this.$store.commit("clear_options");
@@ -53,13 +53,7 @@ export default {
         }
       }
     },
-  watch:{
-    change: function(newValue, oldValue) {
-      console.log(newValue+oldValue);
-      alert(this.$refs[newValue][0]);
-      this.$refs[newValue][0].move=1;
-    }
-  }
+
 
   }
 
@@ -73,15 +67,11 @@ export default {
 #bottom {
   position: absolute;
   width: 49%;
-  height:10%;
+  height:6%;
   bottom:5.5%;
   right:25.4%;
   border: 1px solid gray;
   display: inline;
-}
-.move{
-  position: relative;
-  bottom:20px;
 }
 
 

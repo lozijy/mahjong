@@ -1,5 +1,5 @@
 <template>
-    <img  :ref="tile" :src ="url" class="bottom-tile" :class="move" >
+    <img  :ref="tile" :src ="url" class="bottom-tile"  >
 </template>
 
 <script>
@@ -16,12 +16,11 @@ props:{
     require:true
   },
 
-},
+},  
   data(){
   return{
     url: require(`../../../../public/img/1/${this.tile}.gif`),
     move:"move"
-
   }
 },
 watch:{
@@ -31,11 +30,12 @@ watch:{
         console.log("pass");
       }
       else if(oldValue==="") {
-        console.log("move")
+        this.$refs[newValue].classList.add("move");
         this.$refs[newValue].classList.add("move");
         console.log(this.$refs[newValue].classList);
       }
       else{
+
         if(this.$refs[oldValue]!== undefined){
         this.$refs[oldValue].classList.toggle("move");
         }
@@ -44,19 +44,8 @@ watch:{
         }
       }
     },
-    get_message: function(newValue, oldValue) {
-        console.log("drawFlag change");
-        console.log(newValue+oldValue);
-        if(newValue===1) {
-          // do something with the new value
-          document.getElementsByClassName("bottom-tile")[0].style.cursor="pointer";
-        }else{
-          document.getElementsByClassName("bottom-tile")[0].style.cursor="auto";
-        }
-      },
 },
   computed:{
-    get_message(){return this.$store.state.me.turn},
   }
 
 
@@ -68,10 +57,8 @@ watch:{
 
 <style scoped>
 .bottom-tile{
-  position: relative;
   width: 7%;
-  height: 60%;
-  top:40%;
+  height: 100%;
   /* margin-right: 0px; */
   /* margin-bottom: 5px; */
   float: left;

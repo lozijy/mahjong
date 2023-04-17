@@ -126,17 +126,15 @@ const mutations={
         };
         var str = (player_index-state.me.player_id).toString();
         state[position[str]].number--;
-        state[position[str]].discarded_card.push(tile_type); 
+        state[position[str]].discarded_card.push(tile_type);    
     },
 
     //轮次部分，4个
     my_turn(state){
         state.left.turn=0;
         state.me.turn=1;
-    },
-    my_turn_end(state){
-        state.right.turn=1;
-        state.me.turn=0;
+        state.right.turn=0;
+        state.front.turn=0;
     },
     other_turn(state,player_index){
         const position = {
@@ -146,29 +144,15 @@ const mutations={
             "-2" : "front",
             "0" : "me"
         };
+        const other=["me","front","left","right"]
         var str = (player_index-state.me.player_id).toString();
-        if(str==="2"||str==="-2"){
-            state["right"].turn=0;
-        }else{
-            state[position[(player_index-state.me.player_id-1).toString()]].turn=0;
-        }
         state[position[str]].turn=1;
-    },
-    other_turn_end(state,player_index){
-        const position = {
-            "-1" : "left",
-            "1" : "right",
-            "2" : "front",
-            "-2" : "front",
-            "0" : "me"
-        };
-        var str = (player_index-state.me.player_id).toString();
-        if(str==="2"||str==="-2"){
-            state["left"].turn=1;
-        }else{
-            state[(player_index-state.me.player_id+1).toString()].turn=1;
+        for (let index = 0; index < 4; index++) {
+            if(other[index]!==str){
+                state[other[index]].turn=0;
+            }
+            
         }
-        state[position[str]].turn=0;
     },
     //选择部分,3个
     accept_options(state,data){
@@ -206,7 +190,6 @@ const mutations={
         if(number!==0) {
             state.options.push({action: "chi"});
         }
-
     },
     //清空选择
     clear_options(state){
@@ -239,7 +222,6 @@ const actions={
         context.commit("other_turn",data.data.player_index)
         //修改余
         context.commit("yu");
-
         context.commit("draw_other", data.data.player_index);
     },
 
@@ -259,8 +241,6 @@ const actions={
     //选择部分，三个函数
     //自己选择，非收到消息
     action_choose(context){
-        //不能打牌
-        context.commit("my_turn_end");
         //清空
         context.commit("clear_options");
         //排序
@@ -278,11 +258,6 @@ const actions={
         let player_index=data.player_index;
         let my_index=context.state.me.player_id;
         context.commit("accept_options",data);
-        if(player_index===my_index) {
-            context.commit("my_turn_end");
-        }else{
-            context.commit("other_turn_end",player_index);
-        }
     },
 
     //打牌，要分成自己打牌和其他人打牌
@@ -291,11 +266,9 @@ const actions={
         let player_index=data.player_index;
         if(context.state.me.player_id===player_index){
             context.commit("discard_self",data.tile_type);
-            context.commit("my_turn_end");
             context.commit("my_sort");
         }else{
             context.commit("discard_other",data);
-            context.commit("other_turn_end",player_index);
         }
     },
 
