@@ -156,7 +156,8 @@ body {
 
 ::placeholder{
   font-size: 12px;
-  color: #f7070f;
+  color: #fbf7f7;
+  font-weight: bold;
 }
 
 div.bg {
@@ -341,12 +342,6 @@ button {
 
 a {
   color: #b94648;
-}
-#l_error{
-
-}
-#r_error{
-
 }
 
 

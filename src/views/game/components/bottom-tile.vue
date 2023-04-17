@@ -7,8 +7,8 @@ export default {
 name: "bottom-tile",
 props:{
   tile: {
-    type: String, // props 的数据类型
-    required: true // 是否必须传递
+    type: String, // props 的数�?类型
+    required: true // �?否必须传�?
   },
   change:{
     type:String,
@@ -63,10 +63,12 @@ watch:{
 
 <style scoped>
 .bottom-tile{
+  position: relative;
   width: 7%;
-  height: 84%;
-  margin-right: 0px;
-  margin-bottom: 5px;
+  height: 60%;
+  top:40%;
+  /* margin-right: 0px; */
+  /* margin-bottom: 5px; */
   float: left;
   cursor: auto;
 }

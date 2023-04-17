@@ -49,15 +49,15 @@ export default {
 .buttonContainer{
   position: absolute;
   width: 49%;
-  height:9.4%;
-  bottom: 12.6%;
+  height:6.4%;
+  bottom: 15.6%;
   right:25.4%;
   border: 1px solid gray;
 }
 .buttonContainer img{
   float: left;
   width: 20%;
-  height: 70%;
+  height: 106%;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }

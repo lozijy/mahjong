@@ -67,7 +67,7 @@ export default {
 #bottom {
   position: absolute;
   width: 49%;
-  height:7%;
+  height:10%;
   bottom:5.5%;
   right:25.4%;
   border: 1px solid gray;
