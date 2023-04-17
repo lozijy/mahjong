@@ -1,14 +1,15 @@
 <template>
-    <img  :ref="tile" :src ="url" class="bottom-tile" >
+    <img  :ref="tile" :src ="url" class="bottom-tile" :class="move" >
 </template>
 
 <script>
 export default {
 name: "bottom-tile",
+
 props:{
   tile: {
-    type: String, // props 的数�?类型
-    required: true // �?否必须传�?
+    type: String, // props 的数�?类型
+    required: true // �?否必须传�?
   },
   change:{
     type:String,
@@ -18,7 +19,9 @@ props:{
 },
   data(){
   return{
-  url: require(`../../../../public/img/1/${this.tile}.gif`)
+    url: require(`../../../../public/img/1/${this.tile}.gif`),
+    move:"move"
+
   }
 },
 watch:{
@@ -28,7 +31,9 @@ watch:{
         console.log("pass");
       }
       else if(oldValue==="") {
-        this.$refs[newValue].classList.toggle("move");
+        console.log("move")
+        this.$refs[newValue].classList.add("move");
+        console.log(this.$refs[newValue].classList);
       }
       else{
         if(this.$refs[oldValue]!== undefined){
@@ -76,5 +81,7 @@ watch:{
     position: relative;
     bottom:20px;
 }
+.basic{
 
+}
 </style>

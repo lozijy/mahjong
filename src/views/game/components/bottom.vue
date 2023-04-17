@@ -39,7 +39,6 @@ export default {
         //修改store
         this.$store.dispatch("discard",{player_index:this.$store.state.me.player_id,tile_type:tile});
     },
-
       Click(tile) {
         if (this.get_message===1) {
           //第一次点
@@ -54,6 +53,13 @@ export default {
         }
       }
     },
+  watch:{
+    change: function(newValue, oldValue) {
+      console.log(newValue+oldValue);
+      alert(this.$refs[newValue][0]);
+      this.$refs[newValue][0].move=1;
+    }
+  }
 
   }
 
