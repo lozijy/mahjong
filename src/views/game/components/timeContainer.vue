@@ -30,22 +30,25 @@ export default {
       console.log(newValue,oldValue);
       this.ti=newValue;
       new Audio("../../../../public/audio/countdown5.mp3").play();
+    },
+    ti:function(newValue,oldValue){ 
+      console.log(newValue,oldValue);
       if(newValue===0){
-        document.getElementById("timeContainer").style.display="none";
+        document.getElementsByClassName("timeContainer")[0].style.display="none";
       }
     },
     countdown_flag: function (newValue,oldValue){
       console.log(newValue,oldValue)
       if(this.countdown_flag===true){
-        document.getElementById("timeContainer").style.display="block";
+        document.getElementsByClassName("timeContainer")[0].style.display="block";
       }
     },
     turn: function (newValue,oldValue){
       console.log(newValue,oldValue)
-      if(newValue){
-        document.getElementById("timeContainer").style.display="block";
+      if(newValue===true){
+        document.getElementsByClassName("timeContainer")[0].style.display="block";
       }else{
-        document.getElementById("timeContainer").style.display="none";
+        document.getElementsByClassName("timeContainer")[0].style.display="none";
       }
     },
   }

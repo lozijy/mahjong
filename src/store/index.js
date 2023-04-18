@@ -376,9 +376,9 @@ const actions={
         context.commit("clear_end_info");
     },
 
-    //
+    //清除游戏内的内容
     clear_game(context){
-        context.commit('clear_game');
+        context.commit("clear_game");
     }
 
 

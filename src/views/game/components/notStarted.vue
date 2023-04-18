@@ -57,7 +57,9 @@ export default {
     return {
       // eslint-disable-next-line vue/no-dupe-keys
       // backgroundImage: "../../../../public/img/ready1.png"
-      msg: ""
+      msg: "",
+      //游戏是否开始
+      flag:false,
     }
   },
   computed:{
@@ -83,11 +85,15 @@ export default {
     },
     start_flag: function(newValue, oldValue) {
       console.log(newValue+oldValue);
-      if(newValue===true) {
-        // do something with the new value
+      this.flag=newValue;
+    },
+    flag: function(newValue, oldValue) {
+      console.log(newValue+oldValue);
+      if(newValue===true){
+        console.log("start");
         document.getElementsByClassName("container")[0].style.display="none";
       }
-    }
+    },
   },
 
 }

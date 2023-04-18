@@ -25,12 +25,14 @@ export default {
     methods:{
       go(tile){
         console.log("go"+tile);
+        console.log("go"+tile.substr(0,2));
         //向后端发送数据
         const information={
           "type":"discard",
           "player_id":this.$store.state.me.player_id,
-          "tile_type": tile.replace(/[0-9]/g, ''),
+          "tile_type": tile.substr(0,2),
         };
+        
         this.$root.$socket.send(JSON.stringify(information))
         //修改change  
         this.change="";
@@ -38,7 +40,7 @@ export default {
     },
       Click(tile,index) {
         console.log("click");
-          if (this.change === tile) {
+          if (this.change === tile+index) {
             console.log("click go");
             // this.discardFlag=true;
             this.go(this.change);

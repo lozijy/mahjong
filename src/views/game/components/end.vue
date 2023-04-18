@@ -2,12 +2,11 @@
     <div class="container">
       <div class="font">游戏结束</div>
       <div class="font">结局</div>
-      <div class="font">赢家:</div>
+      <div class="font">赢家:{{ Winner }}</div>
       <div class="font" v-for="person in $store.state.people" :key="person">{{ person.name }}</div>
-      <div class="font">输家:</div>
-      <div class="font">111</div>
-      <div class="font">属性:</div>
-      <div class="font">成绩:</div>
+      <div class="font">输家:{{ Loser }}</div>
+      <div class="font">属性:{{ Attribute }}</div>
+      <div class="font">成绩:{{ Score }}</div>
       <!-- <div  id="start" class="font" @click="start()" :style="{ backgroundImage }"></div> -->
       <div class="font_exit" id="exit" @click="exit()"></div>
     </div>
@@ -29,37 +28,66 @@
       return {
         // eslint-disable-next-line vue/no-dupe-keys
         // backgroundImage: "../../../../public/img/ready1.png"
-        msg: ""
+        msg: "",
+        flag:false,
+        endType:"",
+        Winner:"",
+        Loser:[],
+        Attribute:[],
+        Score:[],
       }
     },
     computed:{
       end_flag(){
-        return this.$store.state.ended===1
+        return this.$store.state.ended===1;
       },
       end_type(){
-        return this.$store.state.end_type
+        return this.$store.state.end_type;
       },
       winner(){
-        return this.$store.state.winner
+        return this.$store.state.winner;
       },
       loser(){
-        return this.$store.state.loser
+        return this.$store.state.loser;
       },
       attribute(){
-        return this.$store.state.attribute
+        return this.$store.state.attribute;
       },
       score(){
-        return this.$store.state.score
+        return this.$store.state.score;
       },
     },
     watch:{
-        end_flag: function(newValue, oldValue) {
+      flag:function(newValue, oldValue) {
         console.log(newValue+oldValue);
-        if(newValue===true) {
-          // do something with the new value
+        if(this.flag===true){
           document.getElementsByClassName("container")[0].style.display="block";
         }
-      }
+      },
+        end_flag: function(newValue, oldValue) {
+        console.log(newValue+oldValue);
+        this.flag=newValue;
+      },
+      end_type:function(newValue, oldValue) {
+        console.log(newValue+oldValue);
+        this.endType=newValue;
+      },
+      winner:function(newValue, oldValue) {
+        console.log(newValue+oldValue);
+        this.Winner=newValue;
+      },
+      loser:function(newValue, oldValue) {
+        console.log(newValue+oldValue);
+        this.Loser=newValue;
+      },
+      attribute:function(newValue, oldValue) {
+        console.log(newValue+oldValue);
+        this.Attribute=newValue;
+      },
+      score:function(newValue, oldValue) {
+        console.log(newValue+oldValue);
+        this.Score=newValue;
+      },
     },
   
   }
@@ -67,7 +95,7 @@
   
   <style scoped>
   .container{
-    display: block;
+    display: none;
     background-image: url("../../../../public/img/player_info1.png");
     background-color: #5f525260;
     background-position: contain;
