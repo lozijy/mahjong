@@ -20,19 +20,19 @@
 <!--      名字-->
       <div id="topName">
         <div id="NA">{{$store.state.front.name}}</div>
-        <div >9024分</div>
+        <div id="score">9024分</div>
       </div>
       <div id="bottomName">
         <div id="NA">{{$store.state.me.name}}</div>
-        <div >9024分</div>
+        <div id="score">9024分</div>
       </div>
       <div id="leftName">
         <div id="NA">{{$store.state.left.name}}</div>
-        <div >9024分</div>
+        <div id="score">9024分</div>
       </div>
       <div id="rightName">
         <div id="NA">{{$store.state.right.name}}</div>
-        <div >9024分</div>
+        <div id="score">9024分</div>
       </div>
 
 <!--      桌子-->
@@ -291,62 +291,105 @@ export default {
 }
 
 #topName{
-  display: none;
-  border: 1px solid gray;
+  color:rgb(206, 154, 93) ;
+  display: block;
+  /* border: 1px solid gray; */
+  background-image: url("../../../public/img/12345.png");
+  background-size: contain;
+  background-repeat: no-repeat;
   position: absolute;
-  width: 7%;
-  height: 6%;
-  top: 12%;
-  right:38%;
+  font-weight: bold;
+  width: 15%;
+  height: 7.7%;
+  top: 14%;
+  right:20%;
 }
 #topName #NA{
 
-  font-size: 10px;
-  background: rgba(76, 175, 80, 0.8);
-  border: 1px solid gray;
+  position: absolute;
+  font-size: 13px;
+  transform: translate(-50%,-50%);
+  top:35%;
+  left:50%;
 }
 #bottomName {
-  display: none;
-  border: 1px solid gray;
+  color:rgb(206, 154, 93) ;
+  font-size: large;
+  font-weight: bold;
+  /* border: 1px solid gray; */
+  background-image: url("../../../public/img/12345.png");
+  background-size: contain;
+  background-repeat: no-repeat;
   position: absolute;
-  width: 7%;
-  height: 6%;
+  width: 15%;
+  height: 7.7%;
   bottom: 22%;
-  left: 30%;
+  left: 23%;
 }
 #bottomName #NA{
-  font-size: 10px;
-  background: rgba(76, 175, 80, 0.8);
-  border: 1px solid gray;
+  position: absolute;
+  font-size: 13px;
+  transform: translate(-50%,-50%);
+  top:35%;
+  left:50%;
+
+  /* background: rgba(76, 175, 80, 0.8); */
+  /* border: 1px solid gray; */
 }
 #leftName{
-  display: none;
-  border: 1px solid gray;
+  display: block;
+  color:rgb(206, 154, 93) ;
+  /* border: 1px solid gray; */
+  background-image: url("../../../public/img/12345.png");
+  background-size: contain;
+  background-repeat: no-repeat;
   position: absolute;
-  width: 7%;
-  height: 6%;
+  font-weight: bold;
+  width: 15%;
+  height: 7.7%;
   top: 20%;
-  left:32%;
+  left:14%;
 
 }
 #leftName #NA{
-  font-size: 10px;
-  border: 1px solid gray;
-  background: rgba(76, 175, 80, 0.8);
+  position: absolute;
+  font-size: 13px;
+  transform: translate(-50%,-50%);
+  top:35%;
+  left:50%;
 }
 #rightName{
-  display: none;
-  border: 1px solid gray;
+  color:rgb(206, 154, 93) ;
+  display: block;
+  /* border: 1px solid gray; */
   position: absolute;
-  width: 7%;
-  height: 6%;
-  top: 20%;
-  right:30%;
+  background-image: url("../../../public/img/12345.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  font-weight: bold;
+  width: 15%;
+  height: 7.7%;
+  top: 64%;
+  right:12.6%;
 }
 #rightName #NA{
-  font-size: 10px;
-  background: rgba(76, 175, 80, 0.8);
+  position: absolute;
+  font-size: 13px;
+  transform: translate(-50%,-50%);
+  top:35%;
+  left:50%;
 }
+
+#score{
+  font-size: 10px;
+  color:rgb(206, 154, 93) ;
+  position: absolute;
+  font-size: 10px;
+  transform: translate(-50%,-50%);
+  top:70%;
+  left:50%;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

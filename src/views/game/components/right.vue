@@ -19,7 +19,7 @@ export default {
 #right{
   position: absolute;
   width: 7%;
-  height:39.8%;
+  height:43.8%;
   right:6%;
   top:25.5%;
   border: 1px solid gray;

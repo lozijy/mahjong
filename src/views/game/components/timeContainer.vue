@@ -58,12 +58,12 @@ export default {
   display: block;
   position: absolute;
   width: 6%;
-  height: 10%;
+  height: 6%;
   right:30%;
-  bottom: 30%;
+  bottom: 23%;
   border: 1px solid gray;
   font-size: 30px;
-  color: crimson;
+  color: rgb(206, 154, 93);
 }
 img{
   width: 40%;

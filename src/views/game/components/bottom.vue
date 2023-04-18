@@ -80,7 +80,7 @@ export default {
 <style scoped>
 #bottom {
   position: absolute;
-  width: 49%;
+  width:56%;
   height:6%;
   bottom:5.5%;
   right:25.4%;

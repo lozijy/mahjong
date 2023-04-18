@@ -40,6 +40,7 @@ export default {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
+  z-index: -1;
 }
 #yu{
   position: absolute;
