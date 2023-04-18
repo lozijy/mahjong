@@ -172,7 +172,11 @@ const mutations={
             index=state[position[str]].p_tiles.indexOf(tiles[i]);
             state[position[str]].p_tiles.splice(index,1);
         }
-        state[position[str]].open.push(tiles);
+        for (let index = 0; index < tiles.length; index++) {
+            const element = tiles[index];
+            state[position[str]].open.push(element);
+        }
+
     },
     //为了防止多个吃选择的情况
     chi(state){
@@ -199,7 +203,7 @@ const mutations={
 
     //游戏结束
     end(state){
-        state.end=1;
+        state.ended=1;
     },
     //游戏信息
     end_info(state,data){
@@ -355,6 +359,7 @@ const state={
     table_code:0,
     //游戏是否开始
     started:0,
+    ended:0,
     yu_array:[5,6],
     //当前房间人数
     number:0,

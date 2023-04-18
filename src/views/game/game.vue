@@ -169,6 +169,8 @@ export default {
       }
       else if(data.type==="chi"||data.type==="pon"||data.type==="kan"){
         this.$store.dispatch("accept_options",data);
+      }else if(data.type==="end"){
+        this.$store.dispatch("end",data);
       }
 
 

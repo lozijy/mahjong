@@ -1,7 +1,7 @@
 <template>
   <div id="bottom">
 <!--    <bottom-tile v-for="tile in this.$store.state.me.p_tiles" :tile="tile" :key="tile"  ></bottom-tile>-->
-    <bottom-tile :ref="tile" v-for=" (tile,index) in p_tiles"  :tile="tile" :key="index"   @click.native="Click(tile)" :change="change"></bottom-tile>
+    <bottom-tile :ref="tile" v-for=" (tile,index) in p_tiles"  :tile="tile" :key="tile+index"   @click.native="Click(tile)" :change="change"></bottom-tile>
     
   </div>
 </template>

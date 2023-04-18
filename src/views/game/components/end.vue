@@ -17,19 +17,9 @@
     methods:{
       exit(){
         this.$root.$socket.close();
-        console.log(this.$store.state.table_code);
-        this.$http.post('http://198.211.12.166:23333/exit', {
-          table_code: this.$store.state.table_code,
-          user_id: window.localStorage.getItem("userId"),
-          token:window.localStorage.getItem("token")
-        }).then((response)=> {
-          console.log("接受数据");
-          console.log(response);
-          this.$store.state.table_code=0;
-          this.$router.push("/hall");
-        });
-  
-  
+        this.$store.state.table_code=0;
+        this.$store.state.people=[];
+        this.$router.push("/hall");
       }
     },
     data(){
@@ -41,13 +31,8 @@
     },
     computed:{
       end_flag(){
-        return this.$store.state.end===1
+        return this.$store.state.ended===1
       }
-    },
-    mounted() {
-      this.exi=document.getElementById("exit");
-      this.countDown = document.getElementById("countdown");
-      this.al = document.getElementById("already");
     },
     watch:{
         end_flag: function(newValue, oldValue) {
