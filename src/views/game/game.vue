@@ -53,12 +53,14 @@
       <time-container></time-container>
 
       <not-started :ready_flag="ready_flag"></not-started>
+      <end></end>
     </div>
   </div>
   </div>
 </template>
 
 <script>
+import end from "./components/end.vue";
 import rightDiscard from "./components/right-discard.vue";
 import topDiscard from "./components/top-discard.vue";
 import mid from "@/views/game/components/mid.vue";
@@ -123,6 +125,7 @@ export default {
     bottomContainer,
 
     buttonContainer,
+    end
 
 
   },
@@ -193,6 +196,7 @@ export default {
     }
   },
   mounted() {
+    console.log(1);
     //自动发送websocket请求
     this.$root.$socket = new WebSocket(`ws://198.211.12.166:23333/ws/${window.localStorage.getItem("userId")}/${window.localStorage.getItem("token")}`);
     this.$root.$socket.addEventListener('open', () => {
@@ -219,6 +223,7 @@ export default {
       }
     }
   }
+
 }
 </script>
 

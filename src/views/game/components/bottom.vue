@@ -30,14 +30,12 @@ export default {
         const information={
           "type":"discard",
           "player_id":this.$store.state.me.player_id,
-          "tile_type":tile
+          "tile_type":tile,
         };
         this.$root.$socket.send(JSON.stringify(information))
         //修改change
         this.change="";
         this.$store.commit("clear_options");
-        //修改store
-        this.$store.dispatch("discard",{player_index:this.$store.state.me.player_id,tile_type:tile});
     },
       Click(tile) {
         if (this.get_message===1) {

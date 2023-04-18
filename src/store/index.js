@@ -195,6 +195,15 @@ const mutations={
     clear_options(state){
         state.options=[];
     },
+
+    //游戏结束
+    end(state){
+        state.end=1;
+    },
+    //游戏信息
+    end_info(state,data){
+        
+    }
 }
 
 const actions={
@@ -271,6 +280,10 @@ const actions={
             context.commit("discard_other",data);
         }
     },
+    end(context,data){
+        context.commit("end");
+        context.commit("end_info",data);
+    }
 
 
 
@@ -279,6 +292,7 @@ const actions={
 }
 
 const state={
+    end:0,
     me : {
         number:0,
         //位置

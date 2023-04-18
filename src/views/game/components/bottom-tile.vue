@@ -30,12 +30,12 @@ watch:{
         console.log("pass");
       }
       else if(oldValue==="") {
-        this.$refs[newValue].classList.add("move");
+        alert("move");
         this.$refs[newValue].classList.add("move");
         console.log(this.$refs[newValue].classList);
       }
       else{
-
+        alert("move");
         if(this.$refs[oldValue]!== undefined){
         this.$refs[oldValue].classList.toggle("move");
         }
