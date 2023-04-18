@@ -2,6 +2,7 @@
   <div id="bottom">
 <!--    <bottom-tile v-for="tile in this.$store.state.me.p_tiles" :tile="tile" :key="tile"  ></bottom-tile>-->
     <bottom-tile :ref="tile" v-for="tile in p_tiles"  :tile="tile" :key="tile"   @click.native="Click(tile)" :change="change"></bottom-tile>
+    
   </div>
 </template>
 
@@ -17,12 +18,10 @@ export default {
         //是否选择打牌
         discardFlag: false,
         change:"",
+        tiles:[]
     }
   },
-  computed:{
-    get_message(){return this.$store.state.me.turn},
-    p_tiles(){return this.$store.state.me.p_tiles}
-  },
+
     methods:{
       go(tile){
         console.log("go"+tile);
@@ -38,19 +37,36 @@ export default {
         this.$store.commit("clear_options");
     },
       Click(tile) {
-        if (this.get_message===1) {
-          //第一次点
+        console.log("click");
           if (this.change === tile) {
+            console.log("click go");
             // this.discardFlag=true;
             this.go(this.change);
             this.change = "";
             this.discardFlag = false;
           } else {
+            console.log("click else");
             this.change = tile;
-          }
-        }
+            console.log(this.change);
+          } 
       }
     },
+    computed:{
+    get_message(){return this.$store.state.me.turn},
+    p_tiles:{
+      get() {
+        console.log("k"+this.$store.state.me.p_tiles);
+        return this.$store.state.me.p_tiles
+                }
+    },
+  },
+    watch:{
+      p_tiles: function(newValue, oldValue){
+        console.log(oldValue);
+        this.tiles=newValue;
+    },
+},
+
 
 
   }

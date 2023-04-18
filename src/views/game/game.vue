@@ -188,13 +188,66 @@ export default {
     return {
       ready_flag: false,
       countdown_flag: false,
+      bottomTiles:[],
+      leftTiles:[],
+      rightTiles:[],
+      frontTiles:[]
     }
   },
   computed:{
     start_flag(){
       return this.$store.state.started===1;
+    },
+    bottom_tiles:{
+      get() {
+        return this.$store.state.me.p_tiles
+      }
+    },
+    left_tiles:{
+      get() {
+        return this.$store.state.left.p_tiles
+      }
+    },
+    right_tiles:{
+      get() {
+        return this.$store.state.right.p_tiles
+      }
+    },
+    front_tiles:{
+      get() {
+        return this.$store.state.front.p_tiles
+      }
     }
   },
+  watch: {
+    start_flag: function (newValue, oldValue) {
+      console.log(newValue + oldValue);
+      if (newValue === true) {
+        // do something with the new value
+        document.getElementById("topName").style.display = "block";
+        document.getElementById("leftName").style.display = "block";
+        document.getElementById("rightName").style.display = "block";
+        document.getElementById("bottomName").style.display = "block";
+      }
+    },
+    bottom_tiles:function (newValue, oldValue) {
+      console.log(newValue + oldValue);
+      this.bottomTiles=newValue;
+    },
+    left_tiles:function (newValue, oldValue) {
+      console.log(newValue + oldValue);
+      this.leftTiles=newValue;
+    },
+    right_tiles:function (newValue, oldValue) {
+      console.log(newValue + oldValue);
+      this.rightTiles=newValue;
+    },
+    front_tiles:function (newValue, oldValue) {
+      console.log(newValue + oldValue);
+      this.frontTiles=newValue;
+    },
+  },
+
   mounted() {
     console.log(1);
     //自动发送websocket请求
@@ -211,18 +264,7 @@ export default {
       console.log(a);
     });
   },
-  watch: {
-    start_flag: function (newValue, oldValue) {
-      console.log(newValue + oldValue);
-      if (newValue === true) {
-        // do something with the new value
-        document.getElementById("topName").style.display = "block";
-        document.getElementById("leftName").style.display = "block";
-        document.getElementById("rightName").style.display = "block";
-        document.getElementById("bottomName").style.display = "block";
-      }
-    }
-  }
+
 
 }
 </script>

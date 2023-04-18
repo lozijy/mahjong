@@ -95,7 +95,7 @@ export default {
 
 <style scoped>
 .container{
-  display: block;
+  display: blockx;
   background-image: url("../../../../public/img/player_info1.png");
   background-color: #5f525260;
   background-position: contain;

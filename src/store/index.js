@@ -101,6 +101,7 @@ const mutations={
                 return (a.codePointAt(1) - b.codePointAt(1));
             }
         })
+        console.log(state.me.p_tiles);
     },
 
     //玩家加入
@@ -299,9 +300,9 @@ const state={
         player_id:-1,
         name:"",
         user_id:"",
-        p_tiles:["3s","1s","2s"],
-        open:["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
-        discarded_card: ["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
+        p_tiles:[],
+        open:[],
+        discarded_card: [],
         score:0,
         turn:1
         },
@@ -310,8 +311,8 @@ const state={
         number:0,
         //位置
         player_id:-1,
-        discarded_card:["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
-        open:["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
+        discarded_card:[],
+        open:[],
         name:"",
         user_id:"",
         total_score:0,
@@ -322,8 +323,8 @@ const state={
         number:0,
         //位置
         player_id:-1,
-        discarded_card:["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
-        open:["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
+        discarded_card:[],
+        open:[],
         name:"",
         user_id:"",
         total_score:0,
@@ -334,8 +335,8 @@ const state={
         number:0,
         //位置
         player_id:-1,
-        discarded_card:["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
-        open:["1s","2s","3s","4s","5s","6s","7s","8s","9s","1p","2p","3p","4p","5p","6p","7p","8p","9p"],
+        discarded_card:[],
+        open:[],
         name:"",
         user_id:"",
         total_score:0,

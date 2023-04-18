@@ -24,26 +24,33 @@ props:{
   }
 },
 watch:{
-  change: function(newValue, oldValue) {
+  change:{
+    handler(newValue, oldValue){
+      console.log("change k");
       console.log(newValue+oldValue);
       if(newValue===""){
         console.log("pass");
       }
       else if(oldValue==="") {
-        alert("move");
         this.$refs[newValue].classList.add("move");
         console.log(this.$refs[newValue].classList);
       }
       else{
-        alert("move");
         if(this.$refs[oldValue]!== undefined){
         this.$refs[oldValue].classList.toggle("move");
         }
         if(this.$refs[newValue]!== undefined){
         this.$refs[newValue].classList.toggle("move");
         }
+
       }
-    },
+  },
+  immediate:true
+}
+  
+  
+  
+
 },
   computed:{
   }
