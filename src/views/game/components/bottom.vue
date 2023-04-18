@@ -18,7 +18,8 @@ export default {
         //是否选择打牌
         discardFlag: false,
         change:"",
-        tiles:[]
+        tiles:[],
+        Get_Message:0
     }
   },
 
@@ -32,7 +33,6 @@ export default {
           "player_id":this.$store.state.me.player_id,
           "tile_type": tile.substr(0,2),
         };
-        
         this.$root.$socket.send(JSON.stringify(information))
         //修改change  
         this.change="";
@@ -40,6 +40,7 @@ export default {
     },
       Click(tile,index) {
         console.log("click");
+        if(this.Get_Message===1){
           if (this.change === tile+index) {
             console.log("click go");
             // this.discardFlag=true;
@@ -51,7 +52,10 @@ export default {
             this.change = tile+index;
             console.log(this.change);
           } 
+      }else{
+        console.log("not allowed");
       }
+    }
     },
     computed:{
     get_message(){return this.$store.state.me.turn},
@@ -67,6 +71,10 @@ export default {
         console.log(oldValue);
         this.tiles=newValue;
     },
+    get_message:function(newValue, oldValue){
+      console.log("message"+newValue+oldValue);
+      this.Get_Message=newValue;
+    }
 },
 
 

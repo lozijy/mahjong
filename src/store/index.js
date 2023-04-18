@@ -254,7 +254,7 @@ const mutations={
                 open:[],
                 discarded_card: [],
                 score:0,
-                turn:1
+                turn:0
                 };
             state.front = {
                 //牌数
@@ -353,8 +353,6 @@ const actions={
     },
     //收到玩家作出的操作,包括自己作出的操作和别人作出的操作，收到消息
     accept_options(context,data){
-        let player_index=data.player_index;
-        let my_index=context.state.me.player_id;
         context.commit("accept_options",data);
     },
 
@@ -410,11 +408,11 @@ const state={
                 player_id:-1,
                 name:"",
                 user_id:"",
-                p_tiles:["1s","3s","3s"],
+                p_tiles:[],
                 open:[],
                 discarded_card: [],
                 score:0,
-                turn:1
+                turn:0
                 },
             front : {
                 //牌数
