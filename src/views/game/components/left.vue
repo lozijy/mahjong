@@ -20,9 +20,9 @@ export default {
 #left{
   position: absolute;
   width: 7%;
-  height:39.8%;
+  height:43.8%;
   left:6%;
-  top:25.5%;
+  top:20.5%;
   border: 1px solid gray;
   display: flex;
   align-items: center;

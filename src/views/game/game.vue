@@ -20,19 +20,19 @@
 <!--      名字-->
       <div id="topName">
         <div id="NA">{{$store.state.front.name}}</div>
-        <div >9024分</div>
+        <div id="score">9024分</div>
       </div>
       <div id="bottomName">
         <div id="NA">{{$store.state.me.name}}</div>
-        <div >9024分</div>
+        <div id="score">9024分</div>
       </div>
       <div id="leftName">
         <div id="NA">{{$store.state.left.name}}</div>
-        <div >9024分</div>
+        <div id="score">9024分</div>
       </div>
       <div id="rightName">
         <div id="NA">{{$store.state.right.name}}</div>
-        <div >9024分</div>
+        <div id="score">9024分</div>
       </div>
 
 <!--      桌子-->
@@ -289,7 +289,7 @@ export default {
 }
 
 #topName{
-  display: none;
+  display: block;
   border: 1px solid gray;
   position: absolute;
   width: 7%;
@@ -304,8 +304,9 @@ export default {
   border: 1px solid gray;
 }
 #bottomName {
-  display: none;
+  display: block;
   border: 1px solid gray;
+  background-image: url("../../../../public/img/ingame_name.png");
   position: absolute;
   width: 7%;
   height: 6%;
@@ -318,7 +319,7 @@ export default {
   border: 1px solid gray;
 }
 #leftName{
-  display: none;
+  display: block;
   border: 1px solid gray;
   position: absolute;
   width: 7%;
@@ -333,7 +334,7 @@ export default {
   background: rgba(76, 175, 80, 0.8);
 }
 #rightName{
-  display: none;
+  display: block;
   border: 1px solid gray;
   position: absolute;
   width: 7%;
@@ -345,6 +346,12 @@ export default {
   font-size: 10px;
   background: rgba(76, 175, 80, 0.8);
 }
+
+#score{
+  font-size: 10px;
+  color:rgb(206, 154, 93) ;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

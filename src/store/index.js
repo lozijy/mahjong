@@ -298,7 +298,7 @@ const state={
         number:0,
         //位置
         player_id:-1,
-        name:"",
+        name:"huanghe",
         user_id:"",
         p_tiles:[],
         open:[],
@@ -313,7 +313,7 @@ const state={
         player_id:-1,
         open:[],
         discarded_card: [],
-        name:"",
+        name:"huanghe",
         user_id:"",
         total_score:0,
         turn:0
@@ -325,7 +325,7 @@ const state={
         player_id:-1,
         open:[],
         discarded_card: [],
-        name:"",
+        name:"huanghe",
         user_id:"",
         total_score:0,
         turn:0
@@ -337,7 +337,7 @@ const state={
         player_id:-1,
         open:[],
         discarded_card: [],
-        name:"",
+        name:"huanghe",
         user_id:"",
         total_score:0,
         turn:0
