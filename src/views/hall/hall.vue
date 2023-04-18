@@ -77,6 +77,11 @@ export default {
     }
   },
   mounted() {
+    this.$store.state.started=0;
+    this.$store.state.ended=0;
+    this.$store.state.number=0;
+    this.$store.state.people=[];
+    this.$store.dispatch("clear_end_info");
     //???
     this.$http.post('http://198.211.12.166:23333/hall', {
           user_id: window.localStorage.getItem("userId"),

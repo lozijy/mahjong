@@ -5,16 +5,16 @@
       <!-- <img src="../../../public/img/table.jpg" class="background1"> -->
 <!--      打出去的牌-->
       <div id="BO">
-        <bottom-discard v-for="tile in $store.state.me.discarded_card" class="B_bottom" :key="tile" :tile="tile"></bottom-discard>
+        <bottom-discard v-for="tile in bottomDiscardTiles" class="B_bottom" :key="tile" :tile="tile"></bottom-discard>
       </div>
       <div id="LE">
-        <left-discard v-for="tile in $store.state.left.discarded_card" class="B_left" :key="tile" :tile="tile"></left-discard>
+        <left-discard v-for="tile in leftDiscardTiles" class="B_left" :key="tile" :tile="tile"></left-discard>
       </div>
       <div id="RI">
-        <right-discard v-for="tile in $store.state.right.discarded_card" class="B_right" :key="tile" :tile="tile"></right-discard>
+        <right-discard v-for="tile in rightDiscardTiles" class="B_right" :key="tile" :tile="tile"></right-discard>
       </div>
       <div id="TO">
-        <top-discard v-for="tile in $store.state.front.discarded_card" class="B_top" :key="tile" :tile="tile"></top-discard>
+        <top-discard v-for="tile in frontDiscardTiles" class="B_top" :key="tile" :tile="tile"></top-discard>
       </div>
 
 <!--      名字-->
@@ -180,7 +180,7 @@ export default {
         this.ready_flag = true;
       } else if (data.type === "dismiss") {
         this.$router.push("/hall");
-        alert("房间消失");
+        alert("房间解散");
       }
 
 
@@ -190,34 +190,34 @@ export default {
     return {
       ready_flag: false,
       countdown_flag: false,
-      bottomTiles:[],
-      leftTiles:[],
-      rightTiles:[],
-      frontTiles:[]
+      bottomDiscardTiles:[],
+      leftDiscardTiles:[],
+      rightDiscardTiles:[],
+      frontDiscardTiles:[]
     }
   },
   computed:{
     start_flag(){
       return this.$store.state.started===1;
     },
-    bottom_tiles:{
+    bottom_discard_tiles:{
       get() {
-        return this.$store.state.me.p_tiles
+        return this.$store.state.me.discarded_card
       }
     },
-    left_tiles:{
+    left_discard_tiles:{
       get() {
-        return this.$store.state.left.p_tiles
+        return this.$store.state.left.discarded_card
       }
     },
-    right_tiles:{
+    right_discard_tiles:{
       get() {
-        return this.$store.state.right.p_tiles
+        return this.$store.state.right.discarded_card
       }
     },
-    front_tiles:{
+    front_discard_tiles:{
       get() {
-        return this.$store.state.front.p_tiles
+        return this.$store.state.front.discarded_card
       }
     }
   },
@@ -232,21 +232,21 @@ export default {
         document.getElementById("bottomName").style.display = "block";
       }
     },
-    bottom_tiles:function (newValue, oldValue) {
+    bottom_discard_tiles:function (newValue, oldValue) {
       console.log(newValue + oldValue);
-      this.bottomTiles=newValue;
+      this.bottomDiscardTiles=newValue;
     },
-    left_tiles:function (newValue, oldValue) {
+    left_discard_tiles:function (newValue, oldValue) {
       console.log(newValue + oldValue);
-      this.leftTiles=newValue;
+      this.leftDiscardTiles=newValue;
     },
-    right_tiles:function (newValue, oldValue) {
+    right_discard_tiles:function (newValue, oldValue) {
       console.log(newValue + oldValue);
-      this.rightTiles=newValue;
+      this.rightDiscardTiles=newValue;
     },
-    front_tiles:function (newValue, oldValue) {
+    front_discard_tiles:function (newValue, oldValue) {
       console.log(newValue + oldValue);
-      this.frontTiles=newValue;
+      this.frontDiscardTiles=newValue;
     },
   },
 

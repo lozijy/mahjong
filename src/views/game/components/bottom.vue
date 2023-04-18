@@ -1,7 +1,7 @@
 <template>
   <div id="bottom">
 <!--    <bottom-tile v-for="tile in this.$store.state.me.p_tiles" :tile="tile" :key="tile"  ></bottom-tile>-->
-    <bottom-tile :ref="tile" v-for=" (tile,index) in p_tiles"  :tile="tile" :key="tile+index"   @click.native="Click(tile)" :change="change"></bottom-tile>
+    <bottom-tile :ref="tile+index" v-for=" (tile,index) in p_tiles"  :tile="tile" :key="tile+index" :index="index"  @click.native="Click(tile,index)" :change="change"></bottom-tile>
     
   </div>
 </template>
@@ -29,14 +29,14 @@ export default {
         const information={
           "type":"discard",
           "player_id":this.$store.state.me.player_id,
-          "tile_type":tile,
+          "tile_type": tile.replace(/[0-9]/g, ''),
         };
         this.$root.$socket.send(JSON.stringify(information))
         //修改change  
         this.change="";
         this.$store.commit("clear_options");
     },
-      Click(tile) {
+      Click(tile,index) {
         console.log("click");
           if (this.change === tile) {
             console.log("click go");
@@ -46,7 +46,7 @@ export default {
             this.discardFlag = false;
           } else {
             console.log("click else");
-            this.change = tile;
+            this.change = tile+index;
             console.log(this.change);
           } 
       }

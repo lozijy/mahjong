@@ -1,5 +1,5 @@
 <template>
-    <img  :ref="tile" :src ="get_url(this.tile)" class="bottom-tile"  >
+    <img  :ref="tile+index" :src ="get_url(this.tile)" class="bottom-tile"  >
 </template>
 
 <script>
@@ -15,6 +15,10 @@ props:{
     type:String,
     require:true
   },
+  index:{
+    type:String,
+    require:true
+  }
 
 },  
   data(){
@@ -31,8 +35,8 @@ methods:{
 watch:{
   change:{
     handler(newValue, oldValue){
-      console.log("change k");
       console.log(newValue+oldValue);
+
       if(newValue===""){
         console.log("pass");
       }

@@ -1,10 +1,13 @@
 <template>
     <div class="container">
       <div class="font">游戏结束</div>
-
-      <div class="font">玩家列表</div>
+      <div class="font">结局</div>
+      <div class="font">赢家:</div>
       <div class="font" v-for="person in $store.state.people" :key="person">{{ person.name }}</div>
-      <div class="font">分数列表:{{$store.state.number+1}}</div>
+      <div class="font">输家:</div>
+      <div class="font">111</div>
+      <div class="font">属性:</div>
+      <div class="font">成绩:</div>
       <!-- <div  id="start" class="font" @click="start()" :style="{ backgroundImage }"></div> -->
       <div class="font_exit" id="exit" @click="exit()"></div>
     </div>
@@ -16,9 +19,9 @@
     name: "end",
     methods:{
       exit(){
-        this.$root.$socket.close();
         this.$store.state.table_code=0;
         this.$store.state.people=[];
+        this.$store.dispatch("clear_end_info");
         this.$router.push("/hall");
       }
     },
@@ -32,7 +35,22 @@
     computed:{
       end_flag(){
         return this.$store.state.ended===1
-      }
+      },
+      end_type(){
+        return this.$store.state.end_type
+      },
+      winner(){
+        return this.$store.state.winner
+      },
+      loser(){
+        return this.$store.state.loser
+      },
+      attribute(){
+        return this.$store.state.attribute
+      },
+      score(){
+        return this.$store.state.score
+      },
     },
     watch:{
         end_flag: function(newValue, oldValue) {
@@ -49,7 +67,7 @@
   
   <style scoped>
   .container{
-    display: none;
+    display: block;
     background-image: url("../../../../public/img/player_info1.png");
     background-color: #5f525260;
     background-position: contain;

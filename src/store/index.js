@@ -37,7 +37,6 @@ const mutations={
         if(str==="2"||str==="-2"){
             state["right"].turn=0;
         }else{
-            console.log(player_id-state.me.player_id-1);
             state[(player_id-state.me.player_id-1).toString()].turn=0;
         }
     },
@@ -101,7 +100,6 @@ const mutations={
                 return (a.codePointAt(1) - b.codePointAt(1));
             }
         })
-        console.log(state.me.p_tiles);
     },
 
     //玩家加入
@@ -159,6 +157,7 @@ const mutations={
     accept_options(state,data){
         let player_index=data.player_index;
         let tiles=data.tiles;
+        let target_player_index=data.target_player_index;
         const position = {
             "-1" : "left",
             "1" : "right",
@@ -166,17 +165,23 @@ const mutations={
             "-2" : "front",
             "0" : "me"
         };
-        var str = (player_index-state.me.player_id).toString();
         let index;
-        for (let i = 0; i < tiles.length; i++) {
-            index=state[position[str]].p_tiles.indexOf(tiles[i]);
-            state[position[str]].p_tiles.splice(index,1);
+        //发起者
+        var str = (player_index-state.me.player_id).toString();
+        if(str==="0"){
+            for (let i = 0; i < tiles.length; i++) {
+                index=state[position[str]].p_tiles.indexOf(tiles[i]);
+                state[position[str]].p_tiles.splice(index,1);
+            }
         }
         for (let index = 0; index < tiles.length; index++) {
             const element = tiles[index];
             state[position[str]].open.push(element);
         }
-
+        //target
+        var str_2=(target_player_index-state.me.player_id).toString();
+            //删掉target的discarded_card的最后一张牌
+        state[position[str_2]].discarded_card.splice(state[position[str]].discarded_card.length-1,1);
     },
     //为了防止多个吃选择的情况
     chi(state){
@@ -200,6 +205,9 @@ const mutations={
     clear_options(state){
         state.options=[];
     },
+    clear_chi(state){
+        state.chi=[];
+    },
 
     //游戏结束
     end(state){
@@ -207,7 +215,83 @@ const mutations={
     },
     //游戏信息
     end_info(state,data){
-        
+        state.end_type=data.end_type;
+        state.winner=data.winner;
+        state.loser=data.loser;
+        state.attribute=data.attribute;
+        state.score=data.score;
+    },
+    clear_end_info(state){
+        state.end_type="";
+        state.winner="";
+        state.loser=[];
+        state.attribute=[];
+        state.score=[];
+    },
+    clear_game(state){
+            state.started=0;
+            state.ended=0;
+            state.number=0;
+            state.people=[];
+            state.table_code=0;
+            state.options=[];
+            state.chi=[];
+            //倒计时
+            state.time= 0;
+            state.yu_array=[5,6];
+            state.end_type="";
+            state.winner="";
+            state.loser=[];
+            state.attribute=[];
+            state.score=[];
+            state.me = {
+                number:0,
+                //位置
+                player_id:-1,
+                name:"",
+                user_id:"",
+                p_tiles:["1s","3s","3s"],
+                open:[],
+                discarded_card: [],
+                score:0,
+                turn:1
+                };
+            state.front = {
+                //牌数
+                number:0,
+                //位置
+                player_id:-1,
+                open:[],
+                discarded_card: [],
+                name:"",
+                user_id:"",
+                total_score:0,
+                turn:0
+            };
+            state.left = {
+                //牌数
+                number:0,
+                //位置
+                player_id:-1,
+                open:[],
+                discarded_card: [],
+                name:"",
+                user_id:"",
+                total_score:0,
+                turn:0
+            };
+            state.right = {
+                //牌数
+                number:0,
+                //位置
+                player_id:-1,
+                open:[],
+                discarded_card: [],
+                name:"",
+                user_id:"",
+                total_score:0,
+                turn:0
+                };
     }
 }
 
@@ -259,6 +343,7 @@ const actions={
         context.commit("clear_options");
         //排序
         context.commit("my_sort");
+        context.commit("clear_chi");
     },
     //收到可以执行的操作的信息后修改store,收到消息
     accept_action_choose(context,data){
@@ -275,7 +360,6 @@ const actions={
 
     //打牌，要分成自己打牌和其他人打牌
     discard(context,data){
-        console.log("discard");
         let player_index=data.player_index;
         if(context.state.me.player_id===player_index){
             context.commit("discard_self",data.tile_type);
@@ -287,6 +371,14 @@ const actions={
     end(context,data){
         context.commit("end");
         context.commit("end_info",data);
+    },
+    clear_end_info(context){
+        context.commit("clear_end_info");
+    },
+
+    //
+    clear_game(context){
+        context.commit('clear_game');
     }
 
 
@@ -296,74 +388,92 @@ const actions={
 }
 
 const state={
-    end:0,
-    me : {
-        number:0,
-        //位置
-        player_id:-1,
-        name:"",
-        user_id:"",
-        p_tiles:[],
-        open:[],
-        discarded_card: [],
-        score:0,
-        turn:1
-        },
-    front : {
-        //牌数
-        number:0,
-        //位置
-        player_id:-1,
-        open:[],
-        discarded_card: [],
-        name:"",
-        user_id:"",
-        total_score:0,
-        turn:0
-    },
-    left : {
-        //牌数
-        number:0,
-        //位置
-        player_id:-1,
-        open:[],
-        discarded_card: [],
-        name:"",
-        user_id:"",
-        total_score:0,
-        turn:0
-    },
-    right : {
-        //牌数
-        number:0,
-        //位置
-        player_id:-1,
-        open:[],
-        discarded_card: [],
-        name:"",
-        user_id:"",
-        total_score:0,
-        turn:0
-        },
-    //游戏内倒计时
-    time: 0,
-    //准备倒计时
-    countdown:0,
-    //分数
-    points:[],
-    options:[],
-    chi:[],
-    //房间
-    house: [],
-    table_code:0,
-    //游戏是否开始
-    started:0,
-    ended:0,
-    yu_array:[5,6],
-    //当前房间人数
-    number:0,
-    //房间里有哪些人
-    people:[]
+    //大厅
+            //房间
+            house: [],
+    //游戏内
+        //状态标志
+            //游戏是否开始
+            started:0,
+            //游戏是否结束
+            ended:0,
+        //未开始
+            //当前房间人数
+            number:0,
+            //房间里有哪些人
+            people:[],
+            table_code:0,
+        //游戏开始动态更新
+            me : {
+                number:0,
+                //位置
+                player_id:-1,
+                name:"",
+                user_id:"",
+                p_tiles:["1s","3s","3s"],
+                open:[],
+                discarded_card: [],
+                score:0,
+                turn:1
+                },
+            front : {
+                //牌数
+                number:0,
+                //位置
+                player_id:-1,
+                open:[],
+                discarded_card: [],
+                name:"",
+                user_id:"",
+                total_score:0,
+                turn:0
+            },
+            left : {
+                //牌数
+                number:0,
+                //位置
+                player_id:-1,
+                open:[],
+                discarded_card: [],
+                name:"",
+                user_id:"",
+                total_score:0,
+                turn:0
+            },
+            right : {
+                //牌数
+                number:0,
+                //位置
+                player_id:-1,
+                open:[],
+                discarded_card: [],
+                name:"",
+                user_id:"",
+                total_score:0,
+                turn:0
+                },
+
+            options:[],
+            chi:[],
+            //倒计时
+            time: 0,
+            yu_array:[5,6],
+         //游戏结束根据信息进行修改   
+            end_type:"",
+            winner:"",
+            loser:[],
+            attribute:[],
+            score:[]
+
+
+    
+
+
+    
+
+
+
+
     
 }
 export default new Vuex.Store({
