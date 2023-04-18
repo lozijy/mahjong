@@ -45,6 +45,7 @@ const mutations={
         for(var i=0;i<action.length;i++){
             state.options.push(action[i]);
         }
+        state.options.push({action:"tiaoguo"});
     },
 
     countdown(state,time){
@@ -450,7 +451,6 @@ const state={
                 total_score:0,
                 turn:0
                 },
-
             options:[],
             chi:[],
             //倒计时
