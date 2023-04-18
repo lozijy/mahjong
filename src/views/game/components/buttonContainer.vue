@@ -23,12 +23,13 @@ export default {
       //向后端发送
       this.$root.$socket.send(JSON.stringify(choice));
       this.$store.dispatch("action_choose");
-
+      document.getElementById("chiContainer").style.display="none";
       }else{
         document.getElementById("chiContainer").style.display="inline";
       }
     },
     chi_func(chi){
+      chi.type=chi.action;
       //向后端发送
       this.$root.$socket.send(JSON.stringify(chi));
       this.$store.dispatch("action_choose");
