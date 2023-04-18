@@ -107,6 +107,7 @@ export default {
   height: 60%;
   position: absolute;
   transform: translate(-50%,-50%);
+  z-index: 10;
 }
 #start{
   display: block;
@@ -170,7 +171,7 @@ export default {
   font-size: 20px;
   position: relative;
   top:10px;
-  color: red;
+  color: rgb(206, 154, 93);
 }
 
 .font_exit{
