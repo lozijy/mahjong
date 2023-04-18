@@ -45,9 +45,9 @@ export default {
 #body{
   position: absolute;
   left: 15%;
-  top:-40%;
+  top:-38%;
   width: 72%;
-  height: 151%;
+  height: 143%;
   z-index:2;
   transform: rotateX(60deg);
   /* image-rendering: high-quality; */

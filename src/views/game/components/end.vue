@@ -90,7 +90,7 @@
     background-repeat: no-repeat;
     width:22%;
     height: 8%;
-    top:95%;
+    top:90%;
     left:50%;
     transform: translate(-50%,-50%);
     transition: transform 0.2s ease-in-out;

@@ -18,16 +18,18 @@ export default {
 
 <style scoped>
 .leftContainer{
+  display: flex;
+  flex-direction: column-reverse;
   position: absolute;
   border: 1px solid gray;
-  width:19.3%;
-  height: 19.3%;
+  width:7%;
+  height: 62.3%;
   left:6%;
   bottom: 5.5%;
 }
 .B{
-  width:23%;
-  height:20%;
+  width:63%;
+  height:23%;
 }
 
 
