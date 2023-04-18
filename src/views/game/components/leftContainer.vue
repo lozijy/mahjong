@@ -26,10 +26,11 @@ export default {
   height: 62.3%;
   left:6%;
   bottom: 5.5%;
+  z-index: -1;
 }
 .B{
-  width:63%;
-  height:23%;
+  width:73%;
+  height:6%;
 }
 
 

@@ -24,11 +24,12 @@ export default {
   height: 62.3%;
   right:6%;
   top:6%;
+  z-index: -1;
 
 }
 .B{
-  width:63%;
-  height:23%;
+  width:73%;
+  height:6%;
 }
 
 </style>
