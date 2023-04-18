@@ -1,6 +1,6 @@
 <template>
   <div class="buttonContainer">
-      <img v-for="choice in $store.state.options"  :key="choice.action" @click="choose(choice)" :src="require(`../../../../public/img/4/${choice.action}.png`)" >
+      <img v-for="choice in options"  :key="choice.action" @click="choose(choice)" :src="get_url(choice)" >
       <div id="chiContainer">
         <button v-for="chi in $store.state.chi" :key="chi" @click="chi_func(chi)">{{ chi.tiles[0] }}{{ chi.tiles[1] }}</button>
       </div>
@@ -13,6 +13,7 @@ export default {
   data(){
     return{
       number:this.$refs,
+      options:[]
     }
   },
   methods:{
@@ -32,14 +33,29 @@ export default {
       this.$root.$socket.send(JSON.stringify(chi));
       this.$store.dispatch("action_choose");
       document.getElementById("chiContainer").style.display="none";
+    },
+    get_url(choice){
+      return require(`../../../../public/img/4/${choice.action}.png`);
     }
   },
   
   computed:{
-      flag:function(){ return this.number.chi;}
+      flag:function(){ return this.number.chi;},
+      OP:{
+      get() {
+        return this.$store.state.options;
+      }
+    },
+      
   },
   mounted() {
     this.$store.commit("chi");
+  },
+  watch:{
+      OP: function(newValue, oldValue){
+        console.log(oldValue);
+        this.options=newValue;
+    },
   }
 }
 

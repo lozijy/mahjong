@@ -1,6 +1,6 @@
 <template>
   <div class="timeContainer">
-    {{ $store.state.time }}
+    {{ ti }}
   </div>
 
 </template>
@@ -10,12 +10,13 @@ export default {
   name: "timeContainer",
   data(){
     return{
-      url: require(`../../../../public/img/5/${this.$store.state.time}.png`)
+      url: require(`../../../../public/img/5/${this.$store.state.time}.png`),
+      ti:60
     }
+
   },
   computed:{
     time(){
-      console.log("time");
       return this.$store.state.time
     },
     countdown_flag(){
@@ -27,7 +28,8 @@ export default {
   },
   watch:{
     time: function (newValue,oldValue){
-      console.log(newValue,oldValue)
+      console.log(newValue,oldValue);
+      this.ti=newValue;
       new Audio("../../../../public/audio/countdown5.mp3").play();
       if(newValue===0){
         document.getElementById("timeContainer").style.display="none";
@@ -53,7 +55,7 @@ export default {
 
 <style scoped>
 .timeContainer{
-  display: none;
+  display: block;
   position: absolute;
   width: 6%;
   height: 10%;

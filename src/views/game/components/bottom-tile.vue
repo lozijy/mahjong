@@ -1,5 +1,5 @@
 <template>
-    <img  :ref="tile" :src ="url" class="bottom-tile"  >
+    <img  :ref="tile" :src ="get_url(this.tile)" class="bottom-tile"  >
 </template>
 
 <script>
@@ -23,6 +23,11 @@ props:{
     move:"move"
   }
 },
+methods:{
+  get_url(tile){
+      return require(`../../../../public/img/1/${tile}.gif`)
+  }
+},
 watch:{
   change:{
     handler(newValue, oldValue){
@@ -32,8 +37,7 @@ watch:{
         console.log("pass");
       }
       else if(oldValue==="") {
-        this.$refs[newValue].classList.add("move");
-        console.log(this.$refs[newValue].classList);
+        this.$refs[newValue].classList.toggle("move");
       }
       else{
         if(this.$refs[oldValue]!== undefined){
@@ -47,10 +51,6 @@ watch:{
   },
   immediate:true
 }
-  
-  
-  
-
 },
   computed:{
   }
