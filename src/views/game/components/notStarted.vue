@@ -95,7 +95,7 @@ export default {
 
 <style scoped>
 .container{
-  display: none;
+  display: block;
   background-image: url("../../../../public/img/player_info1.png");
   background-color: #5f525260;
   background-position: contain;
@@ -110,7 +110,7 @@ export default {
   z-index: 10;
 }
 #start{
-  display: block;
+  display: none;
   /* border: 1px solid rgb(249, 247, 247); */
   cursor: pointer;
   position: absolute;

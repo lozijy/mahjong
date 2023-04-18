@@ -265,7 +265,6 @@ const actions={
         //选择
         context.commit("accept_action_choose", data.data.action);
         context.commit("chi");
-
     },
     //收到玩家作出的操作,包括自己作出的操作和别人作出的操作，收到消息
     accept_options(context,data){
@@ -302,7 +301,7 @@ const state={
         number:0,
         //位置
         player_id:-1,
-        name:"huanghe",
+        name:"",
         user_id:"",
         p_tiles:[],
         open:[],
@@ -317,7 +316,7 @@ const state={
         player_id:-1,
         open:[],
         discarded_card: [],
-        name:"huanghe",
+        name:"",
         user_id:"",
         total_score:0,
         turn:0
@@ -329,7 +328,7 @@ const state={
         player_id:-1,
         open:[],
         discarded_card: [],
-        name:"huanghe",
+        name:"",
         user_id:"",
         total_score:0,
         turn:0
@@ -341,7 +340,7 @@ const state={
         player_id:-1,
         open:[],
         discarded_card: [],
-        name:"huanghe",
+        name:"",
         user_id:"",
         total_score:0,
         turn:0

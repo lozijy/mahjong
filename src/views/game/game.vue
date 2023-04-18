@@ -292,7 +292,7 @@ export default {
 
 #topName{
   color:rgb(206, 154, 93) ;
-  display: block;
+  display: none;
   /* border: 1px solid gray; */
   background-image: url("../../../public/img/12345.png");
   background-size: contain;
@@ -315,6 +315,7 @@ export default {
 #bottomName {
   color:rgb(206, 154, 93) ;
   font-size: large;
+  display: none;
   font-weight: bold;
   /* border: 1px solid gray; */
   background-image: url("../../../public/img/12345.png");
@@ -337,7 +338,7 @@ export default {
   /* border: 1px solid gray; */
 }
 #leftName{
-  display: block;
+  display: none;
   color:rgb(206, 154, 93) ;
   /* border: 1px solid gray; */
   background-image: url("../../../public/img/12345.png");
@@ -360,7 +361,7 @@ export default {
 }
 #rightName{
   color:rgb(206, 154, 93) ;
-  display: block;
+  display: none;
   /* border: 1px solid gray; */
   position: absolute;
   background-image: url("../../../public/img/12345.png");

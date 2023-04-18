@@ -13,7 +13,6 @@ export default {
       url: require(`../../../../public/img/5/${this.$store.state.time}.png`),
       ti:60
     }
-
   },
   computed:{
     time(){
@@ -23,7 +22,7 @@ export default {
       return this.$store.state.started===1
     },
     turn(){
-      return this.$store.state.me.turn;
+      return this.$store.state.me.turn===1;
     }
   },
   watch:{
@@ -43,7 +42,7 @@ export default {
     },
     turn: function (newValue,oldValue){
       console.log(newValue,oldValue)
-      if(newValue===1){
+      if(newValue){
         document.getElementById("timeContainer").style.display="block";
       }else{
         document.getElementById("timeContainer").style.display="none";
