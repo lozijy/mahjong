@@ -1,7 +1,7 @@
 <template>
   <div id="container">
     <img src="../../../../public/img/2/hai1.png" id="img">
-    <img :src="url" id="body" />
+    <img :src="get_url(this.tile)" id="body" />
   </div>
 </template>
 
@@ -17,6 +17,11 @@ export default {
   data(){
     return{
       url: require(`../../../../public/img/2/${this.tile}.png`)
+    }
+  },
+  methods:{
+    get_url(tile){
+      return require(`../../../../public/img/2/${tile}.png`)
     }
   },
 }
@@ -40,11 +45,11 @@ export default {
 }
 
 #container img{
-  display: block; /* Ê¹Í¼Æ¬³ÉÎª¿é¼¶ÔªËØ£¬×Ô¶¯ÊÊÓ¦¸¸ÔªËØ´óÐ¡ */
-    max-width: 100%; /* ÈÃÍ¼Æ¬¿í¶È²»³¬¹ýÈÝÆ÷µÄ¿í¶È */
-    height: auto; /* ¸ß¶È×ÔÊÊÓ¦£¬±£³ÖÍ¼Æ¬µÄ¿í¸ß±È */
-    /* border: 1px solid #000; ±ß¿òÑùÊ½£¬¿É¸ù¾ÝÐèÒª×Ô¶¨Òå */
-    box-sizing: border-box; /* ±ß¿ò¼ÆÈëºÐÄ£ÐÍ£¬±£³Ö±ß¿òºÍÈÝÆ÷±ßÔµ¶ÔÆë */
+  display: block; /* Ê¹Í¼Æ¬ï¿½ï¿½Îªï¿½é¼¶Ôªï¿½Ø£ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ôªï¿½Ø´ï¿½Ð¡ */
+    max-width: 100%; /* ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½È²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ */
+    height: auto; /* ï¿½ß¶ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½Ä¿ï¿½ï¿½ß±ï¿½ */
+    /* border: 1px solid #000; ï¿½ß¿ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½É¸ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ô¶ï¿½ï¿½ï¿½ */
+    box-sizing: border-box; /* ï¿½ß¿ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½Í£ï¿½ï¿½ï¿½ï¿½Ö±ß¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½ï¿½ï¿½ï¿½ */
 }
 
 #body{
