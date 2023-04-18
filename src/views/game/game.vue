@@ -271,20 +271,20 @@ export default {
 
 <style scoped>
 .B_top{
-  width: 13%;
-  height: 29%;
+  width: 15%;
+  height: 36%;
 }
 .B_bottom{
-  width: 13%;
-  height: 29%;
+  width: 15%;
+  height: 36%;
   float: left;
 }
 .B_left{
-  width:27%;
+  width:31%;
   height:15%;
 }
 .B_right{
-  width:27%;
+  width:31%;
   height:15%;
 }
 
@@ -401,13 +401,16 @@ export default {
   position: absolute;
   float: left;
   bottom: 22.1%;
-  right: 38%;
+  right: 37%;
   width: 24%;
   height: 15.4%;
   border: 1px solid gray;
 }
 #TO{
   position: absolute;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap-reverse;
   top: 22.7%;
   right: 38%;
   width: 24%;
@@ -416,17 +419,23 @@ export default {
 }
 #LE{
   position: absolute;
-  width: 15.3%;
-  height: 24%;
-  top:38.2%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap-reverse;
+  width: 15.6%;
+  height: 29%;
+  top:35.6%;
   left:22.4%;
   border: 1px solid gray;
 }
 #RI{
   position: absolute;
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
   width: 15.6%;
-  height: 24%;
-  top:38.2%;
+  height: 29%;
+  top:32.6%;
   right:22.3%;
   border: 1px solid gray;
 }

@@ -17,15 +17,15 @@ export default {
 <style scoped>
 .topContainer{
   position: absolute;
-  width:19.3%;
+  width:62.3%;
   left:6%;
   top:6%;
-  height: 19.3%;
+  height: 7%;
   border: 1px solid gray;
 }
 .B{
-  width:18%;
-  height:29%;
+  width:6%;
+  height:86%;
 }
 
 </style>

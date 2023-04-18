@@ -16,17 +16,19 @@ export default {
 
 <style scoped>
 .rightContainer{
+  display: flex;
+  flex-direction: column;
   position: absolute;
   border: 1px solid gray;
-  width:19.3%;
-  height: 19.3%;
+  width:7%;
+  height: 62.3%;
   right:6%;
   top:6%;
 
 }
 .B{
-  width:23%;
-  height:20%;
+  width:63%;
+  height:23%;
 }
 
 </style>

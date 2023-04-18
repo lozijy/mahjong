@@ -18,8 +18,8 @@ export default {
 <style scoped>
 .B{
   bottom: 3%;
-  width: 16%;
-  height: 25%;
+  width: 6%;
+  height: 86%;
   float: right;
   transform: rotateX(180deg);
   /* top:-10%; */
@@ -29,12 +29,13 @@ export default {
 .bottomContainer{
   position: absolute;
   bottom:5.5%;
-  width:19.3%;
+  width:62.3%;
   right:6%;
-  height: 19.3%;
+  height: 6%;
   /* height:105.167px; */
   border: 1px solid gray;
   transform: rotateX(180deg);
+  /* z-index: -1; */
   /* overflow: auto; */
 }
 /* .bottomContainer::after {
