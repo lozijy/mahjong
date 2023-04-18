@@ -45,7 +45,7 @@ const mutations={
         for(var i=0;i<action.length;i++){
             state.options.push(action[i]);
         }
-        state.options.push({action:"tiaoguo"});
+        state.options.push({action:"cancel"});
     },
 
     countdown(state,time){
@@ -216,11 +216,11 @@ const mutations={
     },
     //游戏信息
     end_info(state,data){
-        state.end_type=data.end_type;
-        state.winner=data.winner;
-        state.loser=data.loser;
-        state.attribute=data.attribute;
-        state.score=data.score;
+        state.end_type=data.data.end_type;
+        state.winner=data.data.winner;
+        state.loser=data.data.loser;
+        state.attribute=data.data.attribute;
+        state.score=data.data.score;
     },
     clear_end_info(state){
         state.end_type="";

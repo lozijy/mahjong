@@ -61,7 +61,7 @@
       flag:function(newValue, oldValue) {
         console.log(newValue+oldValue);
         if(this.flag===true){
-          document.getElementsByClassName("container")[0].style.display="block";
+          document.getElementsByClassName("container")[1].style.display="block";
         }
       },
         end_flag: function(newValue, oldValue) {
