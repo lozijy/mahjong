@@ -110,7 +110,7 @@ export default {
   z-index: 10;
 }
 #start{
-  display: block;
+  display: none;
   /* border: 1px solid rgb(249, 247, 247); */
   cursor: pointer;
   position: absolute;

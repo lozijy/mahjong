@@ -32,7 +32,7 @@ export default {
           "tile_type":tile,
         };
         this.$root.$socket.send(JSON.stringify(information))
-        //修改change
+        //修改change  
         this.change="";
         this.$store.commit("clear_options");
     },
