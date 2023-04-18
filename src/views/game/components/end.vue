@@ -1,12 +1,15 @@
 <template>
     <div class="container">
       <div class="font">游戏结束</div>
-      <div class="font">结局</div>
-      <div class="font">赢家:{{ Winner }}</div>
-      <div class="font" v-for="person in $store.state.people" :key="person">{{ person.name }}</div>
-      <div class="font">输家:{{ Loser }}</div>
-      <div class="font">属性:{{ Attribute }}</div>
-      <div class="font">成绩:{{ Score }}</div>
+      <div class="font" v-if="endType==='ron'">结局:荣和</div>
+      <div class="font" v-if="endType==='zimo'">结局:自摸</div>
+      <div class="font" v-if="endType==='draw_end'">结局:荒牌流局</div>
+      <div class="font" v-if="endType!=='draw_end'">赢家:{{ Winner }}</div>
+      <div class="font" v-if="endType!=='draw_end'">输家:</div>
+      <div class="font" v-for="(player,index) in Loser" :key="index">{{ player }}</div>
+      <div class="font" v-if="endType!=='draw_end'">番型:</div>
+      <div class="font" v-for="(fan,index) in Attribute" :key="index" >{{ fan }}</div>
+      <div class="font" v-if="endType!=='draw_end'">成绩:{{ Score }}</div>
       <!-- <div  id="start" class="font" @click="start()" :style="{ backgroundImage }"></div> -->
       <div class="font_exit" id="exit" @click="exit()"></div>
     </div>
@@ -108,6 +111,7 @@
     position: absolute;
     transform: translate(-50%,-50%);
     z-index: 10;
+
   }
   
   #exit{
@@ -134,6 +138,8 @@
     position: relative;
     top:10px;
     color: rgb(206, 154, 93);
+    
+    
   }
   
   .font_exit{

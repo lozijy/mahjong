@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+.background{
+  display: inline;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* top: 50%;
+  left: 50%; */
+  /* transform: translate(-50%, -50%); */
+  width: 100%;
+  height: 100%;
+  /* background-image: url('../../../public/img/table.jpg'); */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  transform-style: preserve-3d;
+  background-color: black;
+  /* transform: rotateX(30deg) rotateY(0deg) translateZ(0px);   */
+}
+
+.background-container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width:640px;
+  height:538px;
+  transform: translate(-50%, -50%);
+  background-image: url('../img/table.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+}
+        .container{
+    display: block;
+    background-image: url("../img/player_info1.png");
+    background-color: #5f525260;
+    background-position: contain;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top:50%;
+    left:50%;
+    width: 42%;
+    height: 60%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+  }
+  
+  #exit{
+    /* border: 1px solid gray; */
+    cursor: pointer;
+    display: block;
+    /* border: 1px solid rgb(249, 247, 247); */
+    position: absolute;
+    background-image: url("../img/player_info1.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    width:22%;
+    height: 8%;
+    top:90%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    transition: transform 0.2s ease-in-out;
+  }
+  #exit:hover{
+    transform: translate(-50%,-50%) scale(1.1);
+  }
+  .font{
+    font-size: 20px;
+    position: relative;
+    top:10px;
+    color: rgb(206, 154, 93);
+  }
+  
+  .font_exit{
+    font-size: 20px;
+    position: absolute;
+    top:90%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    /* top:50px; */
+    color: red;
+  
+  }
+    </style>
+</head>
+<body>
+    <div class="background" >
+        <div class="background-container">
+    <div class="container">
+        <div class="font">游戏结束</div>
+        <div class="font" >结局:荣和</div>
+        <div class="font" >赢家: lozijy</div>
+        <div class="font" >输家: </div>
+        <div class="font" >lozijy</div>
+        <div class="font" >番型:</div>
+        <div class="font" >1s 2s 3s</div>
+        <div class="font" >成绩:123</div>
+        <!-- <div  id="start" class="font" @click="start()" :style="{ backgroundImage }"></div> -->
+        <div class="font_exit" id="exit" ></div>
+      </div>
+    </div>
+    </div>
+</body>
+</html>
