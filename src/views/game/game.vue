@@ -292,7 +292,7 @@ export default {
   color:rgb(206, 154, 93) ;
   display: block;
   /* border: 1px solid gray; */
-  background-image: url("../../../public/img/12345.png");
+  background-image: url("../../../public/img/1234.png");
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
@@ -315,7 +315,7 @@ export default {
   font-size: large;
   font-weight: bold;
   /* border: 1px solid gray; */
-  background-image: url("../../../public/img/12345.png");
+  background-image: url("../../../public/img/1234.png");
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
@@ -338,7 +338,7 @@ export default {
   display: block;
   color:rgb(206, 154, 93) ;
   /* border: 1px solid gray; */
-  background-image: url("../../../public/img/12345.png");
+  background-image: url("../../../public/img/1234.png");
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
@@ -361,7 +361,7 @@ export default {
   display: block;
   /* border: 1px solid gray; */
   position: absolute;
-  background-image: url("../../../public/img/12345.png");
+  background-image: url("../../../public/img/1234.png");
   background-size: contain;
   background-repeat: no-repeat;
   font-weight: bold;
