@@ -6,12 +6,10 @@ Vue.use(Vuex);
 /* eslint-disable*/
 const mutations={
     draw_self(state,tile){
-
+        console.log("st_draw_self");
         state.me.number++;
         state.me.p_tiles.push(tile);
         // state.my_sort();
-        state.left.turn=0;
-        state.me.turn=1;
     },
     //余牌减少1
     yu(state){
@@ -24,24 +22,22 @@ const mutations={
     },
 
     draw_other(state,player_id){
+        console.log("st_draw_other");
         const position = {
             "-1" : "left",
             "1" : "right",
             "2" : "front",
             "-2" : "front",
-            "0" : "me"
+            "0" : "me",
+            "3":"left",
+            "-3":"right",
         };
         var str = player_id-state.me.player_id.toString();
         state[position[str]].number++;
-        state[position[str]].turn=1;
-        if(str==="2"||str==="-2"){
-            state["right"].turn=0;
-        }else{
-            state[(player_id-state.me.player_id-1).toString()].turn=0;
-        }
     },
 
     accept_action_choose(state,action){
+        console.log("st_accept_action_choose");
         for(var i=0;i<action.length;i++){
             state.options.push(action[i]);
         }
@@ -58,7 +54,7 @@ const mutations={
         state.started=1;
     },
     init(state,info){
-
+        console.log("st_init");
         //修改yu_array
         state.yu_array=[5,6]
         //初始化
@@ -72,7 +68,9 @@ const mutations={
             "-1" : "left",
             "1" : "right",
             "2" : "front",
-            "-2" : "front"
+            "-2" : "front",
+            "3":"left",
+            "-3":"right",
         };
         for (let i = 0; i < 4; i++) {
             if(state.me.user_id===info.table[i].user_id){
@@ -82,7 +80,8 @@ const mutations={
         }
         for (let i = 0; i < 4; i++) {
             if(i!==state.me.player_id){
-                var str = i-state.me.player_id.toString();
+                var str = (i-state.me.player_id).toString();
+                console.log("st_init"+str);
                 state[position[str]].player_id=i;
                 state[position[str]].name=info.table[i].name;
                 state[position[str]].user_id=info.table[i].user_id;
@@ -94,6 +93,7 @@ const mutations={
         // state.my_sort();
     },
     my_sort(state) {
+        console.log("st_sort");
         state.me.p_tiles.sort(function (a, b) {
             if (a[1] == b[1]) {
                 return Number(a[0]) - Number(b[0]);
@@ -110,19 +110,23 @@ const mutations={
     },
     //打牌部分，2个
     discard_self(state,tile_type){
+        console.log("st_discard_self")
         let index=state.me.p_tiles.indexOf(tile_type);
         state.me.p_tiles.splice(index, 1);
         //在discard_card里添加这张牌
         state.me.discarded_card.push(tile_type);
     },
     discard_other(state,data){
+        console.log("st_discard_other")
         let tile_type=data.tile_type;
         let player_index=data.player_index;
         const position = {
             "-1" : "left",
             "1" : "right",
             "2" : "front",
-            "-2" : "front"
+            "-2" : "front",
+            "3":"left",
+            "-3":"right",
         };
         var str = (player_index-state.me.player_id).toString();
         state[position[str]].number--;
@@ -131,25 +135,30 @@ const mutations={
 
     //轮次部分，4个
     my_turn(state){
+        console.log("st_myturn")
         state.left.turn=0;
         state.me.turn=1;
         state.right.turn=0;
         state.front.turn=0;
     },
     other_turn(state,player_index){
-
+        console.log("st_otherturn")
         const position = {
             "-1" : "left",
             "1" : "right",
             "2" : "front",
             "-2" : "front",
-            "0" : "me"
+            "0" : "me",
+            "3":"left",
+            "-3":"right",
         };
         const other=["me","front","left","right"]
         var str = (player_index-state.me.player_id).toString();
         state[position[str]].turn=1;
         for (let index = 0; index < 4; index++) {
-            if(other[index]!==str){
+            if(other[index]!=position[str]){
+                console.log("st"+other[index]);
+                console.log("st"+str);
                 state[other[index]].turn=0;
             }
         }
@@ -157,6 +166,7 @@ const mutations={
     },
     //选择部分,3个
     accept_options(state,data){
+        console.log("st_accept_options")
         let player_index=data.player_index;
         let tiles=data.tiles;
         let target_player_index=data.target_player_index;
@@ -170,7 +180,7 @@ const mutations={
         let index;
         //发起者
         var str = (player_index-state.me.player_id).toString();
-        if(str==="0"){
+        if(str=="0"){
             for (let i = 0; i < tiles.length; i++) {
                 index=state[position[str]].p_tiles.indexOf(tiles[i]);
                 state[position[str]].p_tiles.splice(index,1);
@@ -363,10 +373,12 @@ const actions={
             "1" : "right",
             "2" : "front",
             "-2" : "front",
-            "0" : "me"
+            "0" : "me",
+            "3":"left",
+            "-3":"right",
         };
         var str = (player_index-state.me.player_id).toString();
-        if(str==="0"){
+        if(str=="0"){
             context.commit("my_turn");
         }else{
             context.commit("other_turn",player_index);
