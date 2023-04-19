@@ -17,9 +17,9 @@ export default {
     time(){
       return this.$store.state.time
     },
-    // countdown_flag(){
-    //   return this.$store.state.started===1
-    // },
+    countdown_flag(){
+      return this.$store.state.started===1
+    },
     turn(){
       return this.$store.state.me.turn===1;
     }
@@ -36,19 +36,19 @@ export default {
           this.ti="";
         }
       }
-    }
+    },
     // ti:function(newValue,oldValue){ 
     //   console.log(newValue,oldValue);
     //   if(newValue===0){
     //     document.getElementsByClassName("timeContainer")[0].style.display="none";
     //   }
     // },
-    // countdown_flag: function (newValue,oldValue){
-    //   console.log(newValue,oldValue)
-    //   if(this.countdown_flag===true){
-    //     document.getElementsByClassName("timeContainer")[0].style.display="block";
-    //   }
-    // },
+    countdown_flag: function (newValue,oldValue){
+      console.log(newValue,oldValue)
+      if(this.countdown_flag===true){
+        this.ti="";
+      }
+    },
     // turn: function (newValue,oldValue){
     //   console.log(newValue,oldValue)
     //   if(newValue===true){

@@ -137,6 +137,7 @@ const mutations={
         state.front.turn=0;
     },
     other_turn(state,player_index){
+
         const position = {
             "-1" : "left",
             "1" : "right",
@@ -151,8 +152,8 @@ const mutations={
             if(other[index]!==str){
                 state[other[index]].turn=0;
             }
-            
         }
+        console.log("other_turn"+state[position[str]].turn);
     },
     //选择部分,3个
     accept_options(state,data){
@@ -179,6 +180,7 @@ const mutations={
             const element = tiles[index];
             state[position[str]].open.push(element);
         }
+        
         //target
         var str_2=(target_player_index-state.me.player_id).toString();
             //删掉target的discarded_card的最后一张牌
@@ -251,7 +253,7 @@ const mutations={
                 player_id:-1,
                 name:"",
                 user_id:"",
-                p_tiles:["1s","3s","3s"],
+                p_tiles:[],
                 open:[],
                 discarded_card: [],
                 score:0,
@@ -355,6 +357,20 @@ const actions={
     //收到玩家作出的操作,包括自己作出的操作和别人作出的操作，收到消息
     accept_options(context,data){
         context.commit("accept_options",data);
+        let player_index=data.player_index;
+        const position = {
+            "-1" : "left",
+            "1" : "right",
+            "2" : "front",
+            "-2" : "front",
+            "0" : "me"
+        };
+        var str = (player_index-state.me.player_id).toString();
+        if(str==="0"){
+            context.commit("my_turn");
+        }else{
+            context.commit("other_turn",player_index);
+        }
     },
 
     //打牌，要分成自己打牌和其他人打牌

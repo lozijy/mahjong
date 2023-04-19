@@ -1,112 +1,334 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-.background{
-  display: inline;
-  position: absolute;
-  top: 0;
-  left: 0;
-  /* top: 50%;
-  left: 50%; */
-  /* transform: translate(-50%, -50%); */
-  width: 100%;
-  height: 100%;
-  /* background-image: url('../../../public/img/table.jpg'); */
-  background-repeat: no-repeat;
-  background-position: center center;
+<template>
+  <div class="container">
+    <div class="gameover">
+      <img src="..//img/game_end.png">
+    </div>
+    <div class="ending_winner"></div>
+    <div class="ending_conclusion"></div>
+    <div class="ending_yaku"></div>
+    <div id="container">
+      <div class="grade">成绩:123</div>
+    </div>
+    <div class="conclusion" >
+    <div>结局</div>
+    <div style="font-size: smaller;top: 7px;position: relative;">荣和</div>
+    </div>
+      <div class="yaku" >
+        <div>番型</div>
+      <div style="font-size: smaller;top: 7px;position: relative;">1s,2s,2s</div>
+      </div>
+
+      <div class="winner">
+      <div >赢家</div>
+      <div style="font-size: smaller;top: 7px;position: relative;">lozijy</div>
+      </div>
+      <div class="loser">
+        <div >输家</div>
+        <div style="font-size: smaller;top: 7px;position: relative;">losij</div>
+        <div style="font-size: smaller;top: 7px;position: relative;">asda</div>
+      </div>
+      <!-- <div class="font" >成绩:123</div> -->
+  </div>
+</template>
+
+<script>
+export default {
+  name: "notStarted",
+  props:{
+    ready_flag:{
+      type:Boolean,
+      required: true // 是否必须传递
+    },
+  },
+  methods:{
+    start(){
+      // this.msg = "√";
+      // this.$data.backgroundImage = '..//img/register.png';
+      // this.$set(this, 'backgroundImage', '..//img/register.png');
+      // this.backgroundImage = "..//img/register.png"; 
+      // console.log(document.getElementById("start"));
+      this.exi.style.display = "none";
+      this.countDown.style.display = "none";
+      this.sta.style.display = "none";
+      this.al.style.display="block"
+      this.$root.$socket.send(JSON.stringify({
+        "type":"ready"
+      }));
+    },
+    exit(){
+      this.$root.$socket.close();
+      console.log(this.$store.state.table_code);
+      this.$http.post('http://198.211.12.166:23333/exit', {
+        table_code: this.$store.state.table_code,
+        user_id: window.localStorage.getItem("userId"),
+        token:window.localStorage.getItem("token")
+      }).then((response)=> {
+        console.log("接受数据");
+        console.log(response);
+        this.$store.state.table_code=0;
+        this.$router.push("/hall");
+      });
+
+
+    }
+  },
+  data(){
+    return {
+      // eslint-disable-next-line vue/no-dupe-keys
+      // backgroundImage: "..//img/ready1.png"
+      msg: "",
+      //游戏是否开始
+      flag:false,
+    }
+  },
+  computed:{
+    start_flag(){
+      return this.$store.state.started===1
+    }
+  },
+  mounted() {
+    this.exi=document.getElementById("exit");
+    this.sta=document.getElementById("start");
+    this.countDown = document.getElementById("countdown");
+    this.al = document.getElementById("already");
+  },
+  watch:{
+    ready_flag: function(newValue, oldValue) {
+      console.log(newValue+oldValue);
+      if(newValue===true) {
+        // do something with the new value
+        this.sta.style.display = "block";
+        this.countDown.style.display="block";
+        this.flag = false;
+      }
+    },
+    start_flag: function(newValue, oldValue) {
+      console.log(newValue+oldValue);
+      this.flag=newValue;
+    },
+    flag: function(newValue, oldValue) {
+      console.log(newValue+oldValue);
+      if(newValue===true){
+        console.log("start");
+        document.getElementsByClassName("container")[0].style.display="none";
+      }
+    },
+  },
+
+}
+</script>
+
+<style scoped>
+.container{
+  display: block;
+  background-image: url("..//img/player_info1.png");
+  background-color: #5f525260;
+  background-position: contain;
   background-size: contain;
-  transform-style: preserve-3d;
-  background-color: black;
-  /* transform: rotateX(30deg) rotateY(0deg) translateZ(0px);   */
+  background-repeat: no-repeat;
+  top:50%;
+  left:50%;
+  width: 42%;
+  height: 60%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  z-index: 10;
 }
 
-.background-container{
+.gameover{
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width:640px;
-  height:538px;
-  transform: translate(-50%, -50%);
-  background-image: url('../img/table.jpg');
+  background-image: url("..//img/ingame_name.png");
+  background-size: contain;
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 100% 100%;
+  width:57%;
+  height: 10%;
+  /* border: 1px solid gray; */
+  transform: translate(-50%,-50%);
+  top: 10%;
+  left: 50%; 
 }
-        .container{
-    display: block;
-    background-image: url("../img/player_info1.png");
-    background-color: #5f525260;
-    background-position: contain;
-    background-size: contain;
-    background-repeat: no-repeat;
-    top:50%;
-    left:50%;
-    width: 42%;
-    height: 60%;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    z-index: 10;
-  }
+
+.gameover img{
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 45%;
+  width: 61%;
+  height: 102%;
+}
+
+.ending_winner{
+  position: absolute;
+  background-image: url("..//img/ending.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width:57%;
+  height: 11%;
+  /* border: 1px solid gray; */
+  transform: translate(-50%,-50%);
+  top: 61%;
+  left: 36%; 
+}
+
+.ending_conclusion{
+  position: absolute;
+  background-image: url("..//img/ending.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width:57%;
+  height: 11%;
+  /* border: 1px solid gray; */
+  transform: translate(-50%,-50%);
+  top: 38%;
+  left: 36%; 
+}
+
+.ending_yaku{
+  position: absolute;
+  background-image: url("..//img/ending.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width:57%;
+  height: 11%;
+  /* border: 1px solid gray; */
+  transform: translate(-50%,-50%);
+  top: 38%;
+  left: 81%; 
+}
+
+#container{
+  position: absolute;
+  background-image: url("..//img/end.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:70%;
+  height: 27%;
+  /* border: 1px solid gray; */
+  transform: translate(-50%,-50%);
+  top: 85%;
+  left: 64%; 
+}
+
+.conclusion{
+  position: absolute;
+  top: 26%;
+  left: 15%;
+  width: 20%;
+  font-size: 16px;
+  color: rgb(206, 154, 93);
+}
+
+.yaku{
+  position: absolute;
+  top: 26%;
+  left: 60%;
+  width: 20%;
+  font-size: 16px;
+  color: rgb(206, 154, 93);
+}
+
+.grade{
+  position: absolute;
+  top: 66%;
+  left: 13%;
+  font-size: 16px;
+  color: rgb(206, 154, 93);
+}
+
+.winner{
+  position: absolute;
+  top: 49%;
+  width: 20%;
+  left: 15%;
+  font-size: 16px;
+  color: rgb(206, 154, 93)
+}
+
+.loser{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top:49%;
+  width: 20%;
+  left: 60%;
+  font-size: 16px;
+  color: rgb(206, 154, 93)
+}
+
+#start{
+  display: none;
+  /* border: 1px solid rgb(249, 247, 247); */
+  cursor: pointer;
+  position: absolute;
+  background-image: url("..//img/ready1.png");
+  background-size:contain;
+  background-repeat: no-repeat;
+  width:22%;
+  height: 8%;
+  top:80%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  transition: transform 0.2s ease-in-out;
+}
+
+#start:hover{
+  transform: translate(-50%,-50%) scale(1.1);
+}
+
+#already{
+  display: none;
+  /* border: 1px solid rgb(249, 247, 247); */
+  /* cursor: pointer; */
+  position: absolute;
+  background-image: url("..//img/have_ready.png");
+  background-size:contain;
+  background-repeat: no-repeat;
+  width:22%;
+  height: 8%;
+  top:80%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  /* transition: transform 0.2s ease-in-out; */
+}
+
+#countdown{
+  display: none;
+}
+#exit{
+  /* border: 1px solid gray; */
+  cursor: pointer;
+  display: block;
+  /* border: 1px solid rgb(249, 247, 247); */
+  position: absolute;
+  background-image: url("..//img/exit.png");
+  background-size:contain;
+  background-repeat: no-repeat;
+  width:22%;
+  height: 8%;
+  top:90%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  transition: transform 0.2s ease-in-out;
+}
+#exit:hover{
+  transform: translate(-50%,-50%) scale(1.1);
+}
+.font{
+  font-size: 16px;
+  color: rgb(206, 154, 93);
+  position: relative;
+  top:50px;
   
-  #exit{
-    /* border: 1px solid gray; */
-    cursor: pointer;
-    display: block;
-    /* border: 1px solid rgb(249, 247, 247); */
-    position: absolute;
-    background-image: url("../img/player_info1.png");
-    background-size:contain;
-    background-repeat: no-repeat;
-    width:22%;
-    height: 8%;
-    top:90%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    transition: transform 0.2s ease-in-out;
-  }
-  #exit:hover{
-    transform: translate(-50%,-50%) scale(1.1);
-  }
-  .font{
-    font-size: 20px;
-    position: relative;
-    top:10px;
-    color: rgb(206, 154, 93);
-  }
-  
-  .font_exit{
-    font-size: 20px;
-    position: absolute;
-    top:90%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    /* top:50px; */
-    color: red;
-  
-  }
-    </style>
-</head>
-<body>
-    <div class="background" >
-        <div class="background-container">
-    <div class="container">
-        <div class="font">游戏结束</div>
-        <div class="font" >结局:荣和</div>
-        <div class="font" >赢家: lozijy</div>
-        <div class="font" >输家: </div>
-        <div class="font" >lozijy</div>
-        <div class="font" >番型:</div>
-        <div class="font" >1s 2s 3s</div>
-        <div class="font" >成绩:123</div>
-        <!-- <div  id="start" class="font" @click="start()" :style="{ backgroundImage }"></div> -->
-        <div class="font_exit" id="exit" ></div>
-      </div>
-    </div>
-    </div>
-</body>
-</html>
+}
+
+.font_exit{
+  font-size: 20px;
+  /* font-family:'Courier New', Courier, monospace; */
+  position: absolute;
+  top:90%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  /* top:50px; */
+  color: red;
+
+}
+</style>
