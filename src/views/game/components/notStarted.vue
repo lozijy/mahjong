@@ -155,7 +155,7 @@ export default {
   display: none;
 }
 #exit{
-  /* border: 1px solid gray; */
+  /*  */
   cursor: pointer;
   display: block;
   /* border: 1px solid rgb(249, 247, 247); */

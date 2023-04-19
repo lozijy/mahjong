@@ -22,7 +22,7 @@ export default {
   height:7%;
   top:6%;
   right:20.4%;
-  border: 1px solid gray;
+  
   display: inline;
 }
 </style>

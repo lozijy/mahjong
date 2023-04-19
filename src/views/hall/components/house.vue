@@ -64,7 +64,7 @@ export default {
   left: 0%;
   z-index: 0;
 
-  /* border: 1px solid gray; */
+  /*  */
 }
 #house-window-number {
   position: absolute;

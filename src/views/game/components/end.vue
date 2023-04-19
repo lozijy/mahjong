@@ -154,7 +154,7 @@
   background-repeat: no-repeat;
   width:57%;
   height: 10%;
-  /* border: 1px solid gray; */
+  /*  */
   transform: translate(-50%,-50%);
   top: 10%;
   left: 50%; 
@@ -175,7 +175,7 @@
   background-repeat: no-repeat;
   width:57%;
   height: 11%;
-  /* border: 1px solid gray; */
+  /*  */
   transform: translate(-50%,-50%);
   top: 61%;
   left: 36%; 
@@ -187,7 +187,7 @@
   background-repeat: no-repeat;
   width:70%;
   height: 27%;
-  /* border: 1px solid gray; */
+  /*  */
   transform: translate(-50%,-50%);
   top: 70%;
   left: 64%; 
@@ -199,7 +199,7 @@
   background-repeat: no-repeat;
   width:57%;
   height: 11%;
-  /* border: 1px solid gray; */
+  /*  */
   transform: translate(-50%,-50%);
   top: 38%;
   left: 36%; 
@@ -212,7 +212,7 @@
   background-repeat: no-repeat;
   width:57%;
   height: 11%;
-  /* border: 1px solid gray; */
+  /*  */
   transform: translate(-50%,-50%);
   top: 38%;
   left: 81%; 
@@ -265,7 +265,7 @@
 
   
   #exit{
-    /* border: 1px solid gray; */
+    /*  */
     cursor: pointer;
     display: block;
     /* border: 1px solid rgb(249, 247, 247); */

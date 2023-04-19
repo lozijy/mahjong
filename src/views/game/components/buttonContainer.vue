@@ -69,7 +69,7 @@ export default {
   height:6.4%;
   bottom: 15.6%;
   right:25.4%;
-  border: 1px solid gray;
+  
 }
 .buttonContainer img{
   float: left;
@@ -88,7 +88,7 @@ export default {
   height:100%;
   bottom: 100%;
   right:10%;
-  border: 1px solid gray;
+  
 }
 
 </style>

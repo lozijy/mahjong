@@ -21,7 +21,7 @@ export default {
   display: flex;
   flex-direction: column-reverse;
   position: absolute;
-  border: 1px solid gray;
+  
   width:7%;
   height: 62.3%;
   left:6%;

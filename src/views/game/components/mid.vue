@@ -35,7 +35,7 @@ export default {
   height: 24%;
   top:38.2%;
   left:37.8%;
-  border: 1px solid gray;
+  
   background-image: url("../../../../public/img/bg.png");
   background-repeat: no-repeat;
   background-position: center center;
@@ -55,7 +55,7 @@ export default {
   top:55%;
   width: 16%;
   height:10%;
-  border: 1px solid gray;
+  
 }
 .yu{
   height: 100%;

@@ -69,7 +69,7 @@ export default {
   height: 6%;
   right:30%;
   bottom: 23%;
-  border: 1px solid gray;
+  
   font-size: 30px;
   color: rgb(206, 154, 93);
 }

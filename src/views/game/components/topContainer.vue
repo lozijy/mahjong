@@ -21,7 +21,7 @@ export default {
   left:6%;
   top:6%;
   height: 7%;
-  border: 1px solid gray;
+  
   z-index: -1;
 }
 .B{

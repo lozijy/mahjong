@@ -293,7 +293,7 @@ export default {
 #topName{
   color:rgb(206, 154, 93) ;
   display: none;
-  /* border: 1px solid gray; */
+  /*  */
   background-image: url("../../../public/img/1234.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -317,7 +317,7 @@ export default {
   font-size: large;
   display: none;
   font-weight: bold;
-  /* border: 1px solid gray; */
+  /*  */
   background-image: url("../../../public/img/1234.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -335,12 +335,12 @@ export default {
   left:50%;
 
   /* background: rgba(76, 175, 80, 0.8); */
-  /* border: 1px solid gray; */
+  /*  */
 }
 #leftName{
   display: none;
   color:rgb(206, 154, 93) ;
-  /* border: 1px solid gray; */
+  /*  */
   background-image: url("../../../public/img/1234.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -362,7 +362,7 @@ export default {
 #rightName{
   color:rgb(206, 154, 93) ;
   display: none;
-  /* border: 1px solid gray; */
+  /*  */
   position: absolute;
   background-image: url("../../../public/img/1234.png");
   background-size: contain;
@@ -450,7 +450,7 @@ export default {
   right: 37%;
   width: 24%;
   height: 15.4%;
-  border: 1px solid gray;
+  
 }
 #TO{
   position: absolute;
@@ -461,7 +461,7 @@ export default {
   right: 38%;
   width: 24%;
   height: 15.4%;
-  border: 1px solid gray;
+  
 }
 #LE{
   position: absolute;
@@ -472,7 +472,7 @@ export default {
   height: 29%;
   top:35.6%;
   left:22.4%;
-  border: 1px solid gray;
+  
 }
 #RI{
   position: absolute;
@@ -483,7 +483,7 @@ export default {
   height: 29%;
   top:32.6%;
   right:22.3%;
-  border: 1px solid gray;
+  
 }
 #BO img{
   float: left;

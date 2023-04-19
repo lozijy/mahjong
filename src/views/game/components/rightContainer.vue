@@ -19,7 +19,7 @@ export default {
   display: flex;
   flex-direction: column;
   position: absolute;
-  border: 1px solid gray;
+  
   width:7%;
   height: 62.3%;
   right:6%;

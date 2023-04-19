@@ -33,7 +33,7 @@ export default {
   right:6%;
   height: 6%;
   /* height:105.167px; */
-  border: 1px solid gray;
+  
   transform: rotateX(180deg);
   z-index: -1;
   /* overflow: auto; */

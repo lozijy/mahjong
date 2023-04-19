@@ -35,7 +35,7 @@ export default {
   height: 50px;
   /* z-index: 4; */
   margin-left: 0;
-  /* border: 1px solid gray; */
+  /*  */
 }
 .User {
   position: relative;

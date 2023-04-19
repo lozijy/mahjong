@@ -157,8 +157,7 @@ const mutations={
         state[position[str]].turn=1;
         for (let index = 0; index < 4; index++) {
             if(other[index]!=position[str]){
-                console.log("st"+other[index]);
-                console.log("st"+str);
+
                 state[other[index]].turn=0;
             }
         }

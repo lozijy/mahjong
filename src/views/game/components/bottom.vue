@@ -94,7 +94,7 @@ export default {
   height:6%;
   bottom:5.5%;
   right:25.4%;
-  border: 1px solid gray;
+  
   display: inline;
 }
 

@@ -23,7 +23,7 @@ export default {
   height:43.8%;
   left:6%;
   top:20.5%;
-  border: 1px solid gray;
+  
   display: flex;
   align-items: center;
   flex-direction: column;
