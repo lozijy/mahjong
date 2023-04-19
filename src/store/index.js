@@ -185,12 +185,13 @@ const mutations={
                 index=state[position[str]].p_tiles.indexOf(tiles[i]);
                 state[position[str]].p_tiles.splice(index,1);
             }
+        }else{
+            state[position[str]].number-=tiles.length;
         }
         for (let index = 0; index < tiles.length; index++) {
             const element = tiles[index];
             state[position[str]].open.push(element);
         }
-        
         //target
         var str_2=(target_player_index-state.me.player_id).toString();
             //删掉target的discarded_card的最后一张牌
