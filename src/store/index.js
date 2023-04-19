@@ -157,11 +157,16 @@ const mutations={
         state[position[str]].turn=1;
         for (let index = 0; index < 4; index++) {
             if(other[index]!=position[str]){
-
                 state[other[index]].turn=0;
             }
         }
         console.log("other_turn"+state[position[str]].turn);
+    },
+    no_turn(state){
+        const other=["me","front","left","right"];
+        for (let index = 0; index < 4; index++) {
+            state[other[index]].turn=0;
+        }
     },
     //选择部分,3个
     accept_options(state,data){
@@ -387,6 +392,7 @@ const actions={
 
     //打牌，要分成自己打牌和其他人打牌
     discard(context,data){
+        context.commit("no_turn");
         let player_index=data.player_index;
         if(context.state.me.player_id===player_index){
             context.commit("discard_self",data.tile_type);

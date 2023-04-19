@@ -20,19 +20,19 @@
 <!--      名字-->
       <div id="topName">
         <div id="NA">{{$store.state.front.name}}</div>
-        <div id="score">9024分</div>
+        <div id="score">100分</div>
       </div>
       <div id="bottomName">
         <div id="NA">{{$store.state.me.name}}</div>
-        <div id="score">9024分</div>
+        <div id="score">100分</div>
       </div>
       <div id="leftName">
         <div id="NA">{{$store.state.left.name}}</div>
-        <div id="score">9024分</div>
+        <div id="score">100分</div>
       </div>
       <div id="rightName">
         <div id="NA">{{$store.state.right.name}}</div>
-        <div id="score">9024分</div>
+        <div id="score">100分</div>
       </div>
 
 <!--      桌子-->
